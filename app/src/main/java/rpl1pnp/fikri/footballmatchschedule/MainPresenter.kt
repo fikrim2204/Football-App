@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballclub
+package rpl1pnp.fikri.footballmatchschedule
 
 import com.google.gson.Gson
 import org.jetbrains.anko.doAsync
@@ -10,9 +10,10 @@ class MainPresenter(private val view: MainView,
     fun getTeamList(league: String?) {
         view.showLoading()
         doAsync {
-            val data = gson.fromJson(apiRepositori.doRequest(TheSportDBApi.getTeams(league)),
-                TeamResponse::class.java
-            )
+                val data = gson.fromJson(
+                    apiRepositori.doRequest(TheSportDBApi.getTeams(league)),
+                    TeamResponse::class.java
+                )
 
             uiThread {
                 view.hideLoading()
