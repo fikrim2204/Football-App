@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballmatchschedule
+package rpl1pnp.fikri.footballmatchschedule.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

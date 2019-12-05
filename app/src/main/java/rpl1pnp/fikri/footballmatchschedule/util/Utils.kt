@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballmatchschedule
+package rpl1pnp.fikri.footballmatchschedule.util
 
 import android.view.View
 

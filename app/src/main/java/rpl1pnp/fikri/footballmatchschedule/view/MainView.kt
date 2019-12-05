@@ -1,4 +1,6 @@
-package rpl1pnp.fikri.footballmatchschedule
+package rpl1pnp.fikri.footballmatchschedule.view
+
+import rpl1pnp.fikri.footballmatchschedule.model.Team
 
 interface MainView {
     fun showLoading()

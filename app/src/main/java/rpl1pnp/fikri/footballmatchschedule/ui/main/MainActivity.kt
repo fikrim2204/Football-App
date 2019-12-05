@@ -1,14 +1,19 @@
-package rpl1pnp.fikri.footballmatchschedule
+package rpl1pnp.fikri.footballmatchschedule.ui.main
 
 import android.os.Bundle
 import android.view.View
-import android.widget.*
+import android.widget.ProgressBar
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
+import rpl1pnp.fikri.footballmatchschedule.R
+import rpl1pnp.fikri.footballmatchschedule.adapter.MainAdapter
+import rpl1pnp.fikri.footballmatchschedule.model.League
+import rpl1pnp.fikri.footballmatchschedule.presenter.MainPresenter
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,7 +55,13 @@ class MainActivity : AppCompatActivity() {
 
         items.clear()
         for (i in name.indices) {
-            items.add(League(id[i], name[i], photo.getResourceId(i, 0)))
+            items.add(
+                League(
+                    id[i],
+                    name[i],
+                    photo.getResourceId(i, 0)
+                )
+            )
         }
         photo.recycle()
     }

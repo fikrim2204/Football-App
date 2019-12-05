@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_previous_match"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/score_home"
+                android:orientation="vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp">
+                <ImageView
+                    android:id="@+id/image_club_home"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/english_league_1" />
+
+                <TextView
+                    android:id="@+id/team_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    tools:text="LiverPool"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/score_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/strip"
+                android:padding="15dp"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                tools:text="2"/>
+
+            <TextView
+                android:id="@+id/strip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                tools:text="-"/>
+
+            <TextView
+                android:id="@+id/score_away"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/strip"
+                android:padding="15dp"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                tools:text="0"/>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/score_away"
+                android:orientation="vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp">
+                <ImageView
+                    android:id="@+id/image_club_away"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/english_league_1"/>
+                <TextView
+                    android:id="@+id/team_away"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    tools:text="Man United"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/strip"
+                android:layout_centerHorizontal="true"
+                android:textSize="16sp"
+                tools:text="20-04-2019" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

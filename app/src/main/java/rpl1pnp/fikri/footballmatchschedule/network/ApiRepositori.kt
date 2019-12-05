@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballmatchschedule
+package rpl1pnp.fikri.footballmatchschedule.network
 
 import java.net.URL
 

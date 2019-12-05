@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballmatchschedule
+package rpl1pnp.fikri.footballmatchschedule.model
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballmatchschedule
+package rpl1pnp.fikri.footballmatchschedule.adapter
 
 import android.view.View
 import android.view.ViewGroup
@@ -8,11 +8,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
+import rpl1pnp.fikri.footballmatchschedule.R
+import rpl1pnp.fikri.footballmatchschedule.model.League
 
 class MainAdapter(private val items: List<League>, private val listener: (League) -> Unit) : RecyclerView.Adapter<LeagueTeamHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeagueTeamHolder {
-        return LeagueTeamHolder(LeagueUI().createView(AnkoContext.Companion.create(parent.context, parent)))
+        return LeagueTeamHolder(
+            LeagueUI().createView(
+                AnkoContext.create(parent.context, parent)
+            )
+        )
     }
 
     override fun getItemCount(): Int = items.size
