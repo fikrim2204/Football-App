@@ -26,8 +26,6 @@ class DetailLeagueActivity : AppCompatActivity(), DetailLeagueView {
     }
 
     override fun showDetailLeague(data: List<DetailLeague>) {
-        detailLeague.clear()
-        detailLeague.addAll(data)
     }
 
     private lateinit var presenter: DetailLeaguePresenter
@@ -35,7 +33,7 @@ class DetailLeagueActivity : AppCompatActivity(), DetailLeagueView {
     private lateinit var imageView: ImageView
     private lateinit var textLeague: TextView
     private lateinit var textDesc: TextView
-    private var detailLeague: MutableList<DetailLeague> = mutableListOf()
+    private lateinit var detailLeague: DetailLeague
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +51,7 @@ class DetailLeagueActivity : AppCompatActivity(), DetailLeagueView {
         val idLeague: String = intent.getStringExtra("idLeague")
         Log.v("Detail", idLeague)
         presenter.getLeagueDetail(idLeague)
+        bindItem(detailLeague)
 
 
     }

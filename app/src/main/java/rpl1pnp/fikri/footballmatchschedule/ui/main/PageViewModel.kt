@@ -8,8 +8,9 @@ import androidx.lifecycle.ViewModel
 class PageViewModel : ViewModel() {
 
     val _index = MutableLiveData<Int>()
-    var idLeague = MutableLiveData<String>("4328")
-    val text: LiveData<String> = Transformations.map(idLeague) {
+    private val idLeague = MutableLiveData<String>()
+
+    val text: LiveData<String> = Transformations.map(_index) {
         "Hello world from section: $it"
     }
 
@@ -20,4 +21,9 @@ class PageViewModel : ViewModel() {
     fun setIdLeague(idLeague: String?) {
         this.idLeague.value = idLeague
     }
+
+    fun getIdLeague(): MutableLiveData<String> {
+        return idLeague
+    }
+
 }

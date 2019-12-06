@@ -13,47 +13,22 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.google.gson.Gson
 import org.jetbrains.anko.support.v4.onRefresh
 import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.adapter.EventAdapter
 import rpl1pnp.fikri.footballmatchschedule.model.Events
-import rpl1pnp.fikri.footballmatchschedule.network.ApiRepositori
 import rpl1pnp.fikri.footballmatchschedule.presenter.MatchPresenter
-import rpl1pnp.fikri.footballmatchschedule.util.invisible
-import rpl1pnp.fikri.footballmatchschedule.util.visible
-import rpl1pnp.fikri.footballmatchschedule.view.DetailView
 
 /**
  * A simple [Fragment] subclass.
  */
-class PreviousMatchFragment : Fragment(), DetailView {
+class PreviousMatchFragment : Fragment() {
     private lateinit var viewModel: PageViewModel
+    private lateinit var viewModelPrev: PreviousMatchViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(activity!!).get(PageViewModel::class.java)
-    }
-
-    override fun showLoading() {
-        progressBar.visible()
-    }
-
-    override fun hideLoading() {
-        progressBar.invisible()
-    }
-
-    override fun showNextMatch(data: List<Events>) {
-        swipeRefreshLayout.isRefreshing = false
-        events.clear()
-        events.addAll(data)
-        adapter.notifyDataSetChanged()
-    }
-
-    override fun showPreviousMatch(data: List<Events>) {
-        swipeRefreshLayout.isRefreshing = false
-        events.clear()
-        events.addAll(data)
-        adapter.notifyDataSetChanged()
+        viewModel = ViewModelProviders.of(requireActivity()).get(PageViewModel::class.java)
+        viewModelPrev = ViewModelProviders.of(this).get(PreviousMatchViewModel::class.java)
     }
 
     private var events: MutableList<Events> = mutableListOf()
@@ -81,21 +56,20 @@ class PreviousMatchFragment : Fragment(), DetailView {
         swipeRefreshLayout =
             rootView.findViewById(R.id.swipeRefreshLayoutPrev) as SwipeRefreshLayout
 
-        viewModel.idLeague.observe(this,
+        viewModel.getIdLeague().observe(this,
             Observer<String> { t ->
                 idLeague = t!!.toString()
-                Log.v("previous", idLeague + "")
-            }
-        )
+                Log.v("previous1", idLeague + "")
+            })
 
+        viewModelPrev.observePrevMatch().observe(this,
+            Observer {
+                viewModelPrev.loadData(idLeague)
+                Log.v("previous2", idLeague + "")
+            })
 
-        val request = ApiRepositori()
-        val gson = Gson()
-        presenter = MatchPresenter(this, request, gson)
-
-        presenter.getPreviousMatch(idLeague)
         swipeRefreshLayout.onRefresh {
-            presenter.getPreviousMatch(idLeague)
+            viewModelPrev.loadData(idLeague)
         }
 
         return rootView
