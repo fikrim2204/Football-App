@@ -12,17 +12,23 @@ import androidx.fragment.app.FragmentPagerAdapter
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm) {
 
-    private val pages = arrayOf(
+    private val pages = listOf(
         PreviousMatchFragment(),
         NextMatchFragment()
     )
 
-    override fun getItem(position: Int): Fragment {
-        return pages[position]
+    override fun getItem(position: Int): Fragment? {
+        var fragment: Fragment? = null
+        if (position == 0) {
+            fragment = PreviousMatchFragment()
+        } else if (position == 1) {
+            fragment = NextMatchFragment()
+        }
+        return fragment
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return when(position) {
+        return when (position) {
             0 -> "Previous Match"
             else -> "Next Match"
         }

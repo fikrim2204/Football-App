@@ -9,10 +9,10 @@ import rpl1pnp.fikri.footballmatchschedule.network.TheSportDBApi
 import rpl1pnp.fikri.footballmatchschedule.view.DetailView
 
 class DetailPresenter(private val view: DetailView, private val apiRepositori: ApiRepositori, private val gson: Gson) {
-    fun getNextMatch() {
+    fun getNextMatch(idLeague: String?) {
         view.showLoading()
          doAsync {
-             var data = gson.fromJson(apiRepositori.doRequest(TheSportDBApi.getNextMatch()),
+             val data = gson.fromJson(apiRepositori.doRequest(TheSportDBApi.getNextMatch(idLeague)),
                  EventsResponse::class.java)
 
              uiThread {
@@ -22,10 +22,10 @@ class DetailPresenter(private val view: DetailView, private val apiRepositori: A
          }
     }
 
-    fun getPreviousMatch() {
+    fun getPreviousMatch(idLeague: String?) {
         view.showLoading()
         doAsync {
-            var data = gson.fromJson(apiRepositori.doRequest(TheSportDBApi.getPreviousMatch()),
+            val data = gson.fromJson(apiRepositori.doRequest(TheSportDBApi.getPreviousMatch(idLeague)),
                 EventsResponse::class.java)
 
             uiThread {

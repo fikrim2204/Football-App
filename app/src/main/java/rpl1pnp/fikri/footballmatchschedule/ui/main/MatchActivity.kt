@@ -2,26 +2,36 @@ package rpl1pnp.fikri.footballmatchschedule.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import rpl1pnp.fikri.footballmatchschedule.R
-import rpl1pnp.fikri.footballmatchschedule.model.League
 
-class DetailActivity : AppCompatActivity() {
+class MatchActivity : AppCompatActivity() {
+    private lateinit var viewModel: PageViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        val intentLeague: League? = intent.getParcelableExtra("league")
+
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         val viewPager: ViewPager = findViewById(R.id.view_pager)
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
         val fab: FloatingActionButton = findViewById(R.id.fab)
+
+        if (intent.extras != null) {
+            val bundle = intent.extras
+            val idLeague: String? = bundle?.getString("idLeague")
+            viewModel = ViewModelProviders.of(this).get(PageViewModel::class.java)
+            viewModel.setSelectedItem(idLeague)
+            print(idLeague)
+        }
+
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

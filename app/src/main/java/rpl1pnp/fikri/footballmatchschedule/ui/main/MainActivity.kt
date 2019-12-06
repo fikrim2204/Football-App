@@ -1,5 +1,6 @@
 package rpl1pnp.fikri.footballmatchschedule.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
@@ -44,8 +45,15 @@ class MainActivity : AppCompatActivity() {
         initLeague()
         recyclerLeague.layoutManager = LinearLayoutManager(this)
         recyclerLeague.adapter = MainAdapter(items) {
-            startActivity<DetailActivity>("idLeague" to it)
+            val bundle = Bundle()
+            bundle.putString("idLeague", it.idLeague.toString())
+
+            val intent = Intent(this, MatchActivity::class.java)
+            intent.putExtras(bundle)
+            startActivity(intent)
         }
+
+
     }
 
     private fun initLeague() {

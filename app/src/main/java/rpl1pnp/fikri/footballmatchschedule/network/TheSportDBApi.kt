@@ -13,17 +13,17 @@ object TheSportDBApi {
                 "/lookupleague.php?id=" + idLeague
     }
 
-    public fun getNextMatch(): String {
+    public fun getNextMatch(idLeague: String?): String {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" +
-                "/eventsnextleague.php?id=4328"
+                "/eventsnextleague.php?id=" + idLeague
     }
 
-    public fun getPreviousMatch(): String {
+    public fun getPreviousMatch(idLeague: String?): String {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" +
-                "/eventspastleague.php?id=4328"
+                "/eventspastleague.php?id=" + idLeague
     }
 
-    public fun getDetailMatch(idEvent: Int?): String {
+    public fun getDetailMatch(idEvent: String?): String {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" +
                 "/lookupevent.php?id=" + idEvent
     }

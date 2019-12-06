@@ -21,7 +21,7 @@ class EventAdapter(private var events: List<Events>, private val listener: (Even
     }
 
     override fun getItemCount(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return events.size
     }
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
@@ -34,6 +34,7 @@ class EventAdapter(private var events: List<Events>, private val listener: (Even
             itemView.team_away.text = events.awayTeam
             itemView.score_home.text = events.homeScore
             itemView.score_away.text = events.awayScore
+            itemView.date.text = events.dateEvent
             itemView.setOnClickListener {
                 listener(events)
             }
