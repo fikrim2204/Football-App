@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 class PageViewModel : ViewModel() {
 
     val _index = MutableLiveData<Int>()
-    val idLeague = MutableLiveData<String>()
+    var idLeague = MutableLiveData<String>("4334")
     val text: LiveData<String> = Transformations.map(idLeague) {
         "Hello world from section: $it"
     }
