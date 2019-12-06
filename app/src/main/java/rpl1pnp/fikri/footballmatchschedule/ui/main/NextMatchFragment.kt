@@ -79,12 +79,15 @@ class NextMatchFragment : Fragment(), DetailView {
 
         nextList.adapter = adapter
         progressBar = rootView.findViewById(R.id.progressBarNext) as ProgressBar
-        swipeRefreshLayout = rootView.findViewById(R.id.swipeRefreshLayoutNext) as SwipeRefreshLayout
+        swipeRefreshLayout =
+            rootView.findViewById(R.id.swipeRefreshLayoutNext) as SwipeRefreshLayout
 
         viewModel.idLeague.observe(this,
-            Observer<String> { t -> idLeague = t!!.toString() })
+            Observer<String> { t ->
+                idLeague = t!!.toString()
+                Log.v("next", idLeague + "")
+            })
 
-        Log.v("next", idLeague + "")
         val request = ApiRepositori()
         val gson = Gson()
         presenter = MatchPresenter(this, request, gson)

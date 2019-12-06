@@ -28,7 +28,7 @@ import rpl1pnp.fikri.footballmatchschedule.view.DetailView
  * A simple [Fragment] subclass.
  */
 class PreviousMatchFragment : Fragment(), DetailView {
-private lateinit var viewModel: PageViewModel
+    private lateinit var viewModel: PageViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(activity!!).get(PageViewModel::class.java)
@@ -78,12 +78,17 @@ private lateinit var viewModel: PageViewModel
 
         previousList.adapter = adapter
         progressBar = rootView.findViewById(R.id.progressBarPrev) as ProgressBar
-        swipeRefreshLayout = rootView.findViewById(R.id.swipeRefreshLayoutPrev) as SwipeRefreshLayout
+        swipeRefreshLayout =
+            rootView.findViewById(R.id.swipeRefreshLayoutPrev) as SwipeRefreshLayout
 
         viewModel.idLeague.observe(this,
-            Observer<String> { t -> idLeague = t!!.toString() })
+            Observer<String> { t ->
+                idLeague = t!!.toString()
+                Log.v("previous", idLeague + "")
+            }
+        )
 
-        Log.v("previous", idLeague + "")
+
         val request = ApiRepositori()
         val gson = Gson()
         presenter = MatchPresenter(this, request, gson)
@@ -95,8 +100,6 @@ private lateinit var viewModel: PageViewModel
 
         return rootView
     }
-
-
 
 
 }
