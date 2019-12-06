@@ -8,7 +8,7 @@ object TheSportDBApi {
                 "/search_all_teams.php?l=" + league
     }
 
-    public fun getLeagueDetail(idLeague: Int?): String {
+    public fun getLeagueDetail(idLeague: String?): String {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" +
                 "/lookupleague.php?id=" + idLeague
     }

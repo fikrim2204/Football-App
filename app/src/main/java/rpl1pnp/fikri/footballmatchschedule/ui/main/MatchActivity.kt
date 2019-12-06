@@ -1,16 +1,18 @@
 package rpl1pnp.fikri.footballmatchschedule.ui.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import rpl1pnp.fikri.footballmatchschedule.R
 
 class MatchActivity : AppCompatActivity() {
     private lateinit var viewModel: PageViewModel
+    var idLeague: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,16 +28,17 @@ class MatchActivity : AppCompatActivity() {
 
         if (intent.extras != null) {
             val bundle = intent.extras
-            val idLeague: String? = bundle?.getString("idLeague")
+            idLeague = bundle?.getString("idLeague")
             viewModel = ViewModelProviders.of(this).get(PageViewModel::class.java)
-            viewModel.setSelectedItem(idLeague)
-            print(idLeague)
+            viewModel.setIdLeague(idLeague)
+            Log.v("Match", idLeague + "")
         }
 
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        fab.setOnClickListener {
+            val intent = Intent(this, DetailLeagueActivity::class.java)
+            intent.putExtra("idLeague", idLeague)
+            startActivity(intent)
         }
     }
 }

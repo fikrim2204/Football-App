@@ -8,7 +8,7 @@ import rpl1pnp.fikri.footballmatchschedule.network.ApiRepositori
 import rpl1pnp.fikri.footballmatchschedule.network.TheSportDBApi
 import rpl1pnp.fikri.footballmatchschedule.view.DetailView
 
-class DetailPresenter(private val view: DetailView, private val apiRepositori: ApiRepositori, private val gson: Gson) {
+class MatchPresenter(private val view: DetailView, private val apiRepositori: ApiRepositori, private val gson: Gson) {
     fun getNextMatch(idLeague: String?) {
         view.showLoading()
          doAsync {

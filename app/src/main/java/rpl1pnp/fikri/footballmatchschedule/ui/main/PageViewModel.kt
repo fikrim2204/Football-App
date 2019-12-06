@@ -7,21 +7,17 @@ import androidx.lifecycle.ViewModel
 
 class PageViewModel : ViewModel() {
 
-    private val _index = MutableLiveData<Int>()
-    private var idLeague: String? = "4328"
-    val text: LiveData<String> = Transformations.map(_index) {
+    val _index = MutableLiveData<Int>()
+    val idLeague = MutableLiveData<String>()
+    val text: LiveData<String> = Transformations.map(idLeague) {
         "Hello world from section: $it"
     }
 
-    fun setIndex(index: Int) {
+    fun setIndex(index: Int?) {
         _index.value = index
     }
 
-    fun setSelectedItem(idLeague: String?) {
-        this.idLeague = idLeague
-    }
-
-    fun getSelectedItem(): String? {
-        return idLeague
+    fun setIdLeague(idLeague: String?) {
+        this.idLeague.value = idLeague
     }
 }

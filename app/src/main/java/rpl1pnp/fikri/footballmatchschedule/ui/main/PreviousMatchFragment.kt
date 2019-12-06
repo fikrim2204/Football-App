@@ -2,11 +2,13 @@ package rpl1pnp.fikri.footballmatchschedule.ui.main
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +19,7 @@ import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.adapter.EventAdapter
 import rpl1pnp.fikri.footballmatchschedule.model.Events
 import rpl1pnp.fikri.footballmatchschedule.network.ApiRepositori
-import rpl1pnp.fikri.footballmatchschedule.presenter.DetailPresenter
+import rpl1pnp.fikri.footballmatchschedule.presenter.MatchPresenter
 import rpl1pnp.fikri.footballmatchschedule.util.invisible
 import rpl1pnp.fikri.footballmatchschedule.util.visible
 import rpl1pnp.fikri.footballmatchschedule.view.DetailView
@@ -26,11 +28,10 @@ import rpl1pnp.fikri.footballmatchschedule.view.DetailView
  * A simple [Fragment] subclass.
  */
 class PreviousMatchFragment : Fragment(), DetailView {
-    private lateinit var viewModel: PageViewModel
-
+private lateinit var viewModel: PageViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(PageViewModel::class.java)
+        viewModel = ViewModelProviders.of(activity!!).get(PageViewModel::class.java)
     }
 
     override fun showLoading() {
@@ -57,10 +58,11 @@ class PreviousMatchFragment : Fragment(), DetailView {
 
     private var events: MutableList<Events> = mutableListOf()
     private lateinit var previousList: RecyclerView
-    private lateinit var presenter: DetailPresenter
+    private lateinit var presenter: MatchPresenter
     private lateinit var adapter: EventAdapter
     private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    var idLeague: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,11 +80,13 @@ class PreviousMatchFragment : Fragment(), DetailView {
         progressBar = rootView.findViewById(R.id.progressBarPrev) as ProgressBar
         swipeRefreshLayout = rootView.findViewById(R.id.swipeRefreshLayoutPrev) as SwipeRefreshLayout
 
-        val idLeague: String? = viewModel.getSelectedItem()
+        viewModel.idLeague.observe(this,
+            Observer<String> { t -> idLeague = t!!.toString() })
 
+        Log.v("previous", idLeague + "")
         val request = ApiRepositori()
         val gson = Gson()
-        presenter = DetailPresenter(this, request, gson)
+        presenter = MatchPresenter(this, request, gson)
 
         presenter.getPreviousMatch(idLeague)
         swipeRefreshLayout.onRefresh {
