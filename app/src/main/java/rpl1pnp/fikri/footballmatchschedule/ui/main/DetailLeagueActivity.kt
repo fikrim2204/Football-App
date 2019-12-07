@@ -1,7 +1,6 @@
 package rpl1pnp.fikri.footballmatchschedule.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -25,7 +24,10 @@ class DetailLeagueActivity : AppCompatActivity(), DetailLeagueView {
         progressBar.invisible()
     }
 
-    override fun showDetailLeague(data: List<DetailLeague>) {
+    override fun showDetailLeague(data: DetailLeague) {
+        data.leagueBadge?.let { Picasso.get().load(it).fit().into(imageView) }
+        textLeague.text = data.leagueName
+        textDesc.text = data.leagueDescription
     }
 
     private lateinit var presenter: DetailLeaguePresenter
@@ -33,7 +35,6 @@ class DetailLeagueActivity : AppCompatActivity(), DetailLeagueView {
     private lateinit var imageView: ImageView
     private lateinit var textLeague: TextView
     private lateinit var textDesc: TextView
-    private lateinit var detailLeague: DetailLeague
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,17 +49,7 @@ class DetailLeagueActivity : AppCompatActivity(), DetailLeagueView {
         val gson = Gson()
         presenter = DetailLeaguePresenter(this, request, gson)
 
-        val idLeague: String = intent.getStringExtra("idLeague")
-        Log.v("Detail", idLeague)
+        val idLeague: String? = intent.getStringExtra("idLeague")
         presenter.getLeagueDetail(idLeague)
-        bindItem(detailLeague)
-
-
-    }
-
-    fun bindItem(items: DetailLeague) {
-        items.leagueBadge?.let { Picasso.get().load(it).fit().into(imageView) }
-        textLeague.text = items.leagueName
-        textDesc.text = items.leagueDescription
     }
 }

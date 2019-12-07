@@ -18,6 +18,8 @@ import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.adapter.EventAdapter
 import rpl1pnp.fikri.footballmatchschedule.model.Events
 import rpl1pnp.fikri.footballmatchschedule.presenter.MatchPresenter
+import rpl1pnp.fikri.footballmatchschedule.util.invisible
+import rpl1pnp.fikri.footballmatchschedule.util.visible
 
 /**
  * A simple [Fragment] subclass.
@@ -56,24 +58,33 @@ class PreviousMatchFragment : Fragment() {
         swipeRefreshLayout =
             rootView.findViewById(R.id.swipeRefreshLayoutPrev) as SwipeRefreshLayout
 
-        viewModel.getIdLeague().observe(this,
-            Observer<String> { t ->
-                idLeague = t!!.toString()
-                Log.v("previous1", idLeague + "")
+        idLeague = viewModel.getIdLeague()
+        viewModelPrev.isLoading().observe(this,
+            Observer {
+                if (it == true) {
+                    progressBar.visible()
+                } else {
+                    progressBar.invisible()
+                }
             })
 
+        viewModelPrev.loadData(idLeague)
         viewModelPrev.observePrevMatch().observe(this,
             Observer {
-                viewModelPrev.loadData(idLeague)
+                events.clear()
+                events.addAll(it.events)
+                adapter.notifyDataSetChanged()
                 Log.v("previous2", idLeague + "")
+
             })
 
         swipeRefreshLayout.onRefresh {
+            events.clear()
             viewModelPrev.loadData(idLeague)
+
         }
 
         return rootView
     }
-
 
 }

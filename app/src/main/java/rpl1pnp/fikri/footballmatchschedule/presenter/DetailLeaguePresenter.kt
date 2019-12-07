@@ -25,7 +25,7 @@ class DetailLeaguePresenter (private val view: DetailLeagueView,
 
             uiThread {
                 view.hideLoading()
-                view.showDetailLeague(data.league)
+                view.showDetailLeague(data.league.get(0))
             }
         }
     }

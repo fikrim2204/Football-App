@@ -11,25 +11,31 @@ import rpl1pnp.fikri.footballmatchschedule.network.TheSportDBApi
 
 class PreviousMatchViewModel : ViewModel() {
 
-    private val prevMatch = MutableLiveData<String>()
+    private val prevMatch = MutableLiveData<EventsResponse>()
     val gson = Gson()
     val apiRepositori = ApiRepositori()
-    var isLoading = false
+    val loading = MutableLiveData<Boolean>()
 
     fun loadData(idLeague: String?) {
-        isLoading = true
+        loading.value = true
         doAsync {
-            val data = gson.fromJson(apiRepositori.doRequest(TheSportDBApi.getPreviousMatch(idLeague)),
-                EventsResponse::class.java)
+            val data = gson.fromJson(
+                apiRepositori.doRequest(TheSportDBApi.getPreviousMatch(idLeague)),
+                EventsResponse::class.java
+            )
 
             uiThread {
-                isLoading = false
+                loading.value = false
+                prevMatch.value = data
             }
         }
     }
 
-    fun observePrevMatch(): MutableLiveData<String> {
-        return prevMatch
+    fun isLoading(): MutableLiveData<Boolean> {
+        return loading
     }
 
+    fun observePrevMatch(): MutableLiveData<EventsResponse> {
+        return prevMatch
+    }
 }

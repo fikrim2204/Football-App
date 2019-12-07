@@ -59,20 +59,25 @@ class NextMatchFragment : Fragment() {
         swipeRefreshLayout =
             rootView.findViewById(R.id.swipeRefreshLayoutNext) as SwipeRefreshLayout
 
-        viewModel.getIdLeague().observe(this,
-            Observer<String> { t ->
-                idLeague = t!!.toString()
-                Log.v("next1", idLeague + "")
+        viewModelNext.isLoading().observe(this,
+            Observer {
+                if (it == true) {
+                    progressBar.visible()
+                } else {
+                    progressBar.invisible()
+                }
             })
-        viewModelNext.observeNextMatch().observe(this,
-            Observer { viewModelNext.loadData(idLeague)
-                Log.v("next2", idLeague + "")})
 
-        if (viewModelNext.isLoading) {
-            progressBar.visible()
-        } else {
-            progressBar.invisible()
-        }
+        idLeague = viewModel.getIdLeague()
+        viewModelNext.loadData(idLeague)
+        viewModelNext.observeNextMatch().observe(this,
+            Observer {
+                events.clear()
+                events.addAll(it.events)
+                adapter.notifyDataSetChanged()
+                Log.v("next2", idLeague + "")
+            })
+
 
         swipeRefreshLayout.onRefresh {
             viewModelNext.loadData(idLeague)
