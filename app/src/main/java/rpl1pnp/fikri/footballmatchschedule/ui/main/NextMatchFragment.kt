@@ -17,7 +17,6 @@ import org.jetbrains.anko.support.v4.onRefresh
 import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.adapter.EventAdapter
 import rpl1pnp.fikri.footballmatchschedule.model.Events
-import rpl1pnp.fikri.footballmatchschedule.presenter.MatchPresenter
 import rpl1pnp.fikri.footballmatchschedule.util.invisible
 import rpl1pnp.fikri.footballmatchschedule.util.visible
 
@@ -36,7 +35,6 @@ class NextMatchFragment : Fragment() {
 
     private var events: MutableList<Events> = mutableListOf()
     private lateinit var nextList: RecyclerView
-    private lateinit var presenter: MatchPresenter
     private lateinit var adapter: EventAdapter
     private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout

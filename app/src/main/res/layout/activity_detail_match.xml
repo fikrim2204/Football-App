@@ -1,42 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.DetailLeagueActivity">
-
-    <ProgressBar
-        android:id="@+id/progressBarDetailLeague"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
-    <ImageView
-        android:id="@+id/image_logo_league"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        tools:src="@drawable/english_league_1" />
+    tools:context=".ui.main.DetailMatchActivity">
 
     <TextView
-        android:id="@+id/text_league"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/image_logo_league"
-        android:layout_centerHorizontal="true"
-        android:padding="5dp"
+        android:id="@+id/text_event_date"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Sunday, 22 April 2019"/>
+
+    <TextView
+        android:id="@+id/text_home_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        tools:text="League" />
+        app:layout_constraintEnd_toStartOf="@id/text_event_date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_event_date"
+        tools:text="Manchester"/>
+
+    <ImageView
+        android:id="@+id/image_home_badge"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:fitsSystemWindows="true"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="@id/text_home_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_home_name"
+        tools:src="@drawable/english_league_1" />
+
 
     <TextView
-        android:id="@+id/text_desc_league"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/text_league"
-        android:padding="5dp"
-        android:textSize="16sp"
+        android:id="@+id/text_away_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
         android:textStyle="bold"
-        tools:text="Lorem Lorel lorea wadawd awdawda dwadawd awdawda wadawda awdawda awdawda awdad awdawda awdawda awdawda awdawdaw awdawd " />
-</RelativeLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_event_date"
+        app:layout_constraintTop_toBottomOf="@id/text_event_date"
+        tools:text="Manchester"/>
+
+    <ImageView
+        android:id="@+id/image_away_badge"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:fitsSystemWindows="true"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/text_away_name"
+        app:layout_constraintTop_toBottomOf="@id/text_away_name"
+        tools:src="@drawable/english_league_1"/>
+
+    <TextView
+        android:id="@+id/text_home_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="50dp"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/text_divide_score"
+        app:layout_constraintStart_toEndOf="@id/image_home_badge"
+        app:layout_constraintTop_toBottomOf="@id/text_event_date"
+        tools:text="0"/>
+
+    <TextView
+        android:id="@+id/text_divide_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="50dp"
+        android:text=":"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/text_away_score"
+        app:layout_constraintStart_toEndOf="@id/text_home_score"
+        app:layout_constraintTop_toBottomOf="@id/text_event_date"/>
+
+    <TextView
+        android:id="@+id/text_away_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:paddingTop="50dp"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/image_away_badge"
+        app:layout_constraintStart_toEndOf="@id/text_divide_score"
+        app:layout_constraintTop_toBottomOf="@id/text_event_date"
+        tools:text="0"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

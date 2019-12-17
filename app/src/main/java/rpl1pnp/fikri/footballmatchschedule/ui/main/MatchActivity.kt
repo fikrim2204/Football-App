@@ -10,7 +10,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import rpl1pnp.fikri.footballmatchschedule.R
 
-class MatchActivity : AppCompatActivity() {
+class MatchActivity : AppCompatActivity(){
+
     private lateinit var viewModel: PageViewModel
     var idLeague: String? = null
 

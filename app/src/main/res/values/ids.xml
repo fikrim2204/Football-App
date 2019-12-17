@@ -5,4 +5,5 @@
     <item name="photo_league" type="id" />
     <item name="name_league" type="id" />
     <item name="recycler_view" type="id" />
+    <item name="progressBarMain" type="id" />
 </resources>

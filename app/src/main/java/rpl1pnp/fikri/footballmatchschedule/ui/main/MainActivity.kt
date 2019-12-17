@@ -14,21 +14,19 @@ import org.jetbrains.anko.recyclerview.v7.recyclerView
 import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.adapter.MainAdapter
 import rpl1pnp.fikri.footballmatchschedule.model.League
-import rpl1pnp.fikri.footballmatchschedule.presenter.MainPresenter
 
 class MainActivity : AppCompatActivity() {
 
+    private var id: String = ""
     private lateinit var listTeam: RecyclerView
     private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var spinner: Spinner
-    private var items: MutableList<League> = mutableListOf()
-    private lateinit var presenter: MainPresenter
     private lateinit var adapter: MainAdapter
-    private lateinit var leagueName: String
+    private var items: MutableList<League> = mutableListOf()
 
     class MainActivityUI : AnkoComponent<MainActivity> {
-        override fun createView(ui: AnkoContext<MainActivity>): View = with(ui){
+        override fun createView(ui: AnkoContext<MainActivity>): View = with(ui) {
             verticalLayout {
                 lparams(matchParent, matchParent)
                 recyclerView {
@@ -37,23 +35,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MainActivityUI().setContentView(this)
-
         val recyclerLeague = find<RecyclerView>(R.id.recycler_view)
         initLeague()
         recyclerLeague.layoutManager = LinearLayoutManager(this)
         recyclerLeague.adapter = MainAdapter(items) {
+            id = it.idLeague.toString()
             val bundle = Bundle()
-            bundle.putString("idLeague", it.idLeague.toString())
-
+            bundle.putString("idLeague", id)
             val intent = Intent(this, MatchActivity::class.java)
             intent.putExtras(bundle)
             startActivity(intent)
         }
-
-
     }
 
     private fun initLeague() {
