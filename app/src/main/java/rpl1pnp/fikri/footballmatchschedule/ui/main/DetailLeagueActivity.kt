@@ -7,16 +7,15 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
-import com.squareup.picasso.Picasso
 import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.model.LeagueDetail
 import rpl1pnp.fikri.footballmatchschedule.network.ApiRepositori
-import rpl1pnp.fikri.footballmatchschedule.presenter.MatchPresenter
+import rpl1pnp.fikri.footballmatchschedule.presenter.LeaguePresenter
 import rpl1pnp.fikri.footballmatchschedule.util.invisible
 import rpl1pnp.fikri.footballmatchschedule.util.visible
-import rpl1pnp.fikri.footballmatchschedule.view.MatchView
+import rpl1pnp.fikri.footballmatchschedule.view.LeagueView
 
-class DetailLeagueActivity : AppCompatActivity(), MatchView{
+class DetailLeagueActivity : AppCompatActivity(), LeagueView {
     override fun showLoading() {
         progressBar.visible()
     }
@@ -25,21 +24,21 @@ class DetailLeagueActivity : AppCompatActivity(), MatchView{
         progressBar.invisible()
     }
 
-    override fun showLeagueList(data: LeagueDetail) {
-        data.leagueBadge?.let { Picasso.get().load(it).fit().into(imageView) }
-        textLeague.text = data.leagueName
-        desc = data.leagueDescription.toString()
+    override fun showLeagueList(data: List<LeagueDetail>) {
+        league.addAll(data)
+        Log.v("detailleague", league.size.toString())
+        textLeague.text = league.component2().toString()
+        desc = league.component3().toString()
         textDesc.text = desc
-        Log.v("detailleague", desc)
     }
 
+    private var league: MutableList<LeagueDetail> = mutableListOf()
     private lateinit var progressBar: ProgressBar
     private lateinit var imageView: ImageView
     private lateinit var textLeague: TextView
     private lateinit var textDesc: TextView
-    private lateinit var presenter: MatchPresenter
+    private lateinit var presenter: LeaguePresenter
     private var desc: String = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_league)
@@ -51,7 +50,7 @@ class DetailLeagueActivity : AppCompatActivity(), MatchView{
 
         val request = ApiRepositori()
         val gson = Gson()
-        presenter = MatchPresenter(this, request, gson)
+        presenter = LeaguePresenter(this, request, gson)
 
         val idLeague: String? = intent.getStringExtra("idLeague")
         presenter.getLeagueList(idLeague)

@@ -6,10 +6,10 @@ import org.jetbrains.anko.uiThread
 import rpl1pnp.fikri.footballmatchschedule.model.LeagueDetailResponse
 import rpl1pnp.fikri.footballmatchschedule.network.ApiRepositori
 import rpl1pnp.fikri.footballmatchschedule.network.TheSportDBApi
-import rpl1pnp.fikri.footballmatchschedule.view.MatchView
+import rpl1pnp.fikri.footballmatchschedule.view.LeagueView
 
-class MatchPresenter(
-    private val view: MatchView,
+class LeaguePresenter(
+    private val view: LeagueView,
     private val apiRepositori: ApiRepositori,
     private val gson: Gson
 ) {
@@ -27,7 +27,7 @@ class MatchPresenter(
 
             uiThread {
                 view.hideLoading()
-                view.showLeagueList(data.league.get(0))
+                view.showLeagueList(data.league)
             }
         }
     }
