@@ -16,5 +16,8 @@ data class LeagueDetail(
     var leagueBadge: String? = null,
 
     @SerializedName("strLogo")
-    var leagueLogo: String? = null
+    var leagueLogo: String? = null,
+
+    @SerializedName("strBanner")
+    var leagueBanner: String? = null
 )

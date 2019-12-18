@@ -7,6 +7,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
+import com.squareup.picasso.Picasso
 import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.model.LeagueDetail
 import rpl1pnp.fikri.footballmatchschedule.network.ApiRepositori
@@ -25,20 +26,16 @@ class DetailLeagueActivity : AppCompatActivity(), LeagueView {
     }
 
     override fun showLeagueList(data: List<LeagueDetail>) {
-        league.addAll(data)
-        Log.v("detailleague", league.size.toString())
-        textLeague.text = league.component2().toString()
-        desc = league.component3().toString()
-        textDesc.text = desc
+        Picasso.get().load(data.first().leagueBadge.orEmpty()).fit().into(imageView)
+        textLeague.text = data.first().leagueName.orEmpty()
+        textDesc.text = data.first().leagueDescription.orEmpty()
     }
 
-    private var league: MutableList<LeagueDetail> = mutableListOf()
     private lateinit var progressBar: ProgressBar
     private lateinit var imageView: ImageView
     private lateinit var textLeague: TextView
     private lateinit var textDesc: TextView
     private lateinit var presenter: LeaguePresenter
-    private var desc: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_league)
@@ -53,7 +50,7 @@ class DetailLeagueActivity : AppCompatActivity(), LeagueView {
         presenter = LeaguePresenter(this, request, gson)
 
         val idLeague: String? = intent.getStringExtra("idLeague")
+        Log.v("TAG", idLeague)
         presenter.getLeagueList(idLeague)
-
     }
 }

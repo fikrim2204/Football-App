@@ -27,7 +27,7 @@ class LeaguePresenter(
 
             uiThread {
                 view.hideLoading()
-                view.showLeagueList(data.league)
+                view.showLeagueList(data.leagues)
             }
         }
     }
