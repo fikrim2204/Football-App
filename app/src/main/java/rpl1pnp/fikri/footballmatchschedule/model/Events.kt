@@ -27,6 +27,12 @@ data class Events (
     @SerializedName("intAwayScore")
     var awayScore: String? = null,
 
+    @SerializedName("strHomeFormation")
+    var homeFormation: String? = null,
+
+    @SerializedName("strAwayFormation")
+    var awayFormation: String? = null,
+
     @SerializedName("dateEvent")
     var dateEvent: String? = null,
 

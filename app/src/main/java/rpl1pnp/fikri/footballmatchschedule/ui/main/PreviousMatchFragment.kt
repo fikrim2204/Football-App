@@ -1,6 +1,7 @@
 package rpl1pnp.fikri.footballmatchschedule.ui.main
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -49,7 +50,16 @@ class PreviousMatchFragment : Fragment() {
         previousList.layoutManager = LinearLayoutManager(activity)
 
         adapter = EventAdapter(events) {
+            val intent = Intent(activity, DetailMatchActivity::class.java)
+            val idEvent = it.eventId.toString()
+            val idHome = it.homeTeamId.toString()
+            val idAway = it.awayTeamId.toString()
+            intent.putExtra("EVENT_ID", idEvent)
+            intent.putExtra("HOME_TEAM", idHome)
+            intent.putExtra("AWAY_TEAM", idAway)
+            startActivity(intent)
         }
+
 
         previousList.adapter = adapter
         progressBar = rootView.findViewById(R.id.progressBarPrev) as ProgressBar
