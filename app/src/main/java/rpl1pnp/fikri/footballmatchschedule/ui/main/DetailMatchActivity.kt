@@ -6,9 +6,11 @@ import android.util.Log
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_match.*
 import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.model.Events
+import rpl1pnp.fikri.footballmatchschedule.model.Team
 import rpl1pnp.fikri.footballmatchschedule.network.ApiRepositori
 import rpl1pnp.fikri.footballmatchschedule.presenter.MatchDetailPresenter
 import rpl1pnp.fikri.footballmatchschedule.util.invisible
@@ -48,13 +50,13 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         }
     }
 
-//    override fun getLogoTeam(data: List<Team>, isHomeTeam: Boolean) {
-//        if (isHomeTeam) {
-//            Picasso.get().load(data.first().teamBadge.orEmpty()).fit().into(image_home_badge)
-//        } else {
-//            Picasso.get().load(data.first().teamBadge.orEmpty()).fit().into(image_away_badge)
-//        }
-//    }
+    override fun getLogoTeam(data: List<Team>, isHomeTeam: Boolean) {
+        if (isHomeTeam) {
+            Picasso.get().load(data.first().teamBadge.orEmpty()).fit().into(image_home_badge)
+        } else {
+            Picasso.get().load(data.first().teamBadge.orEmpty()).fit().into(image_away_badge)
+        }
+    }
 
     private lateinit var presenter: MatchDetailPresenter
     private lateinit var progressBar: ProgressBar
@@ -74,8 +76,8 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         val gson = Gson()
         presenter = MatchDetailPresenter(this, api, gson)
         presenter.getEvent(eventId)
-//        presenter.getLogo(homeTeamId, true)
-//        presenter.getLogo(awayTeamId, false)
+        presenter.getLogo(homeTeamId, true)
+        presenter.getLogo(awayTeamId, false)
 
 
     }
