@@ -25,5 +25,4 @@ class PageViewModel : ViewModel() {
     fun getIdLeague(): String? {
         return idLeague
     }
-
 }

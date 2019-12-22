@@ -38,4 +38,18 @@ class PreviousMatchViewModel : ViewModel() {
     fun observePrevMatch(): MutableLiveData<EventsResponse> {
         return prevMatch
     }
+
+    fun search(query: String?) {
+        doAsync {
+            val data = gson.fromJson(
+                apiRepositori.doRequest(TheSportDBApi.getSearch(query)),
+                EventsResponse::class.java
+            )
+
+            uiThread {
+                loading.value = false
+                prevMatch.value = data
+            }
+        }
+    }
 }

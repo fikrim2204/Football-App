@@ -4,10 +4,9 @@ package rpl1pnp.fikri.footballmatchschedule.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ProgressBar
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -27,12 +26,16 @@ import rpl1pnp.fikri.footballmatchschedule.util.visible
 class PreviousMatchFragment : Fragment() {
     private lateinit var viewModel: PageViewModel
     private lateinit var viewModelPrev: PreviousMatchViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         viewModel = ViewModelProviders.of(requireActivity()).get(PageViewModel::class.java)
         viewModelPrev = ViewModelProviders.of(this).get(PreviousMatchViewModel::class.java)
     }
 
+    private var searchView: SearchView? = null
+    private lateinit var queryListener: SearchView.OnQueryTextListener
     private var events: MutableList<Events> = mutableListOf()
     private lateinit var previousList: RecyclerView
     private lateinit var adapter: EventAdapter
@@ -95,4 +98,29 @@ class PreviousMatchFragment : Fragment() {
         return rootView
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        val menuItem = menu?.findItem(R.id.searchMatch)
+        val search = menuItem?.actionView as SearchView
+        searching(search)
+        super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        activity?.menuInflater?.inflate(R.menu.navigation, menu)
+
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    private fun searching(searchView: SearchView) {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModelPrev.search(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+    }
 }
