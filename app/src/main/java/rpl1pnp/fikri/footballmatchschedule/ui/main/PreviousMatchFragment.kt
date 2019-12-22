@@ -3,7 +3,6 @@ package rpl1pnp.fikri.footballmatchschedule.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
 import androidx.appcompat.widget.SearchView
@@ -34,8 +33,6 @@ class PreviousMatchFragment : Fragment() {
         viewModelPrev = ViewModelProviders.of(this).get(PreviousMatchViewModel::class.java)
     }
 
-    private var searchView: SearchView? = null
-    private lateinit var queryListener: SearchView.OnQueryTextListener
     private var events: MutableList<Events> = mutableListOf()
     private lateinit var previousList: RecyclerView
     private lateinit var adapter: EventAdapter
@@ -85,14 +82,18 @@ class PreviousMatchFragment : Fragment() {
                 events.clear()
                 events.addAll(it.events)
                 adapter.notifyDataSetChanged()
-                Log.v("previous2", idLeague + "")
 
             })
 
         swipeRefreshLayout.onRefresh {
-            events.clear()
             viewModelPrev.loadData(idLeague)
-
+            viewModelPrev.observePrevMatch().observe(this,
+                Observer {
+                    events.clear()
+                    events.addAll(it.events)
+                    adapter.notifyDataSetChanged()
+                    swipeRefreshLayout.isRefreshing = false
+                })
         }
 
         return rootView

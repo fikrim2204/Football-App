@@ -19,12 +19,18 @@ class NextMatchViewModel : ViewModel() {
     fun loadData(idLeague: String?) {
         loading.value = true
         doAsync {
-            val data = gson.fromJson(apiRepositori.doRequest(TheSportDBApi.getNextMatch(idLeague)),
-                EventsResponse::class.java)
+            try {
+                val data = gson.fromJson(
+                    apiRepositori.doRequest(TheSportDBApi.getNextMatch(idLeague)),
+                    EventsResponse::class.java
+                )
 
-            uiThread {
-                loading.value = false
-                nextMatch.value = data
+                uiThread {
+                    loading.value = false
+                    nextMatch.value = data
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }

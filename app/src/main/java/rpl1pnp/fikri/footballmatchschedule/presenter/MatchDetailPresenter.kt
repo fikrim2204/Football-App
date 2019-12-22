@@ -37,7 +37,7 @@ class MatchDetailPresenter(private val view: DetailMatchView,
         doAsync {
             val data = gson.fromJson(
                 apiRepositori.doRequest(
-                    TheSportDBApi.getDetailMatch(
+                    TheSportDBApi.getTeams(
                         teamId
                     )
                 ),

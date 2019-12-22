@@ -19,14 +19,18 @@ class PreviousMatchViewModel : ViewModel() {
     fun loadData(idLeague: String?) {
         loading.value = true
         doAsync {
-            val data = gson.fromJson(
-                apiRepositori.doRequest(TheSportDBApi.getPreviousMatch(idLeague)),
-                EventsResponse::class.java
-            )
+            try {
+                val data = gson.fromJson(
+                    apiRepositori.doRequest(TheSportDBApi.getPreviousMatch(idLeague)),
+                    EventsResponse::class.java
+                )
 
-            uiThread {
-                loading.value = false
-                prevMatch.value = data
+                uiThread {
+                    loading.value = false
+                    prevMatch.value = data
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }
@@ -41,14 +45,18 @@ class PreviousMatchViewModel : ViewModel() {
 
     fun search(query: String?) {
         doAsync {
-            val data = gson.fromJson(
-                apiRepositori.doRequest(TheSportDBApi.getSearch(query)),
-                EventsResponse::class.java
-            )
+            try {
+                val data = gson.fromJson(
+                    apiRepositori.doRequest(TheSportDBApi.getSearch(query)),
+                    EventsResponse::class.java
+                )
 
-            uiThread {
-                loading.value = false
-                prevMatch.value = data
+                uiThread {
+                    loading.value = false
+                    prevMatch.value = data
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }

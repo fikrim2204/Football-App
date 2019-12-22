@@ -16,64 +16,78 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/text_event_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/text_event_date"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
-        android:textSize="16sp"
         android:textColor="@android:color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Sunday, 22 April 2019"/>
+        tools:text="Sunday, 22 April 2019" />
 
-    <TextView
-        android:id="@+id/text_home_name"
+    <LinearLayout
+        android:id="@+id/home_team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@id/text_event_date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_event_date"
-        tools:text="Manchester"/>
+        app:layout_constraintTop_toBottomOf="@id/text_event_date">
 
-    <ImageView
-        android:id="@+id/image_home_badge"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:fitsSystemWindows="true"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="@id/text_home_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_home_name"
-        tools:src="@drawable/english_league_1" />
+        <TextView
+            android:id="@+id/text_home_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Manchester" />
 
+        <ImageView
+            android:id="@+id/image_home_badge"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:fitsSystemWindows="true"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="@id/text_home_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_home_name"
+            tools:src="@drawable/english_league_1" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/text_away_name"
+    <LinearLayout
+        android:id="@+id/away_team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/text_event_date"
-        app:layout_constraintTop_toBottomOf="@id/text_event_date"
-        tools:text="Manchester"/>
+        app:layout_constraintTop_toBottomOf="@id/text_event_date">
 
-    <ImageView
-        android:id="@+id/image_away_badge"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:fitsSystemWindows="true"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/text_away_name"
-        app:layout_constraintTop_toBottomOf="@id/text_away_name"
-        tools:src="@drawable/english_league_1"/>
+        <TextView
+            android:id="@+id/text_away_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Manchester" />
+
+        <ImageView
+            android:id="@+id/image_away_badge"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:fitsSystemWindows="true"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:src="@drawable/english_league_1" />
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/text_home_score"
@@ -83,9 +97,9 @@
         android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/text_divide_score"
-        app:layout_constraintStart_toEndOf="@id/image_home_badge"
+        app:layout_constraintStart_toEndOf="@id/home_team"
         app:layout_constraintTop_toBottomOf="@id/text_event_date"
-        tools:text="0"/>
+        tools:text="0" />
 
     <TextView
         android:id="@+id/text_divide_score"
@@ -97,7 +111,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/text_away_score"
         app:layout_constraintStart_toEndOf="@id/text_home_score"
-        app:layout_constraintTop_toBottomOf="@id/text_event_date"/>
+        app:layout_constraintTop_toBottomOf="@id/text_event_date" />
 
     <TextView
         android:id="@+id/text_away_score"
@@ -107,10 +121,10 @@
         android:paddingTop="50dp"
         android:textSize="35sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/image_away_badge"
+        app:layout_constraintEnd_toStartOf="@id/away_team"
         app:layout_constraintStart_toEndOf="@id/text_divide_score"
         app:layout_constraintTop_toBottomOf="@id/text_event_date"
-        tools:text="0"/>
+        tools:text="0" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -118,7 +132,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_away_badge">
+        app:layout_constraintTop_toBottomOf="@id/away_team">
 
         <LinearLayout
             android:id="@+id/formation"

@@ -2,7 +2,6 @@ package rpl1pnp.fikri.footballmatchschedule.ui.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
@@ -69,8 +68,6 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         val eventId = intent.getStringExtra("EVENT_ID")
         val homeTeamId = intent.getStringExtra("HOME_TEAM")
         val awayTeamId = intent.getStringExtra("AWAY_TEAM")
-        Log.v("Home", homeTeamId)
-        Log.v("Away", awayTeamId)
 
         val api = ApiRepositori()
         val gson = Gson()

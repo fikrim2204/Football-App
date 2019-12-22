@@ -1,7 +1,6 @@
 package rpl1pnp.fikri.footballmatchschedule.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -50,7 +49,6 @@ class DetailLeagueActivity : AppCompatActivity(), LeagueView {
         presenter = LeaguePresenter(this, request, gson)
 
         val idLeague: String? = intent.getStringExtra("idLeague")
-        Log.v("TAG", idLeague)
         presenter.getLeagueList(idLeague)
     }
 }
