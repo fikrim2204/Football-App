@@ -18,8 +18,9 @@ import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.uiThread
 import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.adapter.EventAdapter
+import rpl1pnp.fikri.footballmatchschedule.model.Event
+import rpl1pnp.fikri.footballmatchschedule.model.EventResponse
 import rpl1pnp.fikri.footballmatchschedule.model.Events
-import rpl1pnp.fikri.footballmatchschedule.model.EventsResponse
 import rpl1pnp.fikri.footballmatchschedule.network.ApiRepositori
 import rpl1pnp.fikri.footballmatchschedule.network.TheSportDBApi
 import rpl1pnp.fikri.footballmatchschedule.util.invisible
@@ -40,6 +41,7 @@ class PreviousMatchFragment : Fragment() {
     }
 
     private var events: MutableList<Events> = mutableListOf()
+    private var event: MutableList<Event> = mutableListOf()
     private lateinit var previousList: RecyclerView
     private lateinit var adapter: EventAdapter
     private lateinit var progressBar: ProgressBar
@@ -145,14 +147,16 @@ class PreviousMatchFragment : Fragment() {
             try {
                 val data = gson.fromJson(
                     apiRepositori.doRequest(TheSportDBApi.getSearch(query)),
-                    EventsResponse::class.java
+                    EventResponse::class.java
                 )
 
                 uiThread {
                     progressBar.invisible()
-                    events.clear()
-                    events.addAll(data.events)
-                    adapter.notifyDataSetChanged()
+                    if (data != null) {
+                        event.clear()
+                        event.addAll(data.event)
+                        adapter.notifyDataSetChanged()
+                    }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
