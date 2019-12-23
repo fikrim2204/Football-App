@@ -12,10 +12,16 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.gson.Gson
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.support.v4.onRefresh
+import org.jetbrains.anko.uiThread
 import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.adapter.EventAdapter
 import rpl1pnp.fikri.footballmatchschedule.model.Events
+import rpl1pnp.fikri.footballmatchschedule.model.EventsResponse
+import rpl1pnp.fikri.footballmatchschedule.network.ApiRepositori
+import rpl1pnp.fikri.footballmatchschedule.network.TheSportDBApi
 import rpl1pnp.fikri.footballmatchschedule.util.invisible
 import rpl1pnp.fikri.footballmatchschedule.util.visible
 
@@ -99,10 +105,12 @@ class PreviousMatchFragment : Fragment() {
         return rootView
     }
 
+
     override fun onPrepareOptionsMenu(menu: Menu?) {
         val menuItem = menu?.findItem(R.id.searchMatch)
         val search = menuItem?.actionView as SearchView
         searching(search)
+
         super.onPrepareOptionsMenu(menu)
     }
 
@@ -114,14 +122,41 @@ class PreviousMatchFragment : Fragment() {
 
     private fun searching(searchView: SearchView) {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModelPrev.search(query)
-                return true
-            }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 return false
             }
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query == null) {
+                    return false
+                }
+                getSearch(query)
+
+                return true
+            }
         })
+    }
+
+    private val apiRepositori = ApiRepositori()
+    private val gson = Gson()
+    fun getSearch(query: String?) {
+        doAsync {
+            progressBar.visible()
+            try {
+                val data = gson.fromJson(
+                    apiRepositori.doRequest(TheSportDBApi.getSearch(query)),
+                    EventsResponse::class.java
+                )
+
+                uiThread {
+                    progressBar.invisible()
+                    events.clear()
+                    events.addAll(data.events)
+                    adapter.notifyDataSetChanged()
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 }
