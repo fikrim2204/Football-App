@@ -1,9 +1,11 @@
-package rpl1pnp.fikri.footballmatchschedule.ui.main
+package rpl1pnp.fikri.footballmatchschedule.ui.viewpager
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import rpl1pnp.fikri.footballmatchschedule.ui.match.nextmatch.NextMatchFragment
+import rpl1pnp.fikri.footballmatchschedule.ui.match.prevmatch.PreviousMatchFragment
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -17,8 +19,8 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
         NextMatchFragment()
     )
 
-    override fun getItem(position: Int): Fragment? {
-        var fragment: Fragment? = null
+    override fun getItem(position: Int): Fragment {
+        var fragment = Fragment()
         if (position == 0) {
             fragment = PreviousMatchFragment()
         } else if (position == 1) {

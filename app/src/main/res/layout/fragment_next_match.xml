@@ -3,26 +3,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.NextMatchFragment">
-
-
-    <ProgressBar
-        android:id="@+id/progressBarNext"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"/>
+    tools:context=".ui.match.nextmatch.NextMatchFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayoutNext"
+        android:id="@+id/srl_next"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_next_match"
+            android:id="@+id/rv_next_match"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/item_match" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <ProgressBar
+        android:id="@+id/progressbar_next"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:visibility="visible" />
 
+    <TextView
+        android:id="@+id/null_data_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/data_null"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
 </FrameLayout>

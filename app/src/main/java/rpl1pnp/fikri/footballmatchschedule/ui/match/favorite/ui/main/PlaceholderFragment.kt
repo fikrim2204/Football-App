@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballmatchschedule.ui.main
+package rpl1pnp.fikri.footballmatchschedule.ui.match.favorite.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,20 +28,24 @@ class PlaceholderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_detail, container, false)
+        val root = inflater.inflate(R.layout.fragment_favorite, container, false)
         val textView: TextView = root.findViewById(R.id.section_label)
-        pageViewModel.text.observe(this, Observer<String> {
+        pageViewModel.text.observe(viewLifecycleOwner, Observer<String> {
             textView.text = it
         })
         return root
     }
 
     companion object {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
         private const val ARG_SECTION_NUMBER = "section_number"
 
+        @JvmStatic
+        fun newInstance(sectionNumber: Int): PlaceholderFragment {
+            return PlaceholderFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(ARG_SECTION_NUMBER, sectionNumber)
+                }
+            }
+        }
     }
 }

@@ -2,9 +2,12 @@ package rpl1pnp.fikri.footballmatchschedule.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Events (
+data class Events(
     @SerializedName("idEvent")
     var eventId: String? = null,
+
+    @SerializedName("idLeague")
+    var idLeague: String? = null,
 
     @SerializedName("idHomeTeam")
     var homeTeamId: String? = null,
@@ -52,5 +55,11 @@ data class Events (
     var awayRedCard: String? = null,
 
     @SerializedName("strAwayYellowCards")
-    var awayYellowCard: String? = null
+    var awayYellowCard: String? = null,
+
+    @SerializedName("strTime")
+    var time: String? = null,
+
+    @SerializedName("strSport")
+    var sport: String? = null
 )

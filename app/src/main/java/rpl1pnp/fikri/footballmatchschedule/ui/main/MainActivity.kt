@@ -2,54 +2,38 @@ package rpl1pnp.fikri.footballmatchschedule.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.ProgressBar
-import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import org.jetbrains.anko.*
-import org.jetbrains.anko.recyclerview.v7.recyclerView
+import kotlinx.android.synthetic.main.activity_main.*
 import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.adapter.MainAdapter
 import rpl1pnp.fikri.footballmatchschedule.model.League
+import rpl1pnp.fikri.footballmatchschedule.util.invisible
 
 class MainActivity : AppCompatActivity() {
 
-    private var id: String = ""
-    private lateinit var listTeam: RecyclerView
-    private lateinit var progressBar: ProgressBar
-    private lateinit var swipeRefresh: SwipeRefreshLayout
-    private lateinit var spinner: Spinner
+    private var idLeague: String = ""
     private lateinit var adapter: MainAdapter
     private var items: MutableList<League> = mutableListOf()
 
-    class MainActivityUI : AnkoComponent<MainActivity> {
-        override fun createView(ui: AnkoContext<MainActivity>): View = with(ui) {
-            verticalLayout {
-                lparams(matchParent, matchParent)
-                recyclerView {
-                    id = R.id.recycler_view
-                }.lparams(matchParent, wrapContent)
-            }
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MainActivityUI().setContentView(this)
-        val recyclerLeague = find<RecyclerView>(R.id.recycler_view)
+        setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar)
+        toolbar.setTitle(R.string.app_name)
+        progressbar_main.invisible()
+        rv_main.layoutManager = LinearLayoutManager(this)
+
         initLeague()
-        recyclerLeague.layoutManager = LinearLayoutManager(this)
-        recyclerLeague.adapter = MainAdapter(items) {
-            id = it.idLeague.toString()
+        adapter = MainAdapter(items) {
+            idLeague = it.idLeague.toString()
             val bundle = Bundle()
-            bundle.putString("idLeague", id)
-            val intent = Intent(this, MatchActivity::class.java)
+            bundle.putString("idLeague", idLeague)
+            val intent = Intent(this, DetailActivity::class.java)
             intent.putExtras(bundle)
             startActivity(intent)
         }
+        rv_main.adapter = adapter
     }
 
     private fun initLeague() {
@@ -69,4 +53,5 @@ class MainActivity : AppCompatActivity() {
         }
         photo.recycle()
     }
+
 }

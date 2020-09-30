@@ -1,3 +1,3 @@
 package rpl1pnp.fikri.footballmatchschedule.model
 
-data class EventsResponse (val events: List<Events>)
+data class EventsResponse(val events: List<Events>)
