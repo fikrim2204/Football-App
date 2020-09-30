@@ -33,7 +33,7 @@ class DetailLeagueActivity : AppCompatActivity() {
             })
     }
 
-    fun showLeagueList(data: List<LeagueDetail>) {
+    private fun showLeagueList(data: List<LeagueDetail>) {
         Picasso.get().load(data.first().leagueBadge.orEmpty()).fit().into(image_logo_league)
         text_name_league.text = data.first().leagueName.orEmpty()
         text_desc_league.text = data.first().leagueDescription.orEmpty()

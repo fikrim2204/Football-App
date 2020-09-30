@@ -9,11 +9,10 @@ import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.database.Favorite
 
 class FavoriteAdapter(
-    private var favorite: List<Favorite>,
-    private var listener: (Favorite) -> Unit
+    private var favorite: List<Favorite>
 ) : RecyclerView.Adapter<FavoriteAdapter.FavoritePreviousViewHolder>() {
     class FavoritePreviousViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bindItem(favorite: Favorite, listener: (Favorite) -> Unit) {
+        fun bindItem(favorite: Favorite) {
             itemView.team_home.text = favorite.homeTeam
             itemView.team_away.text = favorite.awayTeam
             itemView.score_home.text = favorite.homeScore
@@ -36,7 +35,7 @@ class FavoriteAdapter(
     }
 
     override fun onBindViewHolder(holder: FavoritePreviousViewHolder, position: Int) {
-        return holder.bindItem(favorite[position], listener)
+        return holder.bindItem(favorite[position])
     }
 
     override fun getItemCount(): Int {

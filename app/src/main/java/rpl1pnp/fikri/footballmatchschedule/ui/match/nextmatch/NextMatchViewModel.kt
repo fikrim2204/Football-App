@@ -2,7 +2,6 @@ package rpl1pnp.fikri.footballmatchschedule.ui.match.nextmatch
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,7 +13,6 @@ class NextMatchViewModel : ViewModel() {
 
     private val nextMatch = MutableLiveData<EventsResponse>()
     private val searchMatch = MutableLiveData<SearchResponse>()
-    val gson = Gson()
     private val apiService = ApiService()
     private val loading = MutableLiveData<Boolean>()
 

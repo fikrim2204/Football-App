@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -76,7 +75,7 @@ class PreviousMatchFragment : Fragment() {
 
         viewModelPrev.loadData(idLeague)
         viewModelPrev.observePrevMatch().observe(viewLifecycleOwner,
-            Observer {
+            {
                 if (it != null) {
                     events.clear()
                     events.addAll(it.events)

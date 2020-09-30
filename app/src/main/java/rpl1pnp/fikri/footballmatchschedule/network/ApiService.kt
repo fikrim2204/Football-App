@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit
 
 class ApiService {
 
-    fun getInterceptor(): OkHttpClient {
+    private fun getInterceptor(): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         val okHttpClient = OkHttpClient.Builder()
@@ -19,7 +19,7 @@ class ApiService {
         return okHttpClient.build()
     }
 
-    private fun ApiService(): Retrofit {
+    private fun apiService(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(Constant.BASE_URL)
             .client(getInterceptor())
@@ -28,6 +28,6 @@ class ApiService {
     }
 
     fun getApiService(): ApiInterface {
-        return ApiService().create(ApiInterface::class.java)
+        return apiService().create(ApiInterface::class.java)
     }
 }

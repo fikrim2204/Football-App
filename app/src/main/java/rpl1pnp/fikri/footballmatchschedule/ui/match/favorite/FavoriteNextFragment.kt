@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
 import rpl1pnp.fikri.footballmatchschedule.R
@@ -19,7 +18,6 @@ class FavoriteNextFragment : Fragment() {
     lateinit var adapter: FavoriteAdapter
     private var favorites: MutableList<Favorite> = mutableListOf()
     private lateinit var nextFavList: RecyclerView
-    private lateinit var swipeRefresh: SwipeRefreshLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,8 +27,7 @@ class FavoriteNextFragment : Fragment() {
         val rootView: View = inflater.inflate(R.layout.fragment_favorite_next, container, false)
         nextFavList = rootView.findViewById(R.id.rv_fav_next_match) as RecyclerView
         nextFavList.layoutManager = LinearLayoutManager(activity)
-        adapter = FavoriteAdapter(favorites) {
-        }
+        adapter = FavoriteAdapter(favorites)
 
         nextFavList.adapter = adapter
         showFavorite()

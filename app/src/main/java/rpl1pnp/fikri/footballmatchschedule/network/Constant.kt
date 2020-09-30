@@ -5,7 +5,7 @@ object Constant {
     private const val API = "/api"
     private const val VERSION = "/v1"
     private const val JSON = "/json"
-    const val API_KEY: String = rpl1pnp.fikri.footballmatchschedule.BuildConfig.TSDB_API_KEY
+    private const val API_KEY: String = rpl1pnp.fikri.footballmatchschedule.BuildConfig.TSDB_API_KEY
     const val SEARCH = "/searchevents.php?e="
     const val LOOKUPEVENT = "/lookupevent.php?id="
     const val PREVIOUSMATCH = "/eventspastleague.php?id="

@@ -116,7 +116,7 @@ class DetailMatchActivity : AppCompatActivity() {
         }
     }
 
-    fun progressBar(isTrue: Boolean) {
+    private fun progressBar(isTrue: Boolean) {
         if (isTrue) {
             return progress_detail_match.visible()
         }

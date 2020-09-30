@@ -2,7 +2,6 @@ package rpl1pnp.fikri.footballmatchschedule.ui.match
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Response
 import rpl1pnp.fikri.footballmatchschedule.model.EventsResponse
@@ -13,7 +12,6 @@ class MatchViewModel : ViewModel() {
     private val detailMatch = MutableLiveData<EventsResponse>()
     private val logoHome = MutableLiveData<TeamResponse>()
     private val logoAway = MutableLiveData<TeamResponse>()
-    val gson = Gson()
     private var apiService = ApiService()
     private val loading = MutableLiveData<Boolean>()
 
