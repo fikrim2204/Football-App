@@ -88,6 +88,9 @@ class PreviousMatchViewModel : ViewModel() {
                                 searchMatch.value = null
                             }
                         }
+                    } else {
+                        loading.value = false
+                        searchMatch.value = null
                     }
                 } else {
                     loading.value = false

@@ -66,14 +66,19 @@ class NextMatchViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     loading.value = false
                     val data = response.body()
-                    for (element in data!!.event) {
-                        if (element.sport == "Soccer" && element.idLeague == idLeague) {
-                            loading.value = false
-                            searchMatch.value = response.body()
-                        } else {
-                            loading.value = false
-                            searchMatch.value = null
+                    if (data?.event != null) {
+                        for (element in data.event) {
+                            if (element.sport == "Soccer" && element.idLeague == idLeague) {
+                                loading.value = false
+                                searchMatch.value = response.body()
+                            } else {
+                                loading.value = false
+                                searchMatch.value = null
+                            }
                         }
+                    } else {
+                        loading.value = false
+                        searchMatch.value = null
                     }
                 } else {
                     loading.value = false

@@ -30,6 +30,11 @@ import rpl1pnp.fikri.footballmatchschedule.util.visible
 class PreviousMatchFragment : Fragment() {
     private lateinit var viewModel: PageViewModel
     private lateinit var viewModelPrev: PreviousMatchViewModel
+    private var events: MutableList<Events> = mutableListOf()
+    private lateinit var previousList: RecyclerView
+    private lateinit var adapter: EventsAdapter
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    var idLeague: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +43,6 @@ class PreviousMatchFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(PageViewModel::class.java)
         viewModelPrev = ViewModelProvider(this).get(PreviousMatchViewModel::class.java)
     }
-
-    private var events: MutableList<Events> = mutableListOf()
-    private lateinit var previousList: RecyclerView
-    private lateinit var adapter: EventsAdapter
-    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    var idLeague: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -148,6 +147,7 @@ class PreviousMatchFragment : Fragment() {
                             null_data_prev.visibility = View.GONE
                         } else {
                             events.clear()
+                            adapter.notifyDataSetChanged()
                             null_data_prev.visibility = View.VISIBLE
                         }
                     })

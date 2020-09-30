@@ -52,8 +52,8 @@ class NextMatchFragment : Fragment() {
         val rootView: View = inflater.inflate(R.layout.fragment_next_match, container, false)
         nextList = rootView.findViewById(R.id.rv_next_match) as RecyclerView
         nextList.layoutManager = LinearLayoutManager(activity)
-        adapter = EventsAdapter(events) {
 
+        adapter = EventsAdapter(events) {
             val idEvent = it.eventId.toString()
             val idHome = it.homeTeamId.toString()
             val idAway = it.awayTeamId.toString()
@@ -72,6 +72,7 @@ class NextMatchFragment : Fragment() {
             rootView.findViewById(R.id.srl_next) as SwipeRefreshLayout
 
         idLeague = viewModel.getIdLeague()
+
         viewModelNext.loadData(idLeague)
         viewModelNext.observeNextMatch().observe(viewLifecycleOwner,
             {
@@ -157,6 +158,7 @@ class NextMatchFragment : Fragment() {
                             null_data_next.visibility = View.GONE
                         } else {
                             events.clear()
+                            adapter.notifyDataSetChanged()
                             null_data_next.visibility = View.VISIBLE
                         }
                     })
