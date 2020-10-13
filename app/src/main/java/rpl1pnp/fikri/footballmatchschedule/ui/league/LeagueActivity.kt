@@ -31,7 +31,7 @@ class LeagueActivity : AppCompatActivity(), LeagueView {
         setContentView(R.layout.activity_league)
 
         setSupportActionBar(toolbar_detail)
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        val sectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
         view_pager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(view_pager)

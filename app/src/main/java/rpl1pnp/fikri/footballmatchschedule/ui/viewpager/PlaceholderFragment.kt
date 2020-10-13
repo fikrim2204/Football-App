@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import rpl1pnp.fikri.footballmatchschedule.R
-import rpl1pnp.fikri.footballmatchschedule.ui.match.favorite.viewpager.PlaceholderFragment
 
 /**
  * A placeholder fragment containing a simple view.
@@ -39,14 +38,7 @@ class PlaceholderFragment : Fragment() {
 
     companion object {
         private const val ARG_SECTION_NUMBER = "section_number"
-
-        @JvmStatic
-        fun newInstance(sectionNumber: Int): PlaceholderFragment {
-            return PlaceholderFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_SECTION_NUMBER, sectionNumber)
-                }
-            }
-        }
+        const val PREV_MATCH = "Previous Match"
+        const val NEXT_MATCH = "Next Match"
     }
 }

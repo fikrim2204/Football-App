@@ -37,14 +37,7 @@ class PlaceholderFragment : Fragment() {
 
     companion object {
         private const val ARG_SECTION_NUMBER = "section_number"
-
-        @JvmStatic
-        fun newInstance(sectionNumber: Int): PlaceholderFragment {
-            return PlaceholderFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_SECTION_NUMBER, sectionNumber)
-                }
-            }
-        }
+        const val PREV_MATCH = "Previous Match"
+        const val NEXT_MATCH = "Next Match"
     }
 }

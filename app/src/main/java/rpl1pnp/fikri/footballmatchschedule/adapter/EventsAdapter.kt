@@ -1,6 +1,5 @@
 package rpl1pnp.fikri.footballmatchschedule.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +31,6 @@ class EventsAdapter(private var events: List<Events>, private val listener: (Eve
     }
 
     class EventViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        @SuppressLint("SetTextI18n")
         fun bindItem(events: Events, listener: (Events) -> Unit) {
             itemView.team_home.text = events.homeTeam
             itemView.team_away.text = events.awayTeam
