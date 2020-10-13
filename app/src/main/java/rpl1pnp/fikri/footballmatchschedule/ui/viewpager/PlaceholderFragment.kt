@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import rpl1pnp.fikri.footballmatchschedule.R
-import rpl1pnp.fikri.footballmatchschedule.ui.match.favorite.ui.main.PlaceholderFragment
+import rpl1pnp.fikri.footballmatchschedule.ui.match.favorite.viewpager.PlaceholderFragment
 
 /**
  * A placeholder fragment containing a simple view.

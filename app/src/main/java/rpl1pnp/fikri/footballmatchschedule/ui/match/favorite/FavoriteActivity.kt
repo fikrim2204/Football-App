@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_favorite.*
 import rpl1pnp.fikri.footballmatchschedule.R
-import rpl1pnp.fikri.footballmatchschedule.ui.match.favorite.ui.main.SectionsPagerAdapter
+import rpl1pnp.fikri.footballmatchschedule.ui.match.favorite.viewpager.SectionsPagerAdapter
 
 class FavoriteActivity : AppCompatActivity() {
 

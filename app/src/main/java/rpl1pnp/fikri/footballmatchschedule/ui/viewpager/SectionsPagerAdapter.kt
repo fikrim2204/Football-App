@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import rpl1pnp.fikri.footballmatchschedule.ui.match.nextmatch.NextMatchFragment
+import rpl1pnp.fikri.footballmatchschedule.ui.match.nextmatch.NextNextMatchFragment
 import rpl1pnp.fikri.footballmatchschedule.ui.match.prevmatch.PreviousMatchFragment
 
 /**
@@ -16,7 +16,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
 
     private val pages = listOf(
         PreviousMatchFragment(),
-        NextMatchFragment()
+        NextNextMatchFragment()
     )
 
     override fun getItem(position: Int): Fragment {
@@ -24,7 +24,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
         if (position == 0) {
             fragment = PreviousMatchFragment()
         } else if (position == 1) {
-            fragment = NextMatchFragment()
+            fragment = NextNextMatchFragment()
         }
         return fragment
     }

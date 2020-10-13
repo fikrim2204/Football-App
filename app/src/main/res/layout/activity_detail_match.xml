@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.match.DetailMatchActivity">
+    tools:context=".ui.match.detailmatch.DetailMatchActivity">
 
     <ProgressBar
         android:id="@+id/progress_detail_match"
@@ -28,7 +28,7 @@
         app:layout_scrollFlags="enterAlwaysCollapsed">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
@@ -36,9 +36,8 @@
             app:cardElevation="3dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/text_event_date"
@@ -62,10 +61,12 @@
                     android:textColor="@color/textColor"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:layout_margin="5dp"
                     app:layout_constraintBottom_toTopOf="@id/image_home_badge"
-                    app:layout_constraintEnd_toStartOf="@id/text_event_date"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/text_away_name"
                     app:layout_constraintTop_toBottomOf="@id/text_event_date"
+                    app:layout_constraintStart_toEndOf="@id/text_home_name"
                     tools:text="Manchester United" />
 
                 <ImageView
@@ -75,9 +76,10 @@
                     android:contentDescription="@string/image_team"
                     android:fitsSystemWindows="true"
                     android:scaleType="fitXY"
+                    android:layout_margin="10dp"
                     app:layout_constraintBottom_toBottomOf="@id/image_away_badge"
                     app:layout_constraintEnd_toEndOf="@id/text_home_name"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/text_home_name"
                     app:layout_constraintTop_toBottomOf="@id/text_home_name"
                     tools:src="@drawable/english_league_1" />
 
@@ -90,10 +92,11 @@
                     android:textColor="@color/textColor"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:layout_margin="5dp"
                     app:layout_constraintBottom_toTopOf="@id/image_away_badge"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/text_event_date"
                     app:layout_constraintTop_toBottomOf="@id/text_event_date"
+                    app:layout_constraintStart_toEndOf="@id/text_home_name"
                     tools:text="Manchester United" />
 
                 <ImageView
@@ -103,8 +106,9 @@
                     android:contentDescription="@string/image_team"
                     android:fitsSystemWindows="true"
                     android:scaleType="fitXY"
+                    android:layout_margin="10dp"
                     app:layout_constraintBottom_toBottomOf="@id/image_home_badge"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/text_away_name"
                     app:layout_constraintStart_toStartOf="@id/text_away_name"
                     app:layout_constraintTop_toBottomOf="@id/text_away_name"
                     tools:src="@drawable/english_league_1" />
@@ -115,11 +119,12 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="50dp"
                     android:textColor="@color/textColor"
-                    android:textSize="35sp"
+                    android:textSize="30sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@id/text_divide_score"
                     app:layout_constraintStart_toEndOf="@id/image_home_badge"
                     app:layout_constraintTop_toTopOf="@id/text_divide_score"
+                    app:layout_constraintBottom_toBottomOf="@id/text_divide_score"
                     tools:text="0" />
 
                 <TextView
@@ -127,13 +132,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="50dp"
-                    android:text="@string/divider"
+                    android:textSize="30sp"
                     android:textColor="@color/textColor"
-                    android:textSize="35sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@id/text_away_score"
                     app:layout_constraintStart_toEndOf="@id/text_home_score"
-                    app:layout_constraintTop_toBottomOf="@id/text_event_date" />
+                    app:layout_constraintTop_toBottomOf="@id/text_event_date"
+                    tools:text=":" />
 
                 <TextView
                     android:id="@+id/text_away_score"
@@ -141,11 +147,12 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="50dp"
                     android:textColor="@color/textColor"
-                    android:textSize="35sp"
+                    android:textSize="30sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@id/image_away_badge"
                     app:layout_constraintStart_toEndOf="@id/text_divide_score"
                     app:layout_constraintTop_toTopOf="@id/text_divide_score"
+                    app:layout_constraintBottom_toBottomOf="@id/text_divide_score"
                     tools:text="0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -223,7 +230,8 @@
                 android:layout_weight="1"
                 android:text="@string/goal"
                 android:textAlignment="center"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/textColor"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/text_away_goals"
@@ -268,7 +276,8 @@
                 android:layout_weight="1"
                 android:text="@string/red_card"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_red_dark" />
+                android:textColor="@android:color/holo_red_dark"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/text_away_red_cards"
@@ -313,7 +322,8 @@
                 android:layout_weight="1"
                 android:text="@string/yellow_card"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/text_away_yellow_cards"

@@ -5,12 +5,14 @@ import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_next_match.*
 import org.jetbrains.anko.singleTop
 import org.jetbrains.anko.support.v4.intentFor
@@ -18,18 +20,21 @@ import org.jetbrains.anko.support.v4.onRefresh
 import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.adapter.EventsAdapter
 import rpl1pnp.fikri.footballmatchschedule.model.Events
-import rpl1pnp.fikri.footballmatchschedule.ui.match.DetailMatchActivity
+import rpl1pnp.fikri.footballmatchschedule.network.ApiRepository
+import rpl1pnp.fikri.footballmatchschedule.ui.match.detailmatch.DetailMatchActivity
 import rpl1pnp.fikri.footballmatchschedule.ui.match.favorite.FavoriteActivity
 import rpl1pnp.fikri.footballmatchschedule.ui.viewpager.PageViewModel
+import rpl1pnp.fikri.footballmatchschedule.util.EspressoIdlingResource
 import rpl1pnp.fikri.footballmatchschedule.util.invisible
 import rpl1pnp.fikri.footballmatchschedule.util.visible
+import rpl1pnp.fikri.footballmatchschedule.view.NextMatchView
 
 /**
  * A simple [Fragment] subclass.
  */
-class NextMatchFragment : Fragment() {
+class NextNextMatchFragment : Fragment(), NextMatchView {
     private lateinit var viewModel: PageViewModel
-    private lateinit var viewModelNext: NextMatchViewModel
+    private lateinit var presenter: NextMatchPresenter
     private var events: MutableList<Events> = mutableListOf()
     private lateinit var nextList: RecyclerView
     private lateinit var adapter: EventsAdapter
@@ -41,7 +46,6 @@ class NextMatchFragment : Fragment() {
         setHasOptionsMenu(true)
         viewModel =
             ViewModelProvider(requireActivity()).get(PageViewModel::class.java)
-        viewModelNext = ViewModelProvider(this).get(NextMatchViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -73,32 +77,30 @@ class NextMatchFragment : Fragment() {
 
         idLeague = viewModel.getIdLeague()
 
-        viewModelNext.loadData(idLeague)
-        viewModelNext.observeNextMatch().observe(viewLifecycleOwner,
-            {
-                if (it != null) {
-                    events.clear()
-                    events.addAll(it.events)
-                    adapter.notifyDataSetChanged()
-                    null_data_next.visibility = View.GONE
-                }
-            })
-        viewModelNext.observeLoading().observe(viewLifecycleOwner,
-            {
-                progressBar(it)
-            })
+        val request = ApiRepository()
+        val gson = Gson()
+        presenter = NextMatchPresenter(this, request, gson)
 
         swipeRefreshLayout.onRefresh {
-            viewModelNext.loadData(idLeague)
+            EspressoIdlingResource.increment()
+            presenter.getListMatch(idLeague)
+            null_data_next.invisible()
             swipeRefreshLayout.isRefreshing = false
         }
 
         return rootView
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        EspressoIdlingResource.increment()
+        presenter.getListMatch(idLeague)
+
+        super.onViewCreated(view, savedInstanceState)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.favorite -> {
+            R.id.btn_favorite -> {
                 startActivity(intentFor<FavoriteActivity>().singleTop())
                 return true
             }
@@ -107,7 +109,7 @@ class NextMatchFragment : Fragment() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
-        val menuItem = menu.findItem(R.id.searchMatch)
+        val menuItem = menu.findItem(R.id.search_match)
         val search = menuItem?.actionView as SearchView
         searching(search)
 
@@ -116,9 +118,13 @@ class NextMatchFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         activity?.menuInflater?.inflate(R.menu.navigation, menu)
-        val menuItem = menu.findItem(R.id.searchMatch)
+        val menuItem = menu.findItem(R.id.search_match)
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = menu.findItem(R.id.searchMatch).actionView as SearchView
+        val searchView = menu.findItem(R.id.search_match).actionView as SearchView
+
+        val imm =
+            this.context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm!!.showSoftInput(searchView, InputMethodManager.SHOW_IMPLICIT)
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
         searchView.queryHint = resources.getString(R.string.search_hint)
@@ -130,7 +136,8 @@ class NextMatchFragment : Fragment() {
             }
 
             override fun onMenuItemActionCollapse(p0: MenuItem?): Boolean {
-                viewModelNext.loadData(idLeague)
+                EspressoIdlingResource.increment()
+                presenter.getListMatch(idLeague)
                 return true
             }
 
@@ -140,37 +147,57 @@ class NextMatchFragment : Fragment() {
 
     private fun searching(searchView: SearchView) {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
+            override fun onQueryTextChange(query: String?): Boolean {
+                if (query!!.isEmpty()) {
+                    presenter.getListMatch(idLeague)
+                }
+                return true
             }
 
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query == null) {
                     return false
                 }
-                viewModelNext.getSearch(query, idLeague)
-                viewModelNext.observeSearch().observe(viewLifecycleOwner,
-                    {
-                        if (it != null) {
-                            events.clear()
-                            events.addAll(it.event)
-                            adapter.notifyDataSetChanged()
-                            null_data_next.visibility = View.GONE
-                        } else {
-                            events.clear()
-                            adapter.notifyDataSetChanged()
-                            null_data_next.visibility = View.VISIBLE
-                        }
-                    })
+                EspressoIdlingResource.increment()
+                presenter.getSearchMatch(query)
+                searchView.clearFocus()
+
                 return true
             }
         })
     }
 
-    private fun progressBar(isTrue: Boolean) {
-        if (isTrue) {
-            return progressbar_next.visible()
+    override fun showLoading() {
+        progressbar_next.visible()
+    }
+
+    override fun hideLoading() {
+        progressbar_next.invisible()
+    }
+
+    override fun showListMatch(data: List<Events>) {
+        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+            EspressoIdlingResource.decrement()
         }
-        return progressbar_next.invisible()
+        events.clear()
+        events.addAll(data)
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun searchMatch(data: List<Events>) {
+        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+            EspressoIdlingResource.decrement()
+        } else {
+            events.clear()
+            events.addAll(data)
+            adapter.notifyDataSetChanged()
+            null_data_next.invisible()
+        }
+    }
+
+    override fun nullData() {
+        events.clear()
+        adapter.notifyDataSetChanged()
+        null_data_next.visible()
     }
 }

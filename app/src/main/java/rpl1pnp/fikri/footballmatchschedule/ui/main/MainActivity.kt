@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.adapter.MainAdapter
 import rpl1pnp.fikri.footballmatchschedule.model.League
+import rpl1pnp.fikri.footballmatchschedule.ui.league.LeagueActivity
 import rpl1pnp.fikri.footballmatchschedule.util.invisible
 
 class MainActivity : AppCompatActivity() {
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             idLeague = it.idLeague.toString()
             val bundle = Bundle()
             bundle.putString("idLeague", idLeague)
-            val intent = Intent(this, DetailActivity::class.java)
+            val intent = Intent(this, LeagueActivity::class.java)
             intent.putExtras(bundle)
             startActivity(intent)
         }

@@ -1,35 +1,34 @@
-package rpl1pnp.fikri.footballmatchschedule.ui.main
+package rpl1pnp.fikri.footballmatchschedule.ui.league
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.activity_detail_league.image_logo_league
 import kotlinx.android.synthetic.main.activity_detail_league.text_desc_league
 import kotlinx.android.synthetic.main.activity_detail_league.text_name_league
+import kotlinx.android.synthetic.main.activity_league.*
 import kotlinx.android.synthetic.main.item_league.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
 import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.model.LeagueDetail
+import rpl1pnp.fikri.footballmatchschedule.network.ApiRepository
 import rpl1pnp.fikri.footballmatchschedule.ui.detailleague.DetailLeagueActivity
-import rpl1pnp.fikri.footballmatchschedule.ui.detailleague.DetailLeagueViewModel
 import rpl1pnp.fikri.footballmatchschedule.ui.viewpager.PageViewModel
 import rpl1pnp.fikri.footballmatchschedule.ui.viewpager.SectionsPagerAdapter
+import rpl1pnp.fikri.footballmatchschedule.view.LeagueView
 
-class DetailActivity : AppCompatActivity() {
+class LeagueActivity : AppCompatActivity(), LeagueView {
     private lateinit var viewModel: PageViewModel
-    private lateinit var viewModelDetailLeague: DetailLeagueViewModel
+    private lateinit var presenter: LeaguePresenter
     var idLeague: String? = null
-    private var leagues: MutableList<LeagueDetail> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        setContentView(R.layout.activity_league)
 
         setSupportActionBar(toolbar_detail)
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
@@ -41,27 +40,15 @@ class DetailActivity : AppCompatActivity() {
             idLeague = bundle?.getString("idLeague")
             viewModel = ViewModelProvider(this).get(PageViewModel::class.java)
             viewModel.setIdLeague(idLeague)
-            viewModelDetailLeague = ViewModelProvider(this).get(DetailLeagueViewModel::class.java)
-        }
 
-        viewModelDetailLeague.getLeagueList(idLeague)
-        viewModelDetailLeague.observeLeague().observe(this,
-            {
-                if (it != null) {
-                    leagues.clear()
-                    leagues.addAll(it.leagues)
-                    showLeagueList(leagues)
-                    null_data.visibility = View.GONE
-                } else {
-                    image_logo_league.setImageResource(R.drawable.ic_broken_image_gray)
-                    text_name_league.text = resources.getText(R.string.data_null)
-                    null_data.visibility = View.VISIBLE
-                }
-                Log.v("next2", idLeague + "")
-            })
+            val request = ApiRepository()
+            val gson = Gson()
+            presenter = LeaguePresenter(this, request, gson)
+            presenter.getLeagueList(idLeague)
+        }
     }
 
-    private fun showLeagueList(data: List<LeagueDetail>) {
+    override fun showLeagueList(data: List<LeagueDetail>) {
         Picasso.get().load(data.first().leagueBadge.orEmpty()).fit().into(image_logo_league)
         text_name_league.text = data.first().leagueName.orEmpty()
         text_desc_league.text = data.first().leagueDescription.orEmpty()

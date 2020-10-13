@@ -9,5 +9,5 @@
         android:id="@+id/rv_fav_prev_match"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_main" />
+        tools:listitem="@layout/item_match" />
 </FrameLayout>

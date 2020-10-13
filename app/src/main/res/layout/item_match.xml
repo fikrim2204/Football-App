@@ -30,7 +30,7 @@
                 android:layout_toStartOf="@id/score_home"
                 android:paddingStart="3dp"
                 android:paddingEnd="3dp"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textColor="@color/textColor"
@@ -43,7 +43,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@id/strip"
                 android:padding="2dp"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="@color/textColor"
                 tools:text="0" />
@@ -57,7 +57,7 @@
                 android:text="@string/strip"
                 android:textStyle="bold"
                 android:textColor="@color/textColor"
-                android:textSize="40sp" />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/score_away"
@@ -66,7 +66,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@id/strip"
                 android:padding="2dp"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="@color/textColor"
                 tools:text="0" />
@@ -79,14 +79,14 @@
                 android:layout_toEndOf="@id/score_away"
                 android:paddingStart="3dp"
                 android:paddingEnd="3dp"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textColor="@color/textColor"
                 tools:text="Man United" />
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/date_match"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/strip"

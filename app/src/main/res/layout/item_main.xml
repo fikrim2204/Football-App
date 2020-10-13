@@ -42,7 +42,7 @@
                 android:layout_toEndOf="@id/image_main_league"
                 android:gravity="center"
                 android:textColor="@color/textColor"
-                android:textSize="21sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="Liga Inggris" />
         </RelativeLayout>

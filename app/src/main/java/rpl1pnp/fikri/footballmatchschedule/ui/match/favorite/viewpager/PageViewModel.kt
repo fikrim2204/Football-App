@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballmatchschedule.ui.match.favorite.ui.main
+package rpl1pnp.fikri.footballmatchschedule.ui.match.favorite.viewpager
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

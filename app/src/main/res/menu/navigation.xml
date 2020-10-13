@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/searchMatch"
+        android:id="@+id/search_match"
         android:icon="@drawable/ic_search_black_24dp"
         android:title="@string/search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
-        android:id="@+id/favorite"
+        android:id="@+id/btn_favorite"
         android:icon="@drawable/ic_favorites"
         android:iconifiedByDefault="false"
         android:title="@string/favorites"

@@ -1,14 +1,13 @@
-package rpl1pnp.fikri.footballmatchschedule.ui.match
+package rpl1pnp.fikri.footballmatchschedule.ui.match.detailmatch
 
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_match.*
 import org.jetbrains.anko.db.classParser
@@ -21,64 +20,39 @@ import rpl1pnp.fikri.footballmatchschedule.database.Favorite
 import rpl1pnp.fikri.footballmatchschedule.database.database
 import rpl1pnp.fikri.footballmatchschedule.model.Events
 import rpl1pnp.fikri.footballmatchschedule.model.Team
+import rpl1pnp.fikri.footballmatchschedule.network.ApiRepository
 import rpl1pnp.fikri.footballmatchschedule.util.invisible
 import rpl1pnp.fikri.footballmatchschedule.util.visible
+import rpl1pnp.fikri.footballmatchschedule.view.DetailMatchView
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DetailMatchActivity : AppCompatActivity() {
-    private lateinit var viewModelMatch: MatchViewModel
-    private lateinit var progressBar: ProgressBar
-    private var events: MutableList<Events> = mutableListOf()
-    private var teamHome: MutableList<Team> = mutableListOf()
-    private var teamAway: MutableList<Team> = mutableListOf()
+class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
+    private lateinit var presenter: DetailMatchPresenter
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
     private var eventId: String? = null
+    private var events: List<Events>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_match)
-        progressBar = findViewById(R.id.progress_detail_match)
-        Log.d("FAVdefault", "$isFavorite")
 
         eventId = intent.getStringExtra("EVENT_ID")
         val homeTeamId = intent.getStringExtra("HOME_TEAM")
         val awayTeamId = intent.getStringExtra("AWAY_TEAM")
-        viewModelMatch = ViewModelProvider(this).get(MatchViewModel::class.java)
-        viewModelMatch.getEvent(eventId)
-        viewModelMatch.getLogoHome(homeTeamId)
-        viewModelMatch.getLogoAway(awayTeamId)
+
+        val api = ApiRepository()
+        val gson = Gson()
+        presenter = DetailMatchPresenter(this, api, gson)
+        presenter.getEvent(eventId)
+        presenter.getLogo(homeTeamId, true)
+        presenter.getLogo(awayTeamId, false)
 
         favoriteState()
-        viewModelMatch.observeEvent().observe(this,
-            {
-                events.clear()
-                events.addAll(it.events)
-                showDetail(events)
-                Log.v("event", eventId + "")
-            })
-        viewModelMatch.observeLogoHome().observe(this,
-            {
-                teamHome.clear()
-                teamHome.addAll(it.teams)
-                getLogoTeam(teamHome, true)
-                Log.v("nextHome", awayTeamId + "")
-            })
-        viewModelMatch.observeLogoAway().observe(this,
-            {
-                teamAway.clear()
-                teamAway.addAll(it.teams)
-                getLogoTeam(teamAway, false)
-                Log.v("nextAway", awayTeamId + "")
-            })
-        viewModelMatch.observeLoading().observe(this,
-            {
-                progressBar(it)
-            })
     }
 
-    fun getLogoTeam(data: List<Team>, isHomeTeam: Boolean) {
+    override fun getLogoTeam(data: List<Team>, isHomeTeam: Boolean) {
         if (isHomeTeam) {
             Picasso.get().load(data.first().teamBadge.orEmpty()).fit().into(image_home_badge)
         } else {
@@ -86,16 +60,25 @@ class DetailMatchActivity : AppCompatActivity() {
         }
     }
 
-    fun showDetail(data: List<Events>) {
+    override fun showLoading() {
+        progressBar(true)
+    }
+
+    override fun hideLoading() {
+        progressBar(false)
+    }
+
+    override fun showDetail(data: List<Events>) {
+        events = data
         val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         df.timeZone = TimeZone.getTimeZone("UTC")
         val date: Date? = df.parse(data.first().dateEvent + " " + data.first().time)
         df.timeZone = (TimeZone.getDefault())
-        val formattedDate: String? = df.format(date)
+        val formattedDate: String? = df.format(date!!)
         text_event_date.text = formattedDate.orEmpty()
         text_home_name.text = data.first().homeTeam.orEmpty()
         text_home_score.text = data.first().homeScore.orEmpty()
-        text_home_goals.text = data.first().homeGoalDetail.orEmpty()
+        text_home_goals.text = data.first().homeGoalDetail.orEmpty().replace(";", "\n")
         text_home_formation.text = data.first().homeFormation.orEmpty()
         text_home_red_cards.text = data.first().homeRedCard.orEmpty()
         text_home_yellow_cards.text = data.first().homeYellowCard.orEmpty()
@@ -136,7 +119,7 @@ class DetailMatchActivity : AppCompatActivity() {
                 finish()
                 true
             }
-            R.id.favorite -> {
+            R.id.btn_favorite -> {
                 if (isFavorite) removeFromFavorite() else addToFavorite()
 
                 isFavorite = !isFavorite
@@ -153,16 +136,16 @@ class DetailMatchActivity : AppCompatActivity() {
             database.use {
                 insert(
                     Favorite.TABLE_FAVORITE,
-                    Favorite.ID_EVENT to events.first().eventId,
-                    Favorite.ID_LEAGUE to events.first().idLeague,
-                    Favorite.ID_HOME_TEAM to events.first().homeTeamId,
-                    Favorite.ID_AWAY_TEAM to events.first().awayTeamId,
-                    Favorite.HOME_TEAM to events.first().homeTeam,
-                    Favorite.AWAY_TEAM to events.first().awayTeam,
-                    Favorite.HOME_SCORE to events.first().homeScore,
-                    Favorite.AWAY_SCORE to events.first().awayScore,
-                    Favorite.DATE_EVENT to events.first().dateEvent,
-                    Favorite.TIME to events.first().time
+                    Favorite.ID_EVENT to events?.first()?.eventId,
+                    Favorite.ID_LEAGUE to events?.first()?.idLeague,
+                    Favorite.ID_HOME_TEAM to events?.first()?.homeTeamId,
+                    Favorite.ID_AWAY_TEAM to events?.first()?.awayTeamId,
+                    Favorite.HOME_TEAM to events?.first()?.homeTeam,
+                    Favorite.AWAY_TEAM to events?.first()?.awayTeam,
+                    Favorite.HOME_SCORE to events?.first()?.homeScore,
+                    Favorite.AWAY_SCORE to events?.first()?.awayScore,
+                    Favorite.DATE_EVENT to events?.first()?.dateEvent,
+                    Favorite.TIME to events?.first()?.time
                 )
             }
             ly_detail_match.snackbar("Added to Favorit")
@@ -172,7 +155,6 @@ class DetailMatchActivity : AppCompatActivity() {
     }
 
     private fun removeFromFavorite() {
-        Log.i("TAG", eventId)
         try {
             database.use {
                 delete(
@@ -182,7 +164,7 @@ class DetailMatchActivity : AppCompatActivity() {
             }
             ly_detail_match.snackbar("Removed from Favorit")
         } catch (e: SQLiteConstraintException) {
-            ly_detail_match.snackbar(e.localizedMessage)
+            ly_detail_match.snackbar(e.localizedMessage!!)
         }
     }
 

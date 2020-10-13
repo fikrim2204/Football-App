@@ -22,7 +22,8 @@ class FavoriteAdapter(
             } else {
                 itemView.strip.text = itemView.resources.getString(R.string.strip)
             }
-            itemView.date.text = favorite.dateEvent
+            val time = favorite.dateEvent + " " + favorite.time
+            itemView.date_match.text = time
             itemView.setOnClickListener {
             }
         }

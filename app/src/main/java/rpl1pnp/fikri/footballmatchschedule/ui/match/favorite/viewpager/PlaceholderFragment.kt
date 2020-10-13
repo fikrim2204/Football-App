@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballmatchschedule.ui.match.favorite.ui.main
+package rpl1pnp.fikri.footballmatchschedule.ui.match.favorite.viewpager
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import rpl1pnp.fikri.footballmatchschedule.R
 
@@ -30,7 +29,7 @@ class PlaceholderFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_favorite, container, false)
         val textView: TextView = root.findViewById(R.id.section_label)
-        pageViewModel.text.observe(viewLifecycleOwner, Observer<String> {
+        pageViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root

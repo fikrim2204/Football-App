@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballmatchschedule.ui.match.favorite.ui.main
+package rpl1pnp.fikri.footballmatchschedule.ui.match.favorite.viewpager
 
 import android.content.Context
 import androidx.fragment.app.Fragment
