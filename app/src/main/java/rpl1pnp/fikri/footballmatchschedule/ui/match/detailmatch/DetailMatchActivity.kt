@@ -2,7 +2,6 @@ package rpl1pnp.fikri.footballmatchschedule.ui.match.detailmatch
 
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -170,7 +169,6 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
     private fun setFavorite() {
         if (isFavorite) {
-            Log.d("FAVset", "$isFavorite")
             menuItem?.getItem(0)?.icon =
                 ContextCompat.getDrawable(this, R.drawable.ic_added_favorite)
         } else {
@@ -187,7 +185,6 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
                 )
             val favorite = result.parseList(classParser<Favorite>())
             if (favorite.isNotEmpty()) isFavorite = true
-            Log.d("FAVstate", "$isFavorite")
         }
     }
 }

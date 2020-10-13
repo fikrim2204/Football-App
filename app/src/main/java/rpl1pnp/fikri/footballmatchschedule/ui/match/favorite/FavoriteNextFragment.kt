@@ -7,17 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import org.jetbrains.anko.db.classParser
-import org.jetbrains.anko.db.select
 import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.adapter.FavoriteAdapter
 import rpl1pnp.fikri.footballmatchschedule.database.Favorite
-import rpl1pnp.fikri.footballmatchschedule.database.database
+import rpl1pnp.fikri.footballmatchschedule.view.FavoriteView
 
-class FavoriteNextFragment : Fragment() {
+class FavoriteNextFragment : Fragment(), FavoriteView {
     lateinit var adapter: FavoriteAdapter
     private var favorites: MutableList<Favorite> = mutableListOf()
     private lateinit var nextFavList: RecyclerView
+    private lateinit var presenter: FavoritePresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,19 +29,20 @@ class FavoriteNextFragment : Fragment() {
         adapter = FavoriteAdapter(favorites)
 
         nextFavList.adapter = adapter
-        showFavorite()
+        presenter = FavoritePresenter(this, requireActivity())
         return rootView
     }
 
-    private fun showFavorite() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        presenter.showFavoriteNext()
+
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun showFavorite(data: List<Favorite>) {
         favorites.clear()
-        context?.database?.use {
-            val result =
-                select(Favorite.TABLE_FAVORITE).whereArgs("(HOME_SCORE IS NULL) and (AWAY_SCORE IS NULL)")
-            val favorite = result.parseList(classParser<Favorite>())
-            favorites.addAll(favorite)
-            adapter.notifyDataSetChanged()
-        }
+        favorites.addAll(data)
+        adapter.notifyDataSetChanged()
     }
 
 
