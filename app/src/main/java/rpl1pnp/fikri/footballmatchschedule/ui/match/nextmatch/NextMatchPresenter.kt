@@ -49,6 +49,7 @@ class NextMatchPresenter(
             if (data.event.isNullOrEmpty()) {
                 events.clear()
                 viewNext.hideLoading()
+                viewNext.searchMatch(events)
                 viewNext.nullData()
             } else {
                 events.clear()

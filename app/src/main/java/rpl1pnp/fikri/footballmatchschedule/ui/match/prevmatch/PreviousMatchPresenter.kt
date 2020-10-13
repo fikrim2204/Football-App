@@ -33,7 +33,6 @@ class PreviousMatchPresenter(
 
             viewPrev.hideLoading()
             viewPrev.showListMatch(data.events)
-            Log.d("goal", "${data.events}")
         }
     }
 
@@ -51,6 +50,7 @@ class PreviousMatchPresenter(
             if (data.event.isNullOrEmpty()) {
                 events.clear()
                 viewPrev.hideLoading()
+                viewPrev.searchMatch(events)
                 viewPrev.nullData()
             } else {
                 events.clear()

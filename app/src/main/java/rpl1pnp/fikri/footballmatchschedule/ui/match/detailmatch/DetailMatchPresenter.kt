@@ -1,6 +1,5 @@
 package rpl1pnp.fikri.footballmatchschedule.ui.match.detailmatch
 
-import android.util.Log
 import com.google.gson.Gson
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -30,7 +29,6 @@ class DetailMatchPresenter(
 
             view.hideLoading()
             view.showDetail(data.events)
-            Log.d("goal", "${data.events}")
         }
     }
 
