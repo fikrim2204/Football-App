@@ -1,6 +1,5 @@
 package rpl1pnp.fikri.footballmatchschedule.ui.match.prevmatch
 
-import android.util.Log
 import com.google.gson.Gson
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -56,7 +55,6 @@ class PreviousMatchPresenter(
                 events.clear()
                 for (element in data.event) {
                     if (element.sport == "Soccer" && element.homeScore != null) {
-                        Log.d("goal", "${element.homeGoalDetail}")
                         events.add(element)
                         viewPrev.hideLoading()
                         viewPrev.searchMatch(events)
