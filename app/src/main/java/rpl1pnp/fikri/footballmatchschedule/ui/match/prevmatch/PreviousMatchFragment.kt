@@ -83,7 +83,6 @@ class PreviousMatchFragment : Fragment(), PreviousMatchView {
         swipeRefreshLayout.onRefresh {
             EspressoIdlingResource.increment()
             presenter.getListMatch(idLeague)
-            null_data_prev.invisible()
             swipeRefreshLayout.isRefreshing = false
         }
         return rootView
@@ -173,6 +172,7 @@ class PreviousMatchFragment : Fragment(), PreviousMatchView {
         events.clear()
         events.addAll(data)
         adapter.notifyDataSetChanged()
+        null_data_prev.invisible()
     }
 
     override fun searchMatch(data: List<Events>) {

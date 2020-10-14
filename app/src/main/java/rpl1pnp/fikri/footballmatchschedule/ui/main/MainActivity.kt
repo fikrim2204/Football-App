@@ -1,10 +1,11 @@
 package rpl1pnp.fikri.footballmatchschedule.ui.main
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.singleTop
 import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.adapter.MainAdapter
 import rpl1pnp.fikri.footballmatchschedule.model.League
@@ -28,11 +29,7 @@ class MainActivity : AppCompatActivity() {
         initLeague()
         adapter = MainAdapter(items) {
             idLeague = it.idLeague.toString()
-            val bundle = Bundle()
-            bundle.putString("idLeague", idLeague)
-            val intent = Intent(this, LeagueActivity::class.java)
-            intent.putExtras(bundle)
-            startActivity(intent)
+            startActivity(intentFor<LeagueActivity>("idLeague" to idLeague).singleTop())
         }
         rv_main.adapter = adapter
     }

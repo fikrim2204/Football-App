@@ -31,21 +31,21 @@ class LeagueActivity : AppCompatActivity(), LeagueView {
         setContentView(R.layout.activity_league)
 
         setSupportActionBar(toolbar_detail)
-        val sectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
+        val sectionsPagerAdapter = SectionsPagerAdapter(
+            supportFragmentManager
+        )
         view_pager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(view_pager)
-        if (intent.extras != null) {
-            val bundle = intent.extras
-            idLeague = bundle?.getString("idLeague")
-            viewModel = ViewModelProvider(this).get(PageViewModel::class.java)
-            viewModel.setIdLeague(idLeague)
 
-            val request = ApiRepository()
-            val gson = Gson()
-            presenter = LeaguePresenter(this, request, gson)
-            presenter.getLeagueList(idLeague)
-        }
+        idLeague = intent.getStringExtra("idLeague")
+        viewModel = ViewModelProvider(this).get(PageViewModel::class.java)
+        viewModel.setIdLeague(idLeague)
+
+        val request = ApiRepository()
+        val gson = Gson()
+        presenter = LeaguePresenter(this, request, gson)
+        presenter.getLeagueList(idLeague)
     }
 
     override fun showLeagueList(data: List<LeagueDetail>) {
