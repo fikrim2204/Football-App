@@ -2,7 +2,8 @@ package rpl1pnp.fikri.footballmatchschedule.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.setTitle(R.string.app_name)
         progressbar_main.invisible()
-        rv_main.layoutManager = LinearLayoutManager(this)
+        rv_main.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutCompat.VERTICAL)
 
         initLeague()
         adapter = MainAdapter(items) {
