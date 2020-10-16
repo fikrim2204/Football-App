@@ -43,7 +43,7 @@ class LeaguePresenterTest {
         val idLeague = "4328"
 
         runBlocking {
-            Mockito.`when`(apiRepository.doRequest(ArgumentMatchers.anyString()))
+            Mockito.`when`(apiRepository.doRequestAsync(ArgumentMatchers.anyString()))
                 .thenReturn(apiResponse)
 
             Mockito.`when`(apiResponse.await()).thenReturn("")

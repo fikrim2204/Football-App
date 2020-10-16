@@ -45,7 +45,7 @@ class DetailMatchPresenterTest {
         val eventId = "441613"
 
         runBlocking {
-            Mockito.`when`(apiRepository.doRequest(ArgumentMatchers.anyString()))
+            Mockito.`when`(apiRepository.doRequestAsync(ArgumentMatchers.anyString()))
                 .thenReturn(apiResponse)
 
             Mockito.`when`(apiResponse.await()).thenReturn("")
@@ -68,7 +68,7 @@ class DetailMatchPresenterTest {
         val idTeam = "133602"
 
         runBlocking {
-            Mockito.`when`(apiRepository.doRequest(ArgumentMatchers.anyString()))
+            Mockito.`when`(apiRepository.doRequestAsync(ArgumentMatchers.anyString()))
                 .thenReturn(apiResponse)
 
             Mockito.`when`(apiResponse.await()).thenReturn("")

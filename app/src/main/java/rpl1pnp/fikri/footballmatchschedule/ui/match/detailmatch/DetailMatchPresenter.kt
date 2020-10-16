@@ -21,7 +21,7 @@ class DetailMatchPresenter(
 
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(
-                apiRepository.doRequest(
+                apiRepository.doRequestAsync(
                     TheSportDBApi.getDetailMatch(eventId)
                 ).await(),
                 EventsResponse::class.java
@@ -37,7 +37,7 @@ class DetailMatchPresenter(
 
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(
-                apiRepository.doRequest(
+                apiRepository.doRequestAsync(
                     TheSportDBApi.getTeams(
                         teamId
                     )

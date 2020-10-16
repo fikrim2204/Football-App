@@ -20,7 +20,7 @@ class DetailLeaguePresenter(
 
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(
-                apiRepository.doRequest(
+                apiRepository.doRequestAsync(
                     TheSportDBApi.getLeagueDetail(
                         league
                     )
