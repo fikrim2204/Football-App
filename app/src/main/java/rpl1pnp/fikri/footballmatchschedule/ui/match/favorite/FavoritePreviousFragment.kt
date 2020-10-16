@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_favorite_previous.*
 import rpl1pnp.fikri.footballmatchschedule.R
 import rpl1pnp.fikri.footballmatchschedule.adapter.FavoriteAdapter
 import rpl1pnp.fikri.footballmatchschedule.database.Favorite
+import rpl1pnp.fikri.footballmatchschedule.util.invisible
+import rpl1pnp.fikri.footballmatchschedule.util.visible
 import rpl1pnp.fikri.footballmatchschedule.view.FavoriteView
 
 class FavoritePreviousFragment : Fragment(), FavoriteView {
@@ -35,6 +38,11 @@ class FavoritePreviousFragment : Fragment(), FavoriteView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         presenter.showFavoritePrev()
+        if (favorites.isEmpty()) {
+            null_data_prev_fav.visible()
+        } else {
+            null_data_prev_fav.invisible()
+        }
 
         super.onViewCreated(view, savedInstanceState)
     }

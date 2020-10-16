@@ -8,4 +8,8 @@ interface DetailMatchView {
     fun hideLoading()
     fun showDetail(data: List<Events>)
     fun getLogoTeam(data: List<Team>, isHomeTeam: Boolean)
+    fun addFavorite()
+    fun removeFavorite()
+    fun favoriteState(state: Boolean)
+    fun errorFavorite(message: CharSequence)
 }

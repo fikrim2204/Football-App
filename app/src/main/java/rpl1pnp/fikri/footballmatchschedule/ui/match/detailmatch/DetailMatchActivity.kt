@@ -1,6 +1,5 @@
 package rpl1pnp.fikri.footballmatchschedule.ui.match.detailmatch
 
-import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,14 +8,8 @@ import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_match.*
-import org.jetbrains.anko.db.classParser
-import org.jetbrains.anko.db.delete
-import org.jetbrains.anko.db.insert
-import org.jetbrains.anko.db.select
 import org.jetbrains.anko.design.snackbar
 import rpl1pnp.fikri.footballmatchschedule.R
-import rpl1pnp.fikri.footballmatchschedule.database.Favorite
-import rpl1pnp.fikri.footballmatchschedule.database.database
 import rpl1pnp.fikri.footballmatchschedule.model.Events
 import rpl1pnp.fikri.footballmatchschedule.model.Team
 import rpl1pnp.fikri.footballmatchschedule.network.ApiRepository
@@ -48,7 +41,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         presenter.getLogo(homeTeamId, true)
         presenter.getLogo(awayTeamId, false)
 
-        favoriteState()
+        presenter.favoriteState(this, eventId)
     }
 
     override fun getLogoTeam(data: List<Team>, isHomeTeam: Boolean) {
@@ -57,6 +50,22 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         } else {
             Picasso.get().load(data.first().teamBadge.orEmpty()).fit().into(image_away_badge)
         }
+    }
+
+    override fun addFavorite() {
+        ly_detail_match.snackbar("Added to Favorit")
+    }
+
+    override fun removeFavorite() {
+        ly_detail_match.snackbar("Removed from Favorit")
+    }
+
+    override fun favoriteState(state: Boolean) {
+        isFavorite = state
+    }
+
+    override fun errorFavorite(message: CharSequence) {
+        ly_detail_match.snackbar(message)
     }
 
     override fun showLoading() {
@@ -119,7 +128,10 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
                 true
             }
             R.id.btn_favorite -> {
-                if (isFavorite) removeFromFavorite() else addToFavorite()
+                if (isFavorite) presenter.removeFromFavorite(
+                    this,
+                    eventId
+                ) else presenter.addToFavorite(this, events)
 
                 isFavorite = !isFavorite
                 setFavorite()
@@ -130,61 +142,12 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         }
     }
 
-    private fun addToFavorite() {
-        try {
-            database.use {
-                insert(
-                    Favorite.TABLE_FAVORITE,
-                    Favorite.ID_EVENT to events?.first()?.eventId,
-                    Favorite.ID_LEAGUE to events?.first()?.idLeague,
-                    Favorite.ID_HOME_TEAM to events?.first()?.homeTeamId,
-                    Favorite.ID_AWAY_TEAM to events?.first()?.awayTeamId,
-                    Favorite.HOME_TEAM to events?.first()?.homeTeam,
-                    Favorite.AWAY_TEAM to events?.first()?.awayTeam,
-                    Favorite.HOME_SCORE to events?.first()?.homeScore,
-                    Favorite.AWAY_SCORE to events?.first()?.awayScore,
-                    Favorite.DATE_EVENT to events?.first()?.dateEvent,
-                    Favorite.TIME to events?.first()?.time
-                )
-            }
-            ly_detail_match.snackbar("Added to Favorit")
-        } catch (e: SQLiteConstraintException) {
-            ly_detail_match.snackbar("Removed from Favorit")
-        }
-    }
-
-    private fun removeFromFavorite() {
-        try {
-            database.use {
-                delete(
-                    Favorite.TABLE_FAVORITE, "(ID_EVENT = {id})",
-                    "id" to eventId.toString()
-                )
-            }
-            ly_detail_match.snackbar("Removed from Favorit")
-        } catch (e: SQLiteConstraintException) {
-            ly_detail_match.snackbar(e.localizedMessage!!)
-        }
-    }
-
     private fun setFavorite() {
         if (isFavorite) {
             menuItem?.getItem(0)?.icon =
                 ContextCompat.getDrawable(this, R.drawable.ic_added_favorite)
         } else {
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_add_favorite)
-        }
-    }
-
-    private fun favoriteState() {
-        database.use {
-            val result = select(Favorite.TABLE_FAVORITE)
-                .whereArgs(
-                    "(ID_EVENT = {id})",
-                    "id" to eventId.toString()
-                )
-            val favorite = result.parseList(classParser<Favorite>())
-            if (favorite.isNotEmpty()) isFavorite = true
         }
     }
 }

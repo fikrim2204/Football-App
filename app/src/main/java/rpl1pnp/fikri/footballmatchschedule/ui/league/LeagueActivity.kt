@@ -34,6 +34,7 @@ class LeagueActivity : AppCompatActivity(), LeagueView {
         val sectionsPagerAdapter = SectionsPagerAdapter(
             supportFragmentManager
         )
+
         view_pager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(view_pager)
@@ -49,7 +50,8 @@ class LeagueActivity : AppCompatActivity(), LeagueView {
     }
 
     override fun showLeagueList(data: List<LeagueDetail>) {
-        Picasso.get().load(data.first().leagueBadge.orEmpty()).fit().into(image_logo_league)
+        Picasso.get().load(data.first().leagueBadge.orEmpty()).fit()
+            .error(R.drawable.ic_broken_image_gray).into(image_logo_league)
         text_name_league.text = data.first().leagueName.orEmpty()
         text_desc_league.text = data.first().leagueDescription.orEmpty()
         card_league.setOnClickListener {
