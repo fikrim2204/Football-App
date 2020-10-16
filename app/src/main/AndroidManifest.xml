@@ -14,19 +14,20 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="rpl1pnp.fikri.footballmatchschedule.ui.match.favorite.FavoriteActivity"
-            android:label="@string/title_activity_favorite"
+            android:label="@string/favorites"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.match.detailmatch.DetailMatchActivity" />
         <activity android:name=".ui.detailleague.DetailLeagueActivity" />
         <activity
             android:name=".ui.league.LeagueActivity"
+            android:label="@string/league_detail"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.main.MainActivity"
+            android:label="@string/list_league"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
