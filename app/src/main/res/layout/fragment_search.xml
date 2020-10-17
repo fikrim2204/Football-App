@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.league.viewpager.PlaceholderFragment">
+    tools:context=".ui.search.tabview.PlaceholderFragment">
 
     <TextView
         android:id="@+id/section_label"
@@ -18,7 +18,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout"
         tools:layout_constraintLeft_creator="1"
-        android:textColor="@color/textColor"
         tools:layout_constraintTop_creator="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_match.*
 import org.jetbrains.anko.singleTop
@@ -14,9 +13,10 @@ import rpl1pnp.fikri.footballapps.R
 import rpl1pnp.fikri.footballapps.adapter.EventsAdapter
 import rpl1pnp.fikri.footballapps.model.Events
 import rpl1pnp.fikri.footballapps.ui.detailmatch.DetailMatchActivity
+import rpl1pnp.fikri.footballapps.view.MatchView
 
-class MatchFragment : Fragment() {
-    private lateinit var viewModel: MatchViewModel
+class MatchFragment : Fragment(), MatchView {
+    private lateinit var presenter: MatchPresenter
     private lateinit var adapterNext: EventsAdapter
     private lateinit var adapterLast: EventsAdapter
     private var eventsNext: MutableList<Events> = mutableListOf()
@@ -26,7 +26,6 @@ class MatchFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        viewModel = ViewModelProvider(requireActivity()).get(MatchViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -38,6 +37,12 @@ class MatchFragment : Fragment() {
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         rv_last_match.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+
+        return rootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         adapterNext = EventsAdapter(eventsNext) { next ->
             val idEventNext = next.eventId.toString()
@@ -63,8 +68,30 @@ class MatchFragment : Fragment() {
                 ).singleTop()
             )
         }
+    }
 
-        return rootView
+    override fun showLoading() {
+        TODO("Not yet implemented")
+    }
+
+    override fun hideLoading() {
+        TODO("Not yet implemented")
+    }
+
+    override fun showListNextMatch(data: List<Events>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun showListLastMatch(data: List<Events>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun searchMatch(data: List<Events>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun nullData() {
+        TODO("Not yet implemented")
     }
 
 }

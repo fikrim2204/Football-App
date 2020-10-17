@@ -18,7 +18,7 @@ object TheSportDBApi {
         return BASE_URL + PATH + NEXTMATCH + idLeague
     }
 
-    fun getPreviousMatch(idLeague: String?): String {
+    fun getLastMatch(idLeague: String?): String {
         return BASE_URL + PATH + PREVIOUSMATCH + idLeague
     }
 

@@ -1,14 +1,14 @@
-package rpl1pnp.fikri.footballapps.ui.viewpager
+package rpl1pnp.fikri.footballapps.ui.league.viewpager
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import rpl1pnp.fikri.footballapps.ui.league.viewpager.PlaceholderFragment.Companion.MATCH
+import rpl1pnp.fikri.footballapps.ui.league.viewpager.PlaceholderFragment.Companion.STANDINGS
+import rpl1pnp.fikri.footballapps.ui.league.viewpager.PlaceholderFragment.Companion.TEAM
 import rpl1pnp.fikri.footballapps.ui.match.MatchFragment
 import rpl1pnp.fikri.footballapps.ui.standings.StandingsFragment
 import rpl1pnp.fikri.footballapps.ui.team.TeamFragment
-import rpl1pnp.fikri.footballapps.ui.viewpager.PlaceholderFragment.Companion.MATCH
-import rpl1pnp.fikri.footballapps.ui.viewpager.PlaceholderFragment.Companion.STANDINGS
-import rpl1pnp.fikri.footballapps.ui.viewpager.PlaceholderFragment.Companion.TEAM
 
 class SectionsPagerAdapter(fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {

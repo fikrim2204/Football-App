@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballapps.ui.viewpager
+package rpl1pnp.fikri.footballapps.ui.search.tabview
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,18 +28,33 @@ class PlaceholderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_detail, container, false)
+        val root = inflater.inflate(R.layout.fragment_search, container, false)
         val textView: TextView = root.findViewById(R.id.section_label)
-        pageViewModel.text.observe(viewLifecycleOwner, Observer<String> {
+        pageViewModel.text.observe(requireActivity(), Observer<String> {
             textView.text = it
         })
         return root
     }
 
     companion object {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
         private const val ARG_SECTION_NUMBER = "section_number"
-        const val MATCH = "match"
-        const val STANDINGS = "standings"
-        const val TEAM = "team"
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        @JvmStatic
+        fun newInstance(sectionNumber: Int): PlaceholderFragment {
+            return PlaceholderFragment()
+                .apply {
+                    arguments = Bundle().apply {
+                        putInt(ARG_SECTION_NUMBER, sectionNumber)
+                    }
+                }
+        }
     }
 }

@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballapps.ui.viewpager
+package rpl1pnp.fikri.footballapps.ui.league.viewpager
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

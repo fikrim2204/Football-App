@@ -17,8 +17,8 @@ import rpl1pnp.fikri.footballapps.R
 import rpl1pnp.fikri.footballapps.model.LeagueDetail
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.ui.detailleague.DetailLeagueActivity
-import rpl1pnp.fikri.footballapps.ui.viewpager.PageViewModel
-import rpl1pnp.fikri.footballapps.ui.viewpager.SectionsPagerAdapter
+import rpl1pnp.fikri.footballapps.ui.league.viewpager.PageViewModel
+import rpl1pnp.fikri.footballapps.ui.league.viewpager.SectionsPagerAdapter
 import rpl1pnp.fikri.footballapps.view.LeagueView
 
 class LeagueActivity : AppCompatActivity(), LeagueView {

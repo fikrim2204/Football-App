@@ -25,7 +25,7 @@ class PreviousMatchPresenter(
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(
                 apiRepository.doRequestAsync(
-                    TheSportDBApi.getPreviousMatch(idLeague)
+                    TheSportDBApi.getLastMatch(idLeague)
                 ).await(),
                 EventsResponse::class.java
             )
