@@ -56,4 +56,5 @@
     <string name="null_match_fav">Kamu belum memilih match favorit</string>
     <string name="list_league">Daftar Liga</string>
     <string name="league_detail">Detail Liga</string>
+    <string name="next_match">Next Match</string>
 </resources>

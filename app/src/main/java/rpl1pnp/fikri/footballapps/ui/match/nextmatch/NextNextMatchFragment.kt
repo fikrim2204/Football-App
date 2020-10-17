@@ -21,8 +21,8 @@ import rpl1pnp.fikri.footballapps.R
 import rpl1pnp.fikri.footballapps.adapter.EventsAdapter
 import rpl1pnp.fikri.footballapps.model.Events
 import rpl1pnp.fikri.footballapps.network.ApiRepository
-import rpl1pnp.fikri.footballapps.ui.match.detailmatch.DetailMatchActivity
-import rpl1pnp.fikri.footballapps.ui.match.favorite.FavoriteActivity
+import rpl1pnp.fikri.footballapps.ui.detailmatch.DetailMatchActivity
+import rpl1pnp.fikri.footballapps.ui.favorite.FavoriteActivity
 import rpl1pnp.fikri.footballapps.ui.viewpager.PageViewModel
 import rpl1pnp.fikri.footballapps.util.EspressoIdlingResource
 import rpl1pnp.fikri.footballapps.util.invisible

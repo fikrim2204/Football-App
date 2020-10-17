@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.match.favorite.FavoritePreviousFragment">
+    tools:context=".ui.favorite.FavoritePreviousFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_fav_prev_match"
+        android:id="@+id/rv_fav_next_match"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_match" />

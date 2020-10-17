@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballapps.ui.match.detailmatch
+package rpl1pnp.fikri.footballapps.ui.detailmatch
 
 import android.os.Bundle
 import android.view.Menu

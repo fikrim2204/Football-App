@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballapps.ui.match.favorite
+package rpl1pnp.fikri.footballapps.ui.favorite
 
 import android.content.Context
 import org.jetbrains.anko.db.classParser

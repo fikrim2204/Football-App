@@ -1,10 +1,10 @@
-package rpl1pnp.fikri.footballapps.ui.match.favorite
+package rpl1pnp.fikri.footballapps.ui.favorite
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_favorite.*
 import rpl1pnp.fikri.footballapps.R
-import rpl1pnp.fikri.footballapps.ui.match.favorite.viewpager.SectionsPagerAdapter
+import rpl1pnp.fikri.footballapps.ui.favorite.viewpager.SectionsPagerAdapter
 
 class FavoriteActivity : AppCompatActivity() {
 

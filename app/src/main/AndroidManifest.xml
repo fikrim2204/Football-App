@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="rpl1pnp.fikri.footballapps.ui.match.favorite.FavoriteActivity"
+            android:name="rpl1pnp.fikri.footballapps.ui.favorite.FavoriteActivity"
             android:label="@string/favorites"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="rpl1pnp.fikri.footballapps.ui.match.detailmatch.DetailMatchActivity" />
+        <activity android:name="rpl1pnp.fikri.footballapps.ui.detailmatch.DetailMatchActivity" />
         <activity android:name="rpl1pnp.fikri.footballapps.ui.detailleague.DetailLeagueActivity" />
         <activity
             android:name="rpl1pnp.fikri.footballapps.ui.league.LeagueActivity"

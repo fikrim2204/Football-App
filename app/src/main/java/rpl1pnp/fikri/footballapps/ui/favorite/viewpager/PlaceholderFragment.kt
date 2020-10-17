@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballapps.ui.match.favorite.viewpager
+package rpl1pnp.fikri.footballapps.ui.favorite.viewpager
 
 import android.os.Bundle
 import android.view.LayoutInflater
