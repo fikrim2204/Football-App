@@ -1,0 +1,66 @@
+package rpl1pnp.fikri.footballapps.ui.match.nextmatch
+
+import com.google.gson.Gson
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import rpl1pnp.fikri.footballapps.model.Events
+import rpl1pnp.fikri.footballapps.model.EventsResponse
+import rpl1pnp.fikri.footballapps.model.SearchResponse
+import rpl1pnp.fikri.footballapps.network.ApiRepository
+import rpl1pnp.fikri.footballapps.network.TheSportDBApi
+import rpl1pnp.fikri.footballapps.util.CoroutineContextProvider
+import rpl1pnp.fikri.footballapps.view.NextMatchView
+
+class NextMatchPresenter(
+    private val viewNext: NextMatchView,
+    private val apiRepository: ApiRepository,
+    private val gson: Gson,
+    private val context: CoroutineContextProvider = CoroutineContextProvider()
+) {
+    private var events: MutableList<Events> = mutableListOf()
+
+    fun getListMatch(idLeague: String?) {
+        viewNext.showLoading()
+
+        GlobalScope.launch(context.main) {
+            val data = gson.fromJson(
+                apiRepository.doRequestAsync(
+                    TheSportDBApi.getNextMatch(idLeague)
+                ).await(),
+                EventsResponse::class.java
+            )
+
+            viewNext.hideLoading()
+            viewNext.showListMatch(data.events)
+        }
+    }
+
+    fun getSearchMatch(query: String?) {
+        viewNext.showLoading()
+
+        GlobalScope.launch(context.main) {
+            val data = gson.fromJson(
+                apiRepository.doRequestAsync(
+                    TheSportDBApi.getSearch(query)
+                ).await(),
+                SearchResponse::class.java
+            )
+
+            if (data.event.isNullOrEmpty()) {
+                events.clear()
+                viewNext.hideLoading()
+                viewNext.searchMatch(events)
+                viewNext.nullData()
+            } else {
+                events.clear()
+                for (element in data.event) {
+                    if (element.sport == "Soccer" && element.homeScore == null) {
+                        events.add(element)
+                        viewNext.hideLoading()
+                        viewNext.searchMatch(events)
+                    }
+                }
+            }
+        }
+    }
+}
