@@ -6,7 +6,7 @@
     tools:context=".ui.favorite.FavoritePreviousFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_fav_next_match"
+        android:id="@+id/rv_fav_last_match"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_match" />

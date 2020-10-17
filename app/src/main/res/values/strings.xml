@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Football Schedule</string>
+    <string name="app_name">Football Apps</string>
 
     <string-array name="league_logo">
         <item>@drawable/english_premier_league</item>
@@ -57,4 +57,5 @@
     <string name="list_league">Daftar Liga</string>
     <string name="league_detail">Detail Liga</string>
     <string name="next_match">Next Match</string>
+    <string name="last_match">Last Match</string>
 </resources>

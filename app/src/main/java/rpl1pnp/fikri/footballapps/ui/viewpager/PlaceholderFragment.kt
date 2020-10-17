@@ -38,7 +38,8 @@ class PlaceholderFragment : Fragment() {
 
     companion object {
         private const val ARG_SECTION_NUMBER = "section_number"
-        const val PREV_MATCH = "Previous Match"
-        const val NEXT_MATCH = "Next Match"
+        const val MATCH = "match"
+        const val STANDINGS = "standings"
+        const val TEAM = "team"
     }
 }

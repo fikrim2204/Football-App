@@ -1,4 +1,4 @@
-package rpl1pnp.fikri.footballapps.ui.detailmatch
+package rpl1pnp.fikri.footballapps.detailmatch
 
 import com.google.gson.Gson
 import kotlinx.coroutines.Deferred
@@ -15,6 +15,7 @@ import rpl1pnp.fikri.footballapps.model.Team
 import rpl1pnp.fikri.footballapps.model.TeamResponse
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.ui.TestContextProvider
+import rpl1pnp.fikri.footballapps.ui.detailmatch.DetailMatchPresenter
 import rpl1pnp.fikri.footballapps.view.DetailMatchView
 
 class DetailMatchPresenterTest {
@@ -35,7 +36,13 @@ class DetailMatchPresenterTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = DetailMatchPresenter(view, apiRepository, gson, TestContextProvider())
+        presenter =
+            DetailMatchPresenter(
+                view,
+                apiRepository,
+                gson,
+                TestContextProvider()
+            )
     }
 
     @Test
