@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
+import rpl1pnp.fikri.footballapps.R
 import rpl1pnp.fikri.footballapps.ui.search.tabview.SectionsPagerAdapter
 
 class SearchActivity : AppCompatActivity() {

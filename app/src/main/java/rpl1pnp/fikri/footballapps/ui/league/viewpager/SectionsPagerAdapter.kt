@@ -20,15 +20,11 @@ class SectionsPagerAdapter(fm: FragmentManager) :
     )
 
     override fun getItem(position: Int): Fragment {
-        var fragment = Fragment()
-        if (position == 0) {
-            fragment = MatchFragment()
-        } else if (position == 1) {
-            fragment = StandingsFragment()
-        } else {
-            fragment = TeamFragment()
+        return when (position) {
+            0 -> MatchFragment()
+            1 -> StandingsFragment()
+            else -> TeamFragment()
         }
-        return fragment
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
