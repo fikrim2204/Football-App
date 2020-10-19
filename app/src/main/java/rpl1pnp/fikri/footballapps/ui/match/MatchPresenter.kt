@@ -3,7 +3,6 @@ package rpl1pnp.fikri.footballapps.ui.match
 import com.google.gson.Gson
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import rpl1pnp.fikri.footballapps.model.Events
 import rpl1pnp.fikri.footballapps.model.EventsResponse
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.network.TheSportDBApi
@@ -16,12 +15,10 @@ class MatchPresenter(
     private val gson: Gson,
     private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) {
-    private var eventsSearch: MutableList<Events> = mutableListOf()
-    private var eventsNext: MutableList<Events> = mutableListOf()
-    private var eventsLast: MutableList<Events> = mutableListOf()
 
     fun getListNextMatch(idLeague: String?) {
         viewMatch.showLoading()
+
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(
                 apiRepository.doRequestAsync(
@@ -30,13 +27,19 @@ class MatchPresenter(
                 EventsResponse::class.java
             )
 
-            viewMatch.hideLoading()
-            viewMatch.showListNextMatch(data.events)
+            if (data.events.isNullOrEmpty()) {
+                viewMatch.hideLoading()
+                viewMatch.checkisNullData(true)
+            } else {
+                viewMatch.hideLoading()
+                viewMatch.showListNextMatch(data.events)
+            }
         }
     }
 
     fun getListLastMatch(idLeague: String?) {
         viewMatch.showLoading()
+
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(
                 apiRepository.doRequestAsync(
@@ -45,8 +48,13 @@ class MatchPresenter(
                 EventsResponse::class.java
             )
 
-            viewMatch.hideLoading()
-            viewMatch.showListLastMatch(data.events)
+            if (data.events.isNullOrEmpty()) {
+                viewMatch.hideLoading()
+                viewMatch.checkisNullData(true)
+            } else {
+                viewMatch.hideLoading()
+                viewMatch.showListLastMatch(data.events)
+            }
         }
     }
 }

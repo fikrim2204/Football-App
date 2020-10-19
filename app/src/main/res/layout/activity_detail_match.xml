@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorSurface"
     tools:context=".ui.detailmatch.DetailMatchActivity">
 
     <ProgressBar
@@ -33,6 +34,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             app:cardCornerRadius="30dp"
+            app:cardBackgroundColor="@color/colorBackground"
             app:cardElevation="3dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@id/text_divide_score"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:maxLines="2"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_margin="5dp"
@@ -89,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:maxLines="2"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_margin="5dp"
@@ -118,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="50dp"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="30sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@id/text_divide_score"
@@ -133,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="50dp"
                     android:textSize="30sp"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorPrimary"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@id/text_away_score"
@@ -146,7 +148,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="50dp"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="30sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@id/image_away_badge"
@@ -180,7 +182,7 @@
                 android:layout_weight="1"
                 android:lineSpacingExtra="5dp"
                 android:textAlignment="center"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 tools:text="Formasi" />
 
             <TextView
@@ -195,7 +197,7 @@
                 android:layout_weight="1"
                 android:lineSpacingExtra="5dp"
                 android:textAlignment="center"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 tools:text="Formasi" />
         </LinearLayout>
 
@@ -220,7 +222,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:lineSpacingExtra="5dp"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="12sp"
                 tools:text="Goal" />
 
@@ -230,7 +232,7 @@
                 android:layout_weight="1"
                 android:text="@string/goal"
                 android:textAlignment="center"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 android:textStyle="bold" />
 
             <TextView
@@ -240,7 +242,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:lineSpacingExtra="5dp"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="12sp"
                 tools:text="Goal" />
         </LinearLayout>
@@ -266,7 +268,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:lineSpacingExtra="5dp"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="12sp"
                 tools:text="Shoot" />
 
@@ -286,7 +288,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:lineSpacingExtra="5dp"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="12sp"
                 tools:text="Shoot" />
         </LinearLayout>
@@ -312,7 +314,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:lineSpacingExtra="5dp"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="12sp"
                 tools:text="Shoot" />
 
@@ -332,7 +334,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:lineSpacingExtra="5dp"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="12sp"
                 tools:text="Shoot" />
         </LinearLayout>

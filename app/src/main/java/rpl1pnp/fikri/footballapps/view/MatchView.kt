@@ -7,6 +7,5 @@ interface MatchView {
     fun hideLoading()
     fun showListNextMatch(data: List<Events>)
     fun showListLastMatch(data: List<Events>)
-    fun searchMatch(data: List<Events>)
-    fun nullData()
+    fun checkisNullData(state: Boolean)
 }

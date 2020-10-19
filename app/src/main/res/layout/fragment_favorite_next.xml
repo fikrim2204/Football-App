@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorSurface"
     tools:context=".ui.favorite.FavoriteNextFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -17,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/null_match_fav"
-        android:textColor="@color/textColor"
+        android:textColor="@color/textColorPrimary"
         android:textSize="16sp"
         android:textStyle="bold"
         android:visibility="gone" />

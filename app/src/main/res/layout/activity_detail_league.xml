@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorSurface"
     android:padding="10dp"
     tools:context=".ui.detailleague.DetailLeagueActivity">
 
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:elevation="3dp"
+        app:cardBackgroundColor="@color/colorBackground"
         app:cardCornerRadius="10dp">
 
         <RelativeLayout
@@ -35,7 +36,7 @@
                 android:layout_below="@id/image_logo_league"
                 android:layout_centerHorizontal="true"
                 android:padding="5dp"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="League" />
@@ -48,7 +49,7 @@
                 android:layout_margin="10dp"
                 android:justificationMode="inter_word"
                 android:padding="10dp"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:targetApi="o"

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorSurface"
     tools:context=".ui.match.prevmatch.PreviousMatchFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -30,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/data_null"
-        android:textColor="@color/textColor"
+        android:textColor="@color/textColorPrimary"
         android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="invisible" />

@@ -38,7 +38,7 @@
                 android:layout_margin="10dp"
                 android:layout_toEndOf="@id/image_logo_league"
                 android:textAlignment="center"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="League" />
@@ -55,7 +55,7 @@
                 android:layout_toEndOf="@id/image_logo_league"
                 android:justificationMode="inter_word"
                 android:maxLines="4"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:text="Lorem Lorel lorea wadawd awdawda dwadawd awdawda wadawda awdawda awdawda awdad awdawda awdawda awdawda awdawdaw awdawd " />

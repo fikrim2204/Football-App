@@ -39,7 +39,7 @@
                 android:layout_below="@id/image_main_league"
                 android:layout_margin="5dp"
                 android:gravity="center"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:text="Liga Inggris" />

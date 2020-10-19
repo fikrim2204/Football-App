@@ -38,7 +38,7 @@
                 android:layout_margin="5dp"
                 android:layout_toEndOf="@id/iv_search_team"
                 android:gravity="center"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:text="Liga Inggris" />

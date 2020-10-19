@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:layout_marginStart="15dp"
+    android:layout_marginStart="5dp"
     android:layout_marginTop="4dp"
-    android:layout_marginEnd="15dp"
+    android:layout_marginEnd="5dp"
     android:layout_marginBottom="4dp"
     android:orientation="vertical">
 
@@ -33,7 +33,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 tools:text="LiverPool" />
 
             <TextView
@@ -45,7 +45,7 @@
                 android:padding="2dp"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 tools:text="0" />
 
             <TextView
@@ -56,7 +56,7 @@
                 android:layout_centerVertical="true"
                 android:text="@string/strip"
                 android:textStyle="bold"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="30sp" />
 
             <TextView
@@ -68,7 +68,7 @@
                 android:padding="2dp"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 tools:text="0" />
 
             <TextView
@@ -82,7 +82,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 tools:text="Man United" />
 
             <TextView
@@ -94,7 +94,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_centerHorizontal="true"
                 android:textSize="16sp"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 tools:text="20-04-2019" />
 
         </RelativeLayout>

@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
+
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -33,15 +34,16 @@
                 android:background="@color/colorPrimary"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:titleTextColor="@color/textColor" />
+                app:titleTextColor="@color/textColorPrimary" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:tabTextColor="@color/textColor" />
+            android:background="@color/colorPrimaryLight"
+            app:tabIndicatorColor="@color/colorSecondary"
+            app:tabTextColor="@color/textColorPrimary" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -57,7 +59,7 @@
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark" />
+            android:background="@color/colorSurface" />
     </androidx.core.widget.NestedScrollView>
 
     <TextView
@@ -66,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/data_null"
-        android:textColor="@color/textColor"
+        android:textColor="@color/textColorPrimary"
         android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="invisible" />
