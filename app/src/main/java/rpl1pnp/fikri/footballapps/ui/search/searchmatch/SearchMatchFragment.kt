@@ -20,7 +20,6 @@ import rpl1pnp.fikri.footballapps.adapter.EventsAdapter
 import rpl1pnp.fikri.footballapps.model.Events
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.ui.detailmatch.DetailMatchActivity
-import rpl1pnp.fikri.footballapps.util.EspressoIdlingResource
 import rpl1pnp.fikri.footballapps.util.invisible
 import rpl1pnp.fikri.footballapps.util.visible
 import rpl1pnp.fikri.footballapps.view.SearchMatchView
@@ -112,7 +111,6 @@ class SearchMatchFragment : Fragment(), SearchMatchView {
                 if (query == null) {
                     return false
                 }
-                EspressoIdlingResource.increment()
                 presenter.getSearchMatch(query)
                 searchView.clearFocus()
 

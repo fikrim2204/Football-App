@@ -16,4 +16,23 @@
             android:layout_height="wrap_content"
             tools:listitem="@layout/item_match" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progressbar_search_team"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp" />
+
+    <TextView
+        android:id="@+id/null_data_search_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/null_search"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
 </FrameLayout>
