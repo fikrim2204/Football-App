@@ -65,6 +65,7 @@ class SearchMatchFragment : Fragment(), SearchMatchView {
 
         swipeRefreshLayout = rootView.findViewById(R.id.srl_search_match)
         swipeRefreshLayout.onRefresh {
+            presenter.getSearchMatch("liverpool")
             events.clear()
             adapter.notifyDataSetChanged()
             swipeRefreshLayout.isRefreshing = false

@@ -23,7 +23,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
-        android:visibility="gone" />
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/null_data_search_match"
