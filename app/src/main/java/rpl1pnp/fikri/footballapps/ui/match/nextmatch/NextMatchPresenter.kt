@@ -5,13 +5,14 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import rpl1pnp.fikri.footballapps.model.Events
 import rpl1pnp.fikri.footballapps.model.EventsResponse
-import rpl1pnp.fikri.footballapps.model.SearchResponse
+import rpl1pnp.fikri.footballapps.model.SearchMatchResponse
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.network.TheSportDBApi
 import rpl1pnp.fikri.footballapps.util.CoroutineContextProvider
 import rpl1pnp.fikri.footballapps.view.NextMatchView
 
 class NextMatchPresenter(
+    //DeleteSoon
     private val viewNext: NextMatchView,
     private val apiRepository: ApiRepository,
     private val gson: Gson,
@@ -43,7 +44,7 @@ class NextMatchPresenter(
                 apiRepository.doRequestAsync(
                     TheSportDBApi.getSearch(query)
                 ).await(),
-                SearchResponse::class.java
+                SearchMatchResponse::class.java
             )
 
             if (data.event.isNullOrEmpty()) {

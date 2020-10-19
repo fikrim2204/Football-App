@@ -35,8 +35,8 @@ class MainActivityTest {
 
         //Intent ke LeagueActivity
         onView(withText("English Premier League")).perform(click())
-        onView(withId(R.id.search_match)).check(matches(isDisplayed()))
-        onView(withId(R.id.search_match)).perform(click())
+        onView(withId(R.id.btn_navigation_search)).check(matches(isDisplayed()))
+        onView(withId(R.id.btn_navigation_search)).perform(click())
         onView(isAssignableFrom(EditText::class.java)).perform(
             typeText("chelsea"),
             pressImeActionButton()
@@ -58,8 +58,8 @@ class MainActivityTest {
             )
         )
 
-        onView(withId(R.id.btn_favorite)).check(matches(isDisplayed()))
-        onView(withId(R.id.btn_favorite)).perform(click())
+        onView(withId(R.id.btn_navigation_favorite)).check(matches(isDisplayed()))
+        onView(withId(R.id.btn_navigation_favorite)).perform(click())
 
         pressBack()
     }
@@ -71,8 +71,8 @@ class MainActivityTest {
         //Intent ke LeagueActivity
         onView(withText("English Premier League")).perform(click())
         onView(withId(R.id.view_pager)).perform(ViewPagerActions.scrollRight())
-        onView(withId(R.id.search_match)).check(matches(isDisplayed()))
-        onView(withId(R.id.search_match)).perform(click())
+        onView(withId(R.id.btn_navigation_search)).check(matches(isDisplayed()))
+        onView(withId(R.id.btn_navigation_search)).perform(click())
         onView(isAssignableFrom(EditText::class.java)).perform(
             typeText("chelsea"),
             pressImeActionButton()
@@ -87,8 +87,8 @@ class MainActivityTest {
 
         //Intent ke LeagueActivity
         onView(withText("English Premier League")).perform(click())
-        onView(withId(R.id.search_match)).check(matches(isDisplayed()))
-        onView(withId(R.id.search_match)).perform(click())
+        onView(withId(R.id.btn_navigation_search)).check(matches(isDisplayed()))
+        onView(withId(R.id.btn_navigation_search)).perform(click())
         onView(isAssignableFrom(EditText::class.java)).perform(
             typeText("abcdefg"),
             pressImeActionButton()

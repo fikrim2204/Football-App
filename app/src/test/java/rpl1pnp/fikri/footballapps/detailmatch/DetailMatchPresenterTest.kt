@@ -11,8 +11,6 @@ import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import rpl1pnp.fikri.footballapps.model.Events
 import rpl1pnp.fikri.footballapps.model.EventsResponse
-import rpl1pnp.fikri.footballapps.model.Team
-import rpl1pnp.fikri.footballapps.model.TeamResponse
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.ui.TestContextProvider
 import rpl1pnp.fikri.footballapps.ui.detailmatch.DetailMatchPresenter

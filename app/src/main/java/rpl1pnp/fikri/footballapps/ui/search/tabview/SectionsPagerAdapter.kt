@@ -1,20 +1,19 @@
 package rpl1pnp.fikri.footballapps.ui.search.tabview
 
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import rpl1pnp.fikri.footballapps.ui.search.SearchMatchFragment
-import rpl1pnp.fikri.footballapps.ui.search.SearchTeamFragment
+import rpl1pnp.fikri.footballapps.ui.search.searchmatch.SearchMatchFragment
+import rpl1pnp.fikri.footballapps.ui.search.searchteam.SearchTeamFragment
 import rpl1pnp.fikri.footballapps.ui.search.tabview.PlaceholderFragment.Companion.SEARCHMATCH
 import rpl1pnp.fikri.footballapps.ui.search.tabview.PlaceholderFragment.Companion.SEARCHTEAM
 
-class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
+class SectionsPagerAdapter(fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val pages = listOf(
         SearchMatchFragment(),
-        SearchTeamFragment
+        SearchTeamFragment()
     )
 
     override fun getItem(position: Int): Fragment {

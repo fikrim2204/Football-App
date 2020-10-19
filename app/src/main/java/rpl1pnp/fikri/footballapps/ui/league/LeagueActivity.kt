@@ -1,6 +1,8 @@
 package rpl1pnp.fikri.footballapps.ui.league
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
@@ -19,6 +21,7 @@ import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.ui.detailleague.DetailLeagueActivity
 import rpl1pnp.fikri.footballapps.ui.league.viewpager.PageViewModel
 import rpl1pnp.fikri.footballapps.ui.league.viewpager.SectionsPagerAdapter
+import rpl1pnp.fikri.footballapps.ui.search.SearchActivity
 import rpl1pnp.fikri.footballapps.view.LeagueView
 
 class LeagueActivity : AppCompatActivity(), LeagueView {
@@ -57,5 +60,20 @@ class LeagueActivity : AppCompatActivity(), LeagueView {
         card_league.setOnClickListener {
             startActivity(intentFor<DetailLeagueActivity>("idLeague" to idLeague).singleTop())
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.search_navigation, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.btn_navigation_search -> {
+                startActivity(intentFor<SearchActivity>().singleTop())
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

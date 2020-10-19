@@ -46,9 +46,9 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
     override fun getLogoTeam(data: List<Team>, isHomeTeam: Boolean) {
         if (isHomeTeam) {
-            Picasso.get().load(data.first().teamBadge.orEmpty()).fit().into(image_home_badge)
+            Picasso.get().load(data.first().strTeamBadge).fit().into(image_home_badge)
         } else {
-            Picasso.get().load(data.first().teamBadge.orEmpty()).fit().into(image_away_badge)
+            Picasso.get().load(data.first().strTeamBadge).fit().into(image_away_badge)
         }
     }
 
@@ -115,7 +115,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.detail_menu, menu)
+        menuInflater.inflate(R.menu.favorite_menu, menu)
         menuItem = menu
         setFavorite()
         return true
@@ -127,7 +127,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
                 finish()
                 true
             }
-            R.id.btn_favorite -> {
+            R.id.btn_navigation_favorite -> {
                 if (isFavorite) presenter.removeFromFavorite(
                     this,
                     eventId

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import rpl1pnp.fikri.footballapps.R
 
@@ -30,7 +29,7 @@ class PlaceholderFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_search, container, false)
         val textView: TextView = root.findViewById(R.id.section_label)
-        pageViewModel.text.observe(requireActivity(), Observer<String> {
+        pageViewModel.text.observe(requireActivity(), {
             textView.text = it
         })
         return root

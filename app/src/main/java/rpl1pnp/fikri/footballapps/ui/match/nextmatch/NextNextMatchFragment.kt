@@ -33,6 +33,7 @@ import rpl1pnp.fikri.footballapps.view.NextMatchView
  * A simple [Fragment] subclass.
  */
 class NextNextMatchFragment : Fragment(), NextMatchView {
+    //DeleteSoon
     private lateinit var viewModel: PageViewModel
     private lateinit var presenter: NextMatchPresenter
     private var events: MutableList<Events> = mutableListOf()
@@ -99,7 +100,7 @@ class NextNextMatchFragment : Fragment(), NextMatchView {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.btn_favorite -> {
+            R.id.btn_navigation_favorite -> {
                 startActivity(intentFor<FavoriteActivity>().singleTop())
                 return true
             }
@@ -108,7 +109,7 @@ class NextNextMatchFragment : Fragment(), NextMatchView {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
-        val menuItem = menu.findItem(R.id.search_match)
+        val menuItem = menu.findItem(R.id.btn_navigation_search)
         val search = menuItem?.actionView as SearchView
         searching(search)
 
@@ -116,10 +117,10 @@ class NextNextMatchFragment : Fragment(), NextMatchView {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        activity?.menuInflater?.inflate(R.menu.navigation, menu)
-        val menuItem = menu.findItem(R.id.search_match)
+        activity?.menuInflater?.inflate(R.menu.search_navigation, menu)
+        val menuItem = menu.findItem(R.id.btn_navigation_search)
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = menu.findItem(R.id.search_match).actionView as SearchView
+        val searchView = menu.findItem(R.id.btn_navigation_search).actionView as SearchView
 
         val imm =
             this.context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?

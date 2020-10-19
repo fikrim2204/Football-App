@@ -1,43 +1,27 @@
-package rpl1pnp.fikri.footballapps.ui.match.prevmatch
+package rpl1pnp.fikri.footballapps.ui.search.searchmatch
 
+import android.util.Log
 import com.google.gson.Gson
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import rpl1pnp.fikri.footballapps.model.Events
-import rpl1pnp.fikri.footballapps.model.EventsResponse
 import rpl1pnp.fikri.footballapps.model.SearchMatchResponse
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.network.TheSportDBApi
 import rpl1pnp.fikri.footballapps.util.CoroutineContextProvider
-import rpl1pnp.fikri.footballapps.view.PreviousMatchView
+import rpl1pnp.fikri.footballapps.view.SearchMatchView
 
-class PreviousMatchPresenter(
-    //DeleteSoon
-    private val viewPrev: PreviousMatchView,
+class SearchMatchPresenter(
+    private val matchView: SearchMatchView,
     private val apiRepository: ApiRepository,
     private val gson: Gson,
     private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) {
     private var events: MutableList<Events> = mutableListOf()
 
-    fun getListMatch(idLeague: String?) {
-        viewPrev.showLoading()
-
-        GlobalScope.launch(context.main) {
-            val data = gson.fromJson(
-                apiRepository.doRequestAsync(
-                    TheSportDBApi.getLastMatch(idLeague)
-                ).await(),
-                EventsResponse::class.java
-            )
-
-            viewPrev.hideLoading()
-            viewPrev.showListMatch(data.events)
-        }
-    }
-
     fun getSearchMatch(query: String?) {
-        viewPrev.showLoading()
+        matchView.showLoading()
+        Log.d("pb_searchmatch", "Active")
 
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(
@@ -49,16 +33,18 @@ class PreviousMatchPresenter(
 
             if (data.event.isNullOrEmpty()) {
                 events.clear()
-                viewPrev.hideLoading()
-                viewPrev.searchMatch(events)
-                viewPrev.nullData()
+                matchView.hideLoading()
+                Log.d("pb_searchmatch", "NON-Active")
+                matchView.searchMatch(events)
+                matchView.nullData()
             } else {
                 events.clear()
                 for (element in data.event) {
-                    if (element.sport == "Soccer" && element.homeScore != null) {
+                    if (element.sport == "Soccer") {
                         events.add(element)
-                        viewPrev.hideLoading()
-                        viewPrev.searchMatch(events)
+                        matchView.hideLoading()
+                        Log.d("pb_searchmatch", "NON-Active")
+                        matchView.searchMatch(events)
                     }
                 }
             }
