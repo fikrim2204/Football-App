@@ -22,9 +22,7 @@ class EventsAdapter(private var events: List<Events>, private val listener: (Eve
         )
     }
 
-    override fun getItemCount(): Int {
-        return events.size
-    }
+    override fun getItemCount() = events.size
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         return holder.bindItem(events[position], listener)

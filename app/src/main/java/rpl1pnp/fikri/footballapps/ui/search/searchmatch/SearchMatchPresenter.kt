@@ -24,7 +24,7 @@ class SearchMatchPresenter(
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(
                 apiRepository.doRequestAsync(
-                    TheSportDBApi.getSearch(query)
+                    TheSportDBApi.getSearchMatch(query)
                 ).await(),
                 SearchMatchResponse::class.java
             )
@@ -32,7 +32,6 @@ class SearchMatchPresenter(
             if (data.event.isNullOrEmpty()) {
                 events.clear()
                 matchView.hideLoading()
-                matchView.searchMatch(events)
                 matchView.nullData()
             } else {
                 events.clear()

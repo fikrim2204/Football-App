@@ -6,11 +6,16 @@ object Constant {
     private const val VERSION = "/v1"
     private const val JSON = "/json"
     private const val API_KEY: String = rpl1pnp.fikri.footballapps.BuildConfig.TSDB_API_KEY
-    const val SEARCH = "/searchevents.php?e="
+    const val SEARCHMATCH = "/searchevents.php?e="
+    const val SEARCHTEAM = "/searchteams.php?t="
     const val LOOKUPEVENT = "/lookupevent.php?id="
-    const val PREVIOUSMATCH = "/eventspastleague.php?id="
+    const val LASTMATCH = "/eventspastleague.php?id="
     const val NEXTMATCH = "/eventsnextleague.php?id="
     const val LOOKUPLEAGUE = "/lookupleague.php?id="
     const val LOOKUPTEAMS = "/lookupteam.php?id="
+    const val LOOKUPALLTEAMS = "/lookup_all_teams.php?id="
+    const val LOOKUPTABLE = "/lookuptable.php?l="
+    const val LOOKUPALLPLAYER = "/lookup_all_players.php?id="
+    const val LOOKUPPLAYER = "/lookupplayer.php?id="
     const val PATH = API + VERSION + JSON + API_KEY
 }
