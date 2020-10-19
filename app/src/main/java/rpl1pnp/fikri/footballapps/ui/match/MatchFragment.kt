@@ -84,14 +84,14 @@ class MatchFragment : Fragment(), MatchView {
     }
 
     override fun checkisNullData(state: Boolean) {
-        if (true) {
+        if (state) {
             null_data_match.visible()
         } else {
             null_data_match.invisible()
         }
     }
 
-    fun recyclerView() {
+    private fun recyclerView() {
         rv_next_match?.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
 
