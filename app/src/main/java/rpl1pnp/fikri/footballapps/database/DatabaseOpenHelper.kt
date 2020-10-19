@@ -33,7 +33,6 @@ class DatabaseOpenHelper(ctx: Context) :
             Favorite.DATE_EVENT to TEXT,
             Favorite.TIME to TEXT
         )
-
     }
 
     override fun onUpgrade(db: SQLiteDatabase, p1: Int, p2: Int) {

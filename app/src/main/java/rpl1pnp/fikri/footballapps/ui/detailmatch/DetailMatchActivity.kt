@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_detail_match.*
 import org.jetbrains.anko.design.snackbar
 import rpl1pnp.fikri.footballapps.R
 import rpl1pnp.fikri.footballapps.model.Events
-import rpl1pnp.fikri.footballapps.model.Team
+import rpl1pnp.fikri.footballapps.model.Teams
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.util.invisible
 import rpl1pnp.fikri.footballapps.util.visible
@@ -44,7 +44,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         presenter.favoriteState(this, eventId)
     }
 
-    override fun getLogoTeam(data: List<Team>, isHomeTeam: Boolean) {
+    override fun getLogoTeam(data: List<Teams>, isHomeTeam: Boolean) {
         if (isHomeTeam) {
             Picasso.get().load(data.first().strTeamBadge).fit().into(image_home_badge)
         } else {

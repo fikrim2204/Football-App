@@ -1,5 +1,5 @@
 package rpl1pnp.fikri.footballapps.model
 
 data class TeamResponse(
-    val teams: List<Team>
+    val teams: List<Teams>
 )

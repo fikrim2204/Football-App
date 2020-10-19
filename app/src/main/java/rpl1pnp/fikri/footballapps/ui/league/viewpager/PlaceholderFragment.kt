@@ -40,6 +40,6 @@ class PlaceholderFragment : Fragment() {
         private const val ARG_SECTION_NUMBER = "section_number"
         const val MATCH = "match"
         const val STANDINGS = "standings"
-        const val TEAM = "team"
+        const val TEAM = "teams"
     }
 }

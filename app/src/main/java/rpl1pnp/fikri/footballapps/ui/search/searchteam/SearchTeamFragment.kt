@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 import org.jetbrains.anko.support.v4.onRefresh
 import rpl1pnp.fikri.footballapps.R
 import rpl1pnp.fikri.footballapps.adapter.TeamAdapter
-import rpl1pnp.fikri.footballapps.model.Team
+import rpl1pnp.fikri.footballapps.model.Teams
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.util.CoroutineContextProvider
 import rpl1pnp.fikri.footballapps.util.invisible
@@ -31,7 +31,7 @@ class SearchTeamFragment : Fragment(), SearchTeamView, CoroutineScope {
     private lateinit var presenter: SearchTeamPresenter
     private lateinit var searchTeamList: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    private var teams: MutableList<Team> = mutableListOf()
+    private var teams: MutableList<Teams> = mutableListOf()
     private lateinit var job: Job
     private val coroutineContextProvider = CoroutineContextProvider()
 
@@ -113,7 +113,7 @@ class SearchTeamFragment : Fragment(), SearchTeamView, CoroutineScope {
         progressbar_search_team.invisible()
     }
 
-    override fun searchTeam(data: List<Team>) {
+    override fun searchTeam(data: List<Teams>) {
         teams.clear()
         teams.addAll(data)
         adapter.notifyDataSetChanged()

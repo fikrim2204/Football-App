@@ -1,3 +1,3 @@
 package rpl1pnp.fikri.footballapps.model
 
-data class SearchTeamResponse(val team: List<Team>)
+data class SearchTeamResponse(val teams: List<Teams>)
