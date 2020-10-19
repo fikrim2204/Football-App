@@ -33,9 +33,9 @@ class MatchFragment : Fragment(), MatchView {
         savedInstanceState: Bundle?
     ): View? {
         val rootView: View = inflater.inflate(R.layout.fragment_match, container, false)
-        rv_next_match.layoutManager =
+        rv_next_match?.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
-        rv_last_match.layoutManager =
+        rv_last_match?.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
 
         return rootView

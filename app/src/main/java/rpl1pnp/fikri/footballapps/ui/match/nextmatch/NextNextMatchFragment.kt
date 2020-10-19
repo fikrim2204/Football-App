@@ -55,7 +55,7 @@ class NextNextMatchFragment : Fragment(), NextMatchView {
     ): View? {
         // Inflate the layout for this fragment
         val rootView: View = inflater.inflate(R.layout.fragment_next_match, container, false)
-        nextList = rootView.findViewById(R.id.rv_next_match) as RecyclerView
+        nextList = rootView.findViewById(R.id.rv_next_match_lamo) as RecyclerView
         nextList.layoutManager = LinearLayoutManager(activity)
 
         adapter = EventsAdapter(events) {

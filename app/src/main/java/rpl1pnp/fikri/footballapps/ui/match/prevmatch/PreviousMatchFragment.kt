@@ -54,8 +54,8 @@ class PreviousMatchFragment : Fragment(), PreviousMatchView {
     ): View? {
         // Inflate the layout for this fragment
         val rootView: View = inflater.inflate(R.layout.fragment_previous_match, container, false)
-        previousList = rootView.findViewById(R.id.rv_previous_match) as RecyclerView
-        rv_previous_match.layoutManager = LinearLayoutManager(activity)
+        previousList = rootView.findViewById(R.id.rv_previous_match_lamo) as RecyclerView
+        rv_previous_match_lamo.layoutManager = LinearLayoutManager(activity)
 
         adapter = EventsAdapter(events) {
             val idEvent = it.eventId.toString()
