@@ -12,25 +12,33 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_search_team.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.jetbrains.anko.support.v4.onRefresh
 import rpl1pnp.fikri.footballapps.R
 import rpl1pnp.fikri.footballapps.adapter.TeamAdapter
 import rpl1pnp.fikri.footballapps.model.Team
 import rpl1pnp.fikri.footballapps.network.ApiRepository
+import rpl1pnp.fikri.footballapps.util.CoroutineContextProvider
 import rpl1pnp.fikri.footballapps.util.invisible
 import rpl1pnp.fikri.footballapps.util.visible
 import rpl1pnp.fikri.footballapps.view.SearchTeamView
+import kotlin.coroutines.CoroutineContext
 
-class SearchTeamFragment : Fragment(), SearchTeamView {
+class SearchTeamFragment : Fragment(), SearchTeamView, CoroutineScope {
     private lateinit var adapter: TeamAdapter
     private lateinit var presenter: SearchTeamPresenter
     private lateinit var searchTeamList: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private var teams: MutableList<Team> = mutableListOf()
+    private lateinit var job: Job
+    private val coroutineContextProvider = CoroutineContextProvider()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        job = Job()
     }
 
     override fun onCreateView(
@@ -53,7 +61,7 @@ class SearchTeamFragment : Fragment(), SearchTeamView {
 
         swipeRefreshLayout = rootView.findViewById(R.id.srl_search_team)
         swipeRefreshLayout.onRefresh {
-            presenter.getSearchTeam("liverpool")
+            launch { presenter.getSearchTeam("liverpool") }
             teams.clear()
             adapter.notifyDataSetChanged()
             swipeRefreshLayout.isRefreshing = false
@@ -88,7 +96,7 @@ class SearchTeamFragment : Fragment(), SearchTeamView {
                 if (query == null) {
                     return false
                 }
-                presenter.getSearchTeam(query)
+                launch { presenter.getSearchTeam(query) }
                 searchView.clearFocus()
 
                 return true
@@ -116,5 +124,13 @@ class SearchTeamFragment : Fragment(), SearchTeamView {
         teams.clear()
         adapter.notifyDataSetChanged()
         null_data_search_team.visible()
+    }
+
+    override val coroutineContext: CoroutineContext
+        get() = job + coroutineContextProvider.main
+
+    override fun onDestroy() {
+        super.onDestroy()
+        job.cancel()
     }
 }

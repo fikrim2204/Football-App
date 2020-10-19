@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_search_match.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.jetbrains.anko.singleTop
 import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.onRefresh
@@ -20,20 +23,25 @@ import rpl1pnp.fikri.footballapps.adapter.EventsAdapter
 import rpl1pnp.fikri.footballapps.model.Events
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.ui.detailmatch.DetailMatchActivity
+import rpl1pnp.fikri.footballapps.util.CoroutineContextProvider
 import rpl1pnp.fikri.footballapps.util.invisible
 import rpl1pnp.fikri.footballapps.util.visible
 import rpl1pnp.fikri.footballapps.view.SearchMatchView
+import kotlin.coroutines.CoroutineContext
 
-class SearchMatchFragment : Fragment(), SearchMatchView {
+class SearchMatchFragment : Fragment(), SearchMatchView, CoroutineScope {
     private lateinit var adapter: EventsAdapter
     private lateinit var presenter: SearchMatchPresenter
     private lateinit var searchMatchList: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private var events: MutableList<Events> = mutableListOf()
+    private lateinit var job: Job
+    private val coroutineContextProvider = CoroutineContextProvider()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        job = Job()
     }
 
     override fun onCreateView(
@@ -64,7 +72,7 @@ class SearchMatchFragment : Fragment(), SearchMatchView {
 
         swipeRefreshLayout = rootView.findViewById(R.id.srl_search_match)
         swipeRefreshLayout.onRefresh {
-            presenter.getSearchMatch("liverpool")
+            launch { presenter.getSearchMatch("liverpool") }
             events.clear()
             adapter.notifyDataSetChanged()
             swipeRefreshLayout.isRefreshing = false
@@ -111,7 +119,7 @@ class SearchMatchFragment : Fragment(), SearchMatchView {
                 if (query == null) {
                     return false
                 }
-                presenter.getSearchMatch(query)
+                launch { presenter.getSearchMatch(query) }
                 searchView.clearFocus()
 
                 return true
@@ -140,4 +148,11 @@ class SearchMatchFragment : Fragment(), SearchMatchView {
         null_data_search_match.visible()
     }
 
+    override val coroutineContext: CoroutineContext
+        get() = job + coroutineContextProvider.main
+
+    override fun onDestroy() {
+        super.onDestroy()
+        job.cancel()
+    }
 }
