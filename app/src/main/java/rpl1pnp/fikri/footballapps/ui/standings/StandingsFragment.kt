@@ -54,7 +54,10 @@ class StandingsFragment : Fragment(), StandingView, CoroutineScope {
         val request = ApiRepository()
         val gson = Gson()
         presenter = StandingsPresenter(this, request, gson)
-        launch { presenter.getTable(idLeague) }
+        launch {
+            presenter.getTable(idLeague)
+            createTable()
+        }
 
     }
 
@@ -89,7 +92,6 @@ class StandingsFragment : Fragment(), StandingView, CoroutineScope {
     override fun getTable(data: List<Table>) {
         table.clear()
         table.addAll(data)
-        createTable()
     }
 
     override val coroutineContext: CoroutineContext

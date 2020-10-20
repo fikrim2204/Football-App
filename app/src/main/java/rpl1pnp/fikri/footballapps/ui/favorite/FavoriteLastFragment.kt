@@ -15,7 +15,7 @@ import rpl1pnp.fikri.footballapps.util.invisible
 import rpl1pnp.fikri.footballapps.util.visible
 import rpl1pnp.fikri.footballapps.view.FavoriteView
 
-class FavoritePreviousFragment : Fragment(), FavoriteView {
+class FavoriteLastFragment : Fragment(), FavoriteView {
     lateinit var adapter: FavoriteAdapter
     private var favorites: MutableList<Favorite> = mutableListOf()
     private lateinit var previousFavList: RecyclerView

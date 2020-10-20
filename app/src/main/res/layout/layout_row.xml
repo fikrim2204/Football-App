@@ -10,6 +10,8 @@
         android:id="@+id/no_table"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/textColorPrimary"
         tools:text="1" />
 
     <TextView
@@ -17,6 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="3"
+        android:gravity="center"
+        android:textColor="@color/textColorPrimary"
         tools:text="Man United" />
 
     <TextView
@@ -24,6 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/textColorPrimary"
         tools:text="8000" />
 
     <TextView
@@ -31,6 +37,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/textColorPrimary"
         tools:text="7000" />
 
     <TextView
@@ -38,6 +46,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/textColorPrimary"
         tools:text="1000" />
 
     <TextView
@@ -45,6 +55,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/textColorPrimary"
         tools:text="56" />
 
     <TextView
@@ -52,6 +64,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/textColorPrimary"
         tools:text="16" />
 
     <TextView
@@ -59,6 +73,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/textColorPrimary"
         tools:text="0" />
 
     <TextView
@@ -66,5 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/textColorPrimary"
         tools:text="80" />
 </TableRow>

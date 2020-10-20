@@ -21,55 +21,73 @@
             <TextView
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:text="@string/no" />
+                android:gravity="center"
+                android:text="@string/no"
+                android:textColor="@color/textColorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="@string/nama_tim" />
+                android:gravity="center"
+                android:text="@string/nama_tim"
+                android:textColor="@color/textColorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/gf" />
+                android:gravity="center"
+                android:text="@string/gf"
+                android:textColor="@color/textColorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/ga" />
+                android:gravity="center"
+                android:text="@string/ga"
+                android:textColor="@color/textColorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/gd" />
+                android:gravity="center"
+                android:text="@string/gd"
+                android:textColor="@color/textColorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/win" />
+                android:gravity="center"
+                android:text="@string/win"
+                android:textColor="@color/textColorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/draw" />
+                android:gravity="center"
+                android:text="@string/draw"
+                android:textColor="@color/textColorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/loss" />
+                android:gravity="center"
+                android:text="@string/loss"
+                android:textColor="@color/textColorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/total" />
+                android:gravity="center"
+                android:text="@string/total"
+                android:textColor="@color/textColorPrimary" />
         </TableRow>
     </TableLayout>
 
