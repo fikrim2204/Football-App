@@ -17,6 +17,7 @@
         app:cardBackgroundColor="@android:color/white"
         android:layout_margin="2dp"
         app:cardCornerRadius="16dp"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
         app:cardElevation="2dp">
 
         <RelativeLayout
@@ -49,6 +50,7 @@
                     android:textColor="@color/textColorPrimary"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:layout_marginEnd="16dp"
                     tools:text="Man United" />
 
                 <TextView
@@ -95,6 +97,7 @@
                     android:textColor="@color/textColorPrimary"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:layout_marginStart="16dp"
                     tools:text="Man United" />
             </RelativeLayout>
         </RelativeLayout>

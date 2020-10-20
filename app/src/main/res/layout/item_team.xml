@@ -17,6 +17,7 @@
         android:layout_margin="2dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="16dp"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
         app:cardElevation="2dp">
 
         <RelativeLayout
