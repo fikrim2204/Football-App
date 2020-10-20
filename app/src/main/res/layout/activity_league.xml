@@ -34,6 +34,7 @@
                 android:background="@color/colorPrimary"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                android:layout_margin="5dp"
                 app:titleTextColor="@color/textColorPrimary" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 

@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        toolbar.title = getString(R.string.app_name)
+        supportActionBar?.title = getString(R.string.list_league)
         progressbar_main.invisible()
         rv_main.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutCompat.VERTICAL)
 

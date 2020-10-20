@@ -58,7 +58,7 @@
     <string name="league_detail">Detail Liga</string>
     <string name="next_match">Next Match</string>
     <string name="last_match">Last Match</string>
-    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_search">Search Activity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -73,4 +73,5 @@
     <string name="draw">Draw</string>
     <string name="loss">Loss</string>
     <string name="total">Total</string>
+    <string name="detail_match">Detail Match</string>
 </resources>

@@ -39,7 +39,7 @@ class EventsAdapter(private var events: List<Event>, private val listener: (Even
             } else {
                 itemView.strip.text = itemView.resources.getString(R.string.strip)
             }
-            val df = SimpleDateFormat("yyyy-MM-dd\nHH:mm:ss", Locale.getDefault())
+            val df = SimpleDateFormat("yyyy-MM-dd\nhh:mm", Locale.getDefault())
             df.timeZone = TimeZone.getTimeZone("UTC")
             val date: Date? = df.parse(event.dateEvent + "\n" + event.time)
             df.timeZone = (TimeZone.getDefault())

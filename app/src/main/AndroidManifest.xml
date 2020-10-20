@@ -15,20 +15,23 @@
         <activity
             android:name=".ui.search.SearchActivity"
             android:label="@string/title_activity_search"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.favorite.FavoriteActivity"
             android:label="@string/favorites"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.detailmatch.DetailMatchActivity" />
-        <activity android:name=".ui.detailleague.DetailLeagueActivity" />
+        <activity
+            android:name=".ui.detailmatch.DetailMatchActivity"
+            android:label="@string/detail_match" />
+        <activity
+            android:name=".ui.detailleague.DetailLeagueActivity"
+            android:label="@string/league_detail" />
         <activity
             android:name=".ui.league.LeagueActivity"
             android:label="@string/league_detail"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.main.MainActivity"
-            android:label="@string/list_league"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
