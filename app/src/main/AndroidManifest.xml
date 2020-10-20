@@ -15,7 +15,7 @@
         <activity
             android:name=".ui.detailteam.DetailTeamActivity"
             android:label="@string/title_activity_detail_team"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.search.SearchActivity"
             android:label="@string/title_activity_search"
@@ -26,13 +26,15 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.detailmatch.DetailMatchActivity"
-            android:label="@string/detail_match" />
+            android:label="@string/detail_match"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.detailleague.DetailLeagueActivity"
-            android:label="@string/league_detail" />
+            android:label="@string/league_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.league.LeagueActivity"
-            android:label="@string/league_detail"
+            android:label="@string/league"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.main.MainActivity"

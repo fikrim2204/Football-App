@@ -29,6 +29,8 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_match)
+        setSupportActionBar(toolbar_match_detail)
+        supportActionBar?.title = getString(R.string.detail_match)
 
         eventId = intent.getStringExtra("EVENT_ID")
         val homeTeamId = intent.getStringExtra("HOME_TEAM")

@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
             app:tabIndicatorColor="@color/colorSecondary"
+            android:elevation="2dp"
             app:tabTextColor="@color/textColorSecondary" />
     </com.google.android.material.appbar.AppBarLayout>
 

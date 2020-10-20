@@ -37,7 +37,7 @@ class PlaceholderFragment : Fragment() {
 
     companion object {
         private const val ARG_SECTION_NUMBER = "section_number"
-        const val SEARCHMATCH = "search_match"
-        const val SEARCHTEAM = "search_team"
+        const val SEARCHMATCH = "match"
+        const val SEARCHTEAM = "team"
     }
 }

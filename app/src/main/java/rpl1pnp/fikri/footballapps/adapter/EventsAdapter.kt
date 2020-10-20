@@ -45,9 +45,7 @@ class EventsAdapter(private var events: List<Event>, private val listener: (Even
             df.timeZone = (TimeZone.getDefault())
             val formattedDate: String? = df.format(date!!)
             itemView.date_match.text = formattedDate
-            itemView.setOnClickListener {
-                listener(event)
-            }
+            itemView.setOnClickListener { listener(event) }
         }
     }
 }

@@ -37,6 +37,7 @@ class TeamAdapter(private var teams: List<Team>, private val listener: (Team) ->
                 }
             }
             itemView.tv_search_team.text = team.strTeam
+            itemView.setOnClickListener { listener(team) }
         }
 
     }

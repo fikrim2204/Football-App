@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
+        android:elevation="4dp"
         app:titleTextColor="@color/textColorPrimary" />
 
     <androidx.recyclerview.widget.RecyclerView

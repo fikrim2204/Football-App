@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.fragment_team.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import org.jetbrains.anko.singleTop
 import org.jetbrains.anko.support.v4.intentFor
 import rpl1pnp.fikri.footballapps.R
 import rpl1pnp.fikri.footballapps.adapter.TeamAdapter
@@ -62,7 +63,7 @@ class TeamFragment : Fragment(), TeamView, CoroutineScope {
         rv_list_team?.layoutManager = LinearLayoutManager(requireActivity())
         adapter = TeamAdapter(teams) {
             val idTeam = it.idTeam
-            startActivity(intentFor<DetailTeamActivity>("ID_TEAM" to idTeam))
+            startActivity(intentFor<DetailTeamActivity>("ID_TEAM" to idTeam).singleTop())
         }
 
         rv_list_team?.adapter = adapter

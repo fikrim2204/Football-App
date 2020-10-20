@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_match.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.jetbrains.anko.singleTop
 import org.jetbrains.anko.support.v4.intentFor
 import rpl1pnp.fikri.footballapps.R
@@ -18,19 +20,21 @@ import rpl1pnp.fikri.footballapps.model.Event
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.ui.detailmatch.DetailMatchActivity
 import rpl1pnp.fikri.footballapps.ui.league.viewpager.PageViewModel
+import rpl1pnp.fikri.footballapps.util.CoroutineContextProvider
 import rpl1pnp.fikri.footballapps.util.invisible
 import rpl1pnp.fikri.footballapps.util.visible
 import rpl1pnp.fikri.footballapps.view.MatchView
+import kotlin.coroutines.CoroutineContext
 
-class MatchFragment : Fragment(), MatchView {
+class MatchFragment : Fragment(), MatchView, CoroutineScope {
     private lateinit var viewModel: PageViewModel
     private lateinit var presenter: MatchPresenter
     private lateinit var adapterNext: EventsAdapter
     private lateinit var adapterLast: EventsAdapter
-    private lateinit var lastList: RecyclerView
-    private lateinit var nextList: RecyclerView
     private var eventNext: MutableList<Event> = mutableListOf()
     private var eventLast: MutableList<Event> = mutableListOf()
+    private val coroutineContextProvider = CoroutineContextProvider()
+    private lateinit var job: Job
     var idLeague: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +42,7 @@ class MatchFragment : Fragment(), MatchView {
         setHasOptionsMenu(true)
 
         viewModel = ViewModelProvider(requireActivity()).get(PageViewModel::class.java)
+        job = Job()
     }
 
     override fun onCreateView(
@@ -59,8 +64,10 @@ class MatchFragment : Fragment(), MatchView {
         val gson = Gson()
         presenter = MatchPresenter(this, request, gson)
 
-        presenter.getListLastMatch(idLeague)
-        presenter.getListNextMatch(idLeague)
+        launch {
+            presenter.getListLastMatch(idLeague)
+            presenter.getListNextMatch(idLeague)
+        }
     }
 
     override fun showLoading() {
@@ -123,5 +130,13 @@ class MatchFragment : Fragment(), MatchView {
                 ).singleTop()
             )
         }
+    }
+
+    override val coroutineContext: CoroutineContext
+        get() = job + coroutineContextProvider.main
+
+    override fun onDestroy() {
+        super.onDestroy()
+        job.cancel()
     }
 }

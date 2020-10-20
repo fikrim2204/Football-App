@@ -18,6 +18,8 @@ class DetailLeagueActivity : AppCompatActivity(), DetailLeagueView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_league)
+        setSupportActionBar(toolbar_league_detail)
+        supportActionBar?.title = getString(R.string.league_detail)
         val idLeague: String? = intent.getStringExtra("idLeague")
 
         val request = ApiRepository()
