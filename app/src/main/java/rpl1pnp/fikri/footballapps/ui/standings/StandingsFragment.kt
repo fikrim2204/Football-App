@@ -56,6 +56,9 @@ class StandingsFragment : Fragment(), StandingView, CoroutineScope {
         presenter = StandingsPresenter(this, request, gson)
         launch { presenter.getTable(idLeague) }
 
+    }
+
+    private fun createTable() {
         val tablelayoutid = activity?.findViewById(R.id.tl_standing) as TableLayout
 
         var index = 0
@@ -86,6 +89,7 @@ class StandingsFragment : Fragment(), StandingView, CoroutineScope {
     override fun getTable(data: List<Table>) {
         table.clear()
         table.addAll(data)
+        createTable()
     }
 
     override val coroutineContext: CoroutineContext

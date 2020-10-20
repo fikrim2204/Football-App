@@ -1,5 +1,6 @@
 package rpl1pnp.fikri.footballapps.ui.standings
 
+import android.util.Log
 import com.google.gson.Gson
 import rpl1pnp.fikri.footballapps.model.TableResponse
 import rpl1pnp.fikri.footballapps.network.ApiRepository
@@ -20,6 +21,7 @@ class StandingsPresenter(
                 TableResponse::class.java
             )
 
+        Log.d("Standing", "${data.table}")
         view.hideLoading()
         view.getTable(data.table)
     }
