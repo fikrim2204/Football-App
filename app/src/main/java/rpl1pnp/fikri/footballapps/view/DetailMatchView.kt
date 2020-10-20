@@ -11,5 +11,5 @@ interface DetailMatchView {
     fun addFavorite()
     fun removeFavorite()
     fun favoriteState(state: Boolean)
-    fun errorFavorite(message: CharSequence)
+    fun errorFavorite(message: CharSequence?)
 }

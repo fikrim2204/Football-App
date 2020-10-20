@@ -12,9 +12,8 @@ import org.jetbrains.anko.singleTop
 import rpl1pnp.fikri.footballapps.R
 import rpl1pnp.fikri.footballapps.adapter.MainAdapter
 import rpl1pnp.fikri.footballapps.model.League
+import rpl1pnp.fikri.footballapps.ui.favorite.FavoriteActivity
 import rpl1pnp.fikri.footballapps.ui.league.LeagueActivity
-import rpl1pnp.fikri.footballapps.ui.search.SearchActivity
-import rpl1pnp.fikri.footballapps.util.invisible
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         supportActionBar?.title = getString(R.string.list_league)
-        progressbar_main.invisible()
         rv_main.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutCompat.VERTICAL)
 
         initLeague()
@@ -57,20 +55,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.favorite_navigation, menu)
-        menuInflater.inflate(R.menu.search_navigation, menu)
+        menuInflater.inflate(R.menu.favorite_navigation, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.btn_navigation_search -> {
-                startActivity(intentFor<SearchActivity>().singleTop())
-                return true
+            R.id.btn_navigation_favorite -> {
+                startActivity(intentFor<FavoriteActivity>().singleTop())
             }
-//            R.id.btn_navigation_favorite -> {
-//                startActivity(intentFor<FavoriteActivity>().singleTop())
-//            }
         }
         return super.onOptionsItemSelected(item)
     }

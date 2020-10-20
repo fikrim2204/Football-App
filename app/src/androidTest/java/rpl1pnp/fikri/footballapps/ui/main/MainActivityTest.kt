@@ -58,8 +58,8 @@ class MainActivityTest {
             )
         )
 
-        onView(withId(R.id.btn_navigation_favorite)).check(matches(isDisplayed()))
-        onView(withId(R.id.btn_navigation_favorite)).perform(click())
+        onView(withId(R.id.btn_match_favorite)).check(matches(isDisplayed()))
+        onView(withId(R.id.btn_match_favorite)).perform(click())
 
         pressBack()
     }

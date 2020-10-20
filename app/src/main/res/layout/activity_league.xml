@@ -18,10 +18,10 @@
             android:id="@+id/collapse_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:titleEnabled="false"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            app:titleEnabled="false"
             app:toolbarId="@id/toolbar_detail">
 
             <include layout="@layout/item_league" />
@@ -31,9 +31,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/colorPrimary"
+                android:elevation="3dp"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                android:elevation="3dp"
                 app:titleTextColor="@color/textColorPrimary" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 

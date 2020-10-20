@@ -10,7 +10,7 @@ import rpl1pnp.fikri.footballapps.ui.favorite.viewpager.PlaceholderFragment.Comp
 
 
 class SectionsPagerAdapter(fm: FragmentManager) :
-    FragmentPagerAdapter(fm) {
+    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val pages = listOf(
         FavoriteLastFragment(),
@@ -18,13 +18,10 @@ class SectionsPagerAdapter(fm: FragmentManager) :
     )
 
     override fun getItem(position: Int): Fragment {
-        var fragment = Fragment()
-        if (position == 0) {
-            fragment = FavoriteLastFragment()
-        } else if (position == 1) {
-            fragment = FavoriteNextFragment()
+        return when (position) {
+            0 -> FavoriteLastFragment()
+            else -> FavoriteNextFragment()
         }
-        return fragment
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
@@ -34,7 +31,5 @@ class SectionsPagerAdapter(fm: FragmentManager) :
         }
     }
 
-    override fun getCount(): Int {
-        return pages.size
-    }
+    override fun getCount() = pages.size
 }

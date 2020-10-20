@@ -76,4 +76,11 @@
     <string name="detail_match">Detail Match</string>
     <string name="title_activity_detail_team">DetailTeamActivity</string>
     <string name="league">League</string>
+    <string name="location">Location</string>
+    <string name="stadium">Stadium</string>
+    <string name="description">Description</string>
+    <string name="added_favorite">Added to Favorite</string>
+    <string name="remove_favorite">Removed from Favorite</string>
+    <string name="capacity">Capacity</string>
+    <string name="detail_team">Detail Team</string>
 </resources>

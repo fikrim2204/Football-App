@@ -55,19 +55,21 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
     }
 
     override fun addFavorite() {
-        ly_detail_match.snackbar("Added to Favorit")
+        ly_detail_match.snackbar(getString(R.string.added_favorite))
+            .setTextColor(ContextCompat.getColor(this, R.color.textColorSecondary))
     }
 
     override fun removeFavorite() {
-        ly_detail_match.snackbar("Removed from Favorit")
+        ly_detail_match.snackbar(getString(R.string.remove_favorite))
+            .setTextColor(ContextCompat.getColor(this, R.color.textColorSecondary))
     }
 
     override fun favoriteState(state: Boolean) {
         isFavorite = state
     }
 
-    override fun errorFavorite(message: CharSequence) {
-        ly_detail_match.snackbar(message)
+    override fun errorFavorite(message: CharSequence?) {
+        message?.let { ly_detail_match.snackbar(it) }
     }
 
     override fun showLoading() {
@@ -117,7 +119,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.favorite_menu, menu)
+        menuInflater.inflate(R.menu.favorite_match_menu, menu)
         menuItem = menu
         setFavorite()
         return true
@@ -129,7 +131,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
                 finish()
                 true
             }
-            R.id.btn_navigation_favorite -> {
+            R.id.btn_match_favorite -> {
                 if (isFavorite) presenter.removeFromFavorite(
                     this,
                     eventId

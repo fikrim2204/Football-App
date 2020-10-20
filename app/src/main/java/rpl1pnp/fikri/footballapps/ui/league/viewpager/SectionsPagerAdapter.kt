@@ -35,7 +35,5 @@ class SectionsPagerAdapter(fm: FragmentManager) :
         }
     }
 
-    override fun getCount(): Int {
-        return pages.size
-    }
+    override fun getCount() = pages.size
 }
