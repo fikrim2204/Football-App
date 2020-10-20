@@ -78,9 +78,9 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
     override fun showDetail(data: List<Event>) {
         events = data
-        val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val df = SimpleDateFormat("yyyy-MM-dd\nHH:mm:ss", Locale.getDefault())
         df.timeZone = TimeZone.getTimeZone("UTC")
-        val date: Date? = df.parse(data.first().dateEvent + " " + data.first().time)
+        val date: Date? = df.parse(data.first().dateEvent + "\n" + data.first().time)
         df.timeZone = (TimeZone.getDefault())
         val formattedDate: String? = df.format(date!!)
         text_event_date.text = formattedDate.orEmpty()
