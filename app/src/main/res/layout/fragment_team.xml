@@ -5,9 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.team.TeamFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list_team"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_team" />
+
+    <ProgressBar
+        android:id="@+id/pb_list_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:visibility="gone" />
 
 </FrameLayout>

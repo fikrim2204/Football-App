@@ -27,13 +27,8 @@ class MatchPresenter(
                 EventResponse::class.java
             )
 
-            if (data.events.isNullOrEmpty()) {
-                viewMatch.hideLoading()
-                viewMatch.isNullData(true)
-            } else {
-                viewMatch.hideLoading()
-                viewMatch.showListNextMatch(data.events)
-            }
+            viewMatch.hideLoading()
+            viewMatch.showListNextMatch(data.events)
         }
     }
 
@@ -48,13 +43,8 @@ class MatchPresenter(
                 EventResponse::class.java
             )
 
-            if (data.events.isNullOrEmpty()) {
-                viewMatch.hideLoading()
-                viewMatch.isNullData(true)
-            } else {
-                viewMatch.hideLoading()
-                viewMatch.showListLastMatch(data.events)
-            }
+            viewMatch.hideLoading()
+            viewMatch.showListLastMatch(data.events)
         }
     }
 }

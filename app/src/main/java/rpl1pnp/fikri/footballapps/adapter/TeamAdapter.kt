@@ -28,7 +28,8 @@ class TeamAdapter(private var teams: List<Team>, private val listener: (Team) ->
         fun bindItem(team: Team, listener: (Team) -> Unit) {
             if (team.strTeamBadge.isNullOrBlank()) {
                 Picasso.get().load(R.drawable.ic_broken_image_gray)
-                    .error(R.drawable.ic_broken_image_gray).into(itemView.iv_search_team)
+                    .error(R.drawable.ic_broken_image_gray).resize(100, 100)
+                    .into(itemView.iv_search_team)
             } else {
                 team.strTeamBadge.let {
                     Picasso.get().load(it).error(R.drawable.ic_broken_image_gray)

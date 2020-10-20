@@ -82,11 +82,11 @@ class StandingsFragment : Fragment(), StandingView, CoroutineScope {
     }
 
     override fun showLoading() {
-        pb_table.visible()
+        pb_table?.visible()
     }
 
     override fun hideLoading() {
-        pb_table.invisible()
+        pb_table?.invisible()
     }
 
     override fun getTable(data: List<Table>) {

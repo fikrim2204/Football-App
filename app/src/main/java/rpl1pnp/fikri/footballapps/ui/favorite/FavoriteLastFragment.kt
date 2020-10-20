@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_favorite_previous.*
+import kotlinx.android.synthetic.main.fragment_favorite_last.*
 import rpl1pnp.fikri.footballapps.R
 import rpl1pnp.fikri.footballapps.adapter.FavoriteAdapter
 import rpl1pnp.fikri.footballapps.database.Favorite
@@ -26,7 +26,7 @@ class FavoriteLastFragment : Fragment(), FavoriteView {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val rootView: View = inflater.inflate(R.layout.fragment_favorite_previous, container, false)
+        val rootView: View = inflater.inflate(R.layout.fragment_favorite_last, container, false)
         previousFavList = rootView.findViewById(R.id.rv_fav_last_match) as RecyclerView
         previousFavList.layoutManager = LinearLayoutManager(activity)
         adapter = FavoriteAdapter(favorites)

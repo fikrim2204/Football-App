@@ -28,6 +28,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="10dp"
+                android:scaleType="fitXY"
                 android:contentDescription="@string/league_image"
                 tools:src="@drawable/english_league_1" />
 
