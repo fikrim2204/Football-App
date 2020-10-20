@@ -3,8 +3,8 @@ package rpl1pnp.fikri.footballapps.ui.match.nextmatch
 import com.google.gson.Gson
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import rpl1pnp.fikri.footballapps.model.Events
-import rpl1pnp.fikri.footballapps.model.EventsResponse
+import rpl1pnp.fikri.footballapps.model.Event
+import rpl1pnp.fikri.footballapps.model.EventResponse
 import rpl1pnp.fikri.footballapps.model.SearchMatchResponse
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.network.TheSportDBApi
@@ -18,7 +18,7 @@ class NextMatchPresenter(
     private val gson: Gson,
     private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) {
-    private var events: MutableList<Events> = mutableListOf()
+    private var events: MutableList<Event> = mutableListOf()
 
     fun getListMatch(idLeague: String?) {
         viewNext.showLoading()
@@ -28,7 +28,7 @@ class NextMatchPresenter(
                 apiRepository.doRequestAsync(
                     TheSportDBApi.getNextMatch(idLeague)
                 ).await(),
-                EventsResponse::class.java
+                EventResponse::class.java
             )
 
             viewNext.hideLoading()

@@ -2,7 +2,7 @@ package rpl1pnp.fikri.footballapps.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Events(
+data class Event(
     @SerializedName("idEvent")
     var eventId: String? = null,
 

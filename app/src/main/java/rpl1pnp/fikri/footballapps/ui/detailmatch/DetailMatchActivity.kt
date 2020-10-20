@@ -10,8 +10,8 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_match.*
 import org.jetbrains.anko.design.snackbar
 import rpl1pnp.fikri.footballapps.R
-import rpl1pnp.fikri.footballapps.model.Events
-import rpl1pnp.fikri.footballapps.model.Teams
+import rpl1pnp.fikri.footballapps.model.Event
+import rpl1pnp.fikri.footballapps.model.Team
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.util.invisible
 import rpl1pnp.fikri.footballapps.util.visible
@@ -24,7 +24,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
     private var eventId: String? = null
-    private var events: List<Events>? = null
+    private var events: List<Event>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +44,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         presenter.favoriteState(this, eventId)
     }
 
-    override fun getLogoTeam(data: List<Teams>, isHomeTeam: Boolean) {
+    override fun getLogoTeam(data: List<Team>, isHomeTeam: Boolean) {
         if (isHomeTeam) {
             Picasso.get().load(data.first().strTeamBadge).fit().into(image_home_badge)
         } else {
@@ -76,7 +76,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         progressBar(false)
     }
 
-    override fun showDetail(data: List<Events>) {
+    override fun showDetail(data: List<Event>) {
         events = data
         val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         df.timeZone = TimeZone.getTimeZone("UTC")

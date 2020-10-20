@@ -22,7 +22,7 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryLight"
+            android:background="@color/colorPrimaryDark"
             app:tabIndicatorColor="@color/colorSecondary"
             app:tabTextColor="@color/textColorSecondary" />
     </com.google.android.material.appbar.AppBarLayout>

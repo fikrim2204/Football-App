@@ -20,7 +20,7 @@ import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.onRefresh
 import rpl1pnp.fikri.footballapps.R
 import rpl1pnp.fikri.footballapps.adapter.EventsAdapter
-import rpl1pnp.fikri.footballapps.model.Events
+import rpl1pnp.fikri.footballapps.model.Event
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.ui.detailmatch.DetailMatchActivity
 import rpl1pnp.fikri.footballapps.util.CoroutineContextProvider
@@ -34,7 +34,7 @@ class SearchMatchFragment : Fragment(), SearchMatchView, CoroutineScope {
     private lateinit var presenter: SearchMatchPresenter
     private lateinit var searchMatchList: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    private var events: MutableList<Events> = mutableListOf()
+    private var events: MutableList<Event> = mutableListOf()
     private lateinit var job: Job
     private val coroutineContextProvider = CoroutineContextProvider()
 
@@ -135,7 +135,7 @@ class SearchMatchFragment : Fragment(), SearchMatchView, CoroutineScope {
         progressbar_search_match.invisible()
     }
 
-    override fun searchMatch(data: List<Events>) {
+    override fun searchMatch(data: List<Event>) {
         events.clear()
         events.addAll(data)
         adapter.notifyDataSetChanged()

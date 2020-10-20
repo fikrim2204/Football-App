@@ -1,11 +1,11 @@
 package rpl1pnp.fikri.footballapps.view
 
-import rpl1pnp.fikri.footballapps.model.Events
+import rpl1pnp.fikri.footballapps.model.Event
 
 interface MatchView {
     fun showLoading()
     fun hideLoading()
-    fun showListNextMatch(data: List<Events>)
-    fun showListLastMatch(data: List<Events>)
-    fun checkisNullData(state: Boolean)
+    fun showListNextMatch(data: List<Event>)
+    fun showListLastMatch(data: List<Event>)
+    fun isNullData(state: Boolean)
 }

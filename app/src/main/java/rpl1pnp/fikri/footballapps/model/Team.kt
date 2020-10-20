@@ -1,6 +1,6 @@
 package rpl1pnp.fikri.footballapps.model
 
-data class Teams(
+data class Team(
     val idAPIfootball: String,
     val idLeague: String,
     val idLeague2: String,

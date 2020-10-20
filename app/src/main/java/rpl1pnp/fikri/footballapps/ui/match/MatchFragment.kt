@@ -14,7 +14,7 @@ import org.jetbrains.anko.singleTop
 import org.jetbrains.anko.support.v4.intentFor
 import rpl1pnp.fikri.footballapps.R
 import rpl1pnp.fikri.footballapps.adapter.EventsAdapter
-import rpl1pnp.fikri.footballapps.model.Events
+import rpl1pnp.fikri.footballapps.model.Event
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.ui.detailmatch.DetailMatchActivity
 import rpl1pnp.fikri.footballapps.ui.league.viewpager.PageViewModel
@@ -29,8 +29,8 @@ class MatchFragment : Fragment(), MatchView {
     private lateinit var adapterLast: EventsAdapter
     private lateinit var lastList: RecyclerView
     private lateinit var nextList: RecyclerView
-    private var eventsNext: MutableList<Events> = mutableListOf()
-    private var eventsLast: MutableList<Events> = mutableListOf()
+    private var eventNext: MutableList<Event> = mutableListOf()
+    private var eventLast: MutableList<Event> = mutableListOf()
     var idLeague: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,19 +71,19 @@ class MatchFragment : Fragment(), MatchView {
         pb_match_league?.invisible()
     }
 
-    override fun showListNextMatch(data: List<Events>) {
-        eventsNext.clear()
-        eventsNext.addAll(data)
+    override fun showListNextMatch(data: List<Event>) {
+        eventNext.clear()
+        eventNext.addAll(data)
         adapterNext.notifyDataSetChanged()
     }
 
-    override fun showListLastMatch(data: List<Events>) {
-        eventsLast.clear()
-        eventsLast.addAll(data)
+    override fun showListLastMatch(data: List<Event>) {
+        eventLast.clear()
+        eventLast.addAll(data)
         adapterLast.notifyDataSetChanged()
     }
 
-    override fun checkisNullData(state: Boolean) {
+    override fun isNullData(state: Boolean) {
         if (state) {
             null_data_match.visible()
         } else {
@@ -98,7 +98,7 @@ class MatchFragment : Fragment(), MatchView {
         rv_last_match?.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
 
-        adapterLast = EventsAdapter(eventsLast) { last ->
+        adapterLast = EventsAdapter(eventLast) { last ->
             val idEventLast = last.eventId.toString()
             val idHomeLast = last.homeTeamId.toString()
             val idAwayLast = last.awayTeamId.toString()
@@ -111,7 +111,7 @@ class MatchFragment : Fragment(), MatchView {
             )
         }
 
-        adapterNext = EventsAdapter(eventsNext) { next ->
+        adapterNext = EventsAdapter(eventNext) { next ->
             val idEventNext = next.eventId.toString()
             val idHomeNext = next.homeTeamId.toString()
             val idAwayNext = next.awayTeamId.toString()

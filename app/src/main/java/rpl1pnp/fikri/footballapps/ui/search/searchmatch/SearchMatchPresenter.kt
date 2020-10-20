@@ -1,7 +1,7 @@
 package rpl1pnp.fikri.footballapps.ui.search.searchmatch
 
 import com.google.gson.Gson
-import rpl1pnp.fikri.footballapps.model.Events
+import rpl1pnp.fikri.footballapps.model.Event
 import rpl1pnp.fikri.footballapps.model.SearchMatchResponse
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.network.TheSportDBApi
@@ -12,7 +12,7 @@ class SearchMatchPresenter(
     private val apiRepository: ApiRepository,
     private val gson: Gson
 ) {
-    private var events: MutableList<Events> = mutableListOf()
+    private var events: MutableList<Event> = mutableListOf()
 
     suspend fun getSearchMatch(query: String?) {
         searchMatchView.showLoading()

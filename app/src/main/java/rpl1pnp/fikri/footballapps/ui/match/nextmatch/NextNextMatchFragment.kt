@@ -19,7 +19,7 @@ import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.onRefresh
 import rpl1pnp.fikri.footballapps.R
 import rpl1pnp.fikri.footballapps.adapter.EventsAdapter
-import rpl1pnp.fikri.footballapps.model.Events
+import rpl1pnp.fikri.footballapps.model.Event
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.ui.detailmatch.DetailMatchActivity
 import rpl1pnp.fikri.footballapps.ui.favorite.FavoriteActivity
@@ -36,7 +36,7 @@ class NextNextMatchFragment : Fragment(), NextMatchView {
     //DeleteSoon
     private lateinit var viewModel: PageViewModel
     private lateinit var presenter: NextMatchPresenter
-    private var events: MutableList<Events> = mutableListOf()
+    private var events: MutableList<Event> = mutableListOf()
     private lateinit var nextList: RecyclerView
     private lateinit var adapter: EventsAdapter
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
@@ -175,7 +175,7 @@ class NextNextMatchFragment : Fragment(), NextMatchView {
         progressbar_next.invisible()
     }
 
-    override fun showListMatch(data: List<Events>) {
+    override fun showListMatch(data: List<Event>) {
         if (!EspressoIdlingResource.idlingresource.isIdleNow) {
             EspressoIdlingResource.decrement()
         }
@@ -185,7 +185,7 @@ class NextNextMatchFragment : Fragment(), NextMatchView {
         null_data_next.invisible()
     }
 
-    override fun searchMatch(data: List<Events>) {
+    override fun searchMatch(data: List<Event>) {
         if (!EspressoIdlingResource.idlingresource.isIdleNow) {
             EspressoIdlingResource.decrement()
         } else {

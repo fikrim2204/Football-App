@@ -9,8 +9,8 @@ import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
-import rpl1pnp.fikri.footballapps.model.Events
-import rpl1pnp.fikri.footballapps.model.EventsResponse
+import rpl1pnp.fikri.footballapps.model.Event
+import rpl1pnp.fikri.footballapps.model.EventResponse
 import rpl1pnp.fikri.footballapps.model.SearchMatchResponse
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.ui.TestContextProvider
@@ -39,8 +39,8 @@ class NextMatchPresenterTest {
 
     @Test
     fun getListMatch() {
-        val events: MutableList<Events> = mutableListOf()
-        val response = EventsResponse(events)
+        val events: MutableList<Event> = mutableListOf()
+        val response = EventResponse(events)
         val idLeague = "4328"
 
         runBlocking {
@@ -49,7 +49,7 @@ class NextMatchPresenterTest {
 
             Mockito.`when`(apiResponse.await()).thenReturn("")
 
-            Mockito.`when`(gson.fromJson("", EventsResponse::class.java))
+            Mockito.`when`(gson.fromJson("", EventResponse::class.java))
                 .thenReturn(response)
 
             presenter.getListMatch(idLeague)
@@ -62,7 +62,7 @@ class NextMatchPresenterTest {
 
     @Test
     fun getSearchMatch() {
-        val events: MutableList<Events> = mutableListOf()
+        val events: MutableList<Event> = mutableListOf()
         val response = SearchMatchResponse(events)
         val query = "Liverpool"
 

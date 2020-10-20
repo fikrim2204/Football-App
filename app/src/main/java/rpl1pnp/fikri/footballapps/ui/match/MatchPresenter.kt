@@ -3,7 +3,7 @@ package rpl1pnp.fikri.footballapps.ui.match
 import com.google.gson.Gson
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import rpl1pnp.fikri.footballapps.model.EventsResponse
+import rpl1pnp.fikri.footballapps.model.EventResponse
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.network.TheSportDBApi
 import rpl1pnp.fikri.footballapps.util.CoroutineContextProvider
@@ -24,12 +24,12 @@ class MatchPresenter(
                 apiRepository.doRequestAsync(
                     TheSportDBApi.getNextMatch(idLeague)
                 ).await(),
-                EventsResponse::class.java
+                EventResponse::class.java
             )
 
             if (data.events.isNullOrEmpty()) {
                 viewMatch.hideLoading()
-                viewMatch.checkisNullData(true)
+                viewMatch.isNullData(true)
             } else {
                 viewMatch.hideLoading()
                 viewMatch.showListNextMatch(data.events)
@@ -45,12 +45,12 @@ class MatchPresenter(
                 apiRepository.doRequestAsync(
                     TheSportDBApi.getLastMatch(idLeague)
                 ).await(),
-                EventsResponse::class.java
+                EventResponse::class.java
             )
 
             if (data.events.isNullOrEmpty()) {
                 viewMatch.hideLoading()
-                viewMatch.checkisNullData(true)
+                viewMatch.isNullData(true)
             } else {
                 viewMatch.hideLoading()
                 viewMatch.showListLastMatch(data.events)

@@ -9,8 +9,8 @@ import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
-import rpl1pnp.fikri.footballapps.model.Events
-import rpl1pnp.fikri.footballapps.model.EventsResponse
+import rpl1pnp.fikri.footballapps.model.Event
+import rpl1pnp.fikri.footballapps.model.EventResponse
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.ui.TestContextProvider
 import rpl1pnp.fikri.footballapps.ui.detailmatch.DetailMatchPresenter
@@ -45,8 +45,8 @@ class DetailMatchPresenterTest {
 
     @Test
     fun getEvent() {
-        val events: MutableList<Events> = mutableListOf()
-        val response = EventsResponse(events)
+        val events: MutableList<Event> = mutableListOf()
+        val response = EventResponse(events)
         val eventId = "441613"
 
         runBlocking {
@@ -55,7 +55,7 @@ class DetailMatchPresenterTest {
 
             Mockito.`when`(apiResponse.await()).thenReturn("")
 
-            Mockito.`when`(gson.fromJson("", EventsResponse::class.java))
+            Mockito.`when`(gson.fromJson("", EventResponse::class.java))
                 .thenReturn(response)
 
             presenter.getEvent(eventId)

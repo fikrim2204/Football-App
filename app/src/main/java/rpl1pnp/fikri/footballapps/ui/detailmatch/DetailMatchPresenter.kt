@@ -11,8 +11,8 @@ import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 import rpl1pnp.fikri.footballapps.database.Favorite
 import rpl1pnp.fikri.footballapps.database.database
-import rpl1pnp.fikri.footballapps.model.Events
-import rpl1pnp.fikri.footballapps.model.EventsResponse
+import rpl1pnp.fikri.footballapps.model.Event
+import rpl1pnp.fikri.footballapps.model.EventResponse
 import rpl1pnp.fikri.footballapps.model.TeamResponse
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.network.TheSportDBApi
@@ -33,7 +33,7 @@ class DetailMatchPresenter(
                 apiRepository.doRequestAsync(
                     TheSportDBApi.getDetailMatch(eventId)
                 ).await(),
-                EventsResponse::class.java
+                EventResponse::class.java
             )
 
             view.hideLoading()
@@ -59,7 +59,7 @@ class DetailMatchPresenter(
         }
     }
 
-    fun addToFavorite(context: Context, events: List<Events>?) {
+    fun addToFavorite(context: Context, events: List<Event>?) {
         try {
             context.database.use {
                 insert(
