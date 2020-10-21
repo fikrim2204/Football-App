@@ -117,11 +117,18 @@ class DetailTeamActivity : AppCompatActivity(), DetailTeamView, CoroutineScope {
                 true
             }
             R.id.btn_team_favorite -> {
-                if (isFavorite) presenter.removeFromFavorite(
-                    this,
-                    teamId
-                ) else presenter.addToFavorite(this, teams)
-                isFavorite = !isFavorite
+                if (isFavorite) {
+                    presenter.removeFromFavorite(this, teamId)
+                    isFavorite = !isFavorite
+                } else {
+                    if (teams.isNullOrEmpty()) ly_detail_team.snackbar(getString(R.string.favorite_failed))
+                        .setTextColor(ContextCompat.getColor(this, R.color.textColorSnackBar))
+                    else {
+                        presenter.addToFavorite(this, teams)
+                        isFavorite = !isFavorite
+                    }
+                }
+
                 setFavorite()
                 true
             }

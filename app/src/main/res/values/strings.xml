@@ -79,4 +79,5 @@
     <string name="detail_team">Detail Team</string>
     <string name="year_formed">Since</string>
     <string name="null_team_favorite">Team Favorite belum dipilih</string>
+    <string name="favorite_failed">Gagal menambahkan ke favorite karena data null</string>
 </resources>

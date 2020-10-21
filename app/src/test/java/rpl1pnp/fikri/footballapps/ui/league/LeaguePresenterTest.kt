@@ -12,7 +12,6 @@ import org.mockito.MockitoAnnotations
 import rpl1pnp.fikri.footballapps.model.LeagueDetail
 import rpl1pnp.fikri.footballapps.model.LeagueDetailResponse
 import rpl1pnp.fikri.footballapps.network.ApiRepository
-import rpl1pnp.fikri.footballapps.ui.TestContextProvider
 import rpl1pnp.fikri.footballapps.view.LeagueView
 
 class LeaguePresenterTest {
@@ -33,7 +32,7 @@ class LeaguePresenterTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = LeaguePresenter(view, apiRepository, gson, TestContextProvider())
+        presenter = LeaguePresenter(view, apiRepository, gson)
     }
 
     @Test

@@ -42,7 +42,7 @@ class MainActivityTest {
             pressImeActionButton()
         )
         //Memeriksa hasil pencarian
-        onView(withId(R.id.rv_previous_match)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_last_match)).check(matches(isDisplayed()))
     }
 
     @Test
@@ -51,7 +51,7 @@ class MainActivityTest {
 
         //Intent ke LeagueActivity
         onView(withText("English Premier League")).perform(click())
-        onView(withId(R.id.rv_previous_match)).perform(
+        onView(withId(R.id.rv_last_match)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                 0,
                 click()
@@ -94,6 +94,6 @@ class MainActivityTest {
             pressImeActionButton()
         )
         //Memeriksa hasil pencarian
-        onView(withId(R.id.null_data_prev)).check(matches(isDisplayed()))
+        onView(withId(R.id.null_data_match)).check(matches(isDisplayed()))
     }
 }

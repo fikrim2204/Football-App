@@ -43,6 +43,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView, CoroutineScope
 
         getDataPresenter()
         presenter.favoriteState(this, eventId)
+        setFavorite()
     }
 
     private fun getDataPresenter() {
@@ -148,12 +149,18 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView, CoroutineScope
                 true
             }
             R.id.btn_match_favorite -> {
-                if (isFavorite) presenter.removeFromFavorite(
-                    this,
-                    eventId
-                ) else presenter.addToFavorite(this, events)
+                if (isFavorite) {
+                    presenter.removeFromFavorite(this, eventId)
+                    isFavorite = !isFavorite
+                } else {
+                    if (events.isNullOrEmpty()) ly_detail_match.snackbar(getString(R.string.favorite_failed))
+                        .setTextColor(ContextCompat.getColor(this, R.color.textColorSnackBar))
+                    else {
+                        presenter.addToFavorite(this, events)
+                        isFavorite = !isFavorite
+                    }
+                }
 
-                isFavorite = !isFavorite
                 setFavorite()
                 true
             }

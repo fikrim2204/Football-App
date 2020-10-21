@@ -13,7 +13,6 @@ import rpl1pnp.fikri.footballapps.model.Event
 import rpl1pnp.fikri.footballapps.model.EventResponse
 import rpl1pnp.fikri.footballapps.model.SearchMatchResponse
 import rpl1pnp.fikri.footballapps.network.ApiRepository
-import rpl1pnp.fikri.footballapps.ui.TestContextProvider
 import rpl1pnp.fikri.footballapps.ui.match.MatchPresenter
 import rpl1pnp.fikri.footballapps.view.MatchView
 
@@ -35,7 +34,7 @@ class PreviousMatchPresenterTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = MatchPresenter(view, apiRepository, gson, TestContextProvider())
+        presenter = MatchPresenter(view, apiRepository, gson)
     }
 
     @Test

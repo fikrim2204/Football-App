@@ -6,14 +6,12 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 import org.mockito.ArgumentMatchers
-
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import rpl1pnp.fikri.footballapps.model.LeagueDetail
 import rpl1pnp.fikri.footballapps.model.LeagueDetailResponse
 import rpl1pnp.fikri.footballapps.network.ApiRepository
-import rpl1pnp.fikri.footballapps.ui.TestContextProvider
 import rpl1pnp.fikri.footballapps.view.DetailLeagueView
 
 class DetailLeaguePresenterTest {
@@ -34,7 +32,7 @@ class DetailLeaguePresenterTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = DetailLeaguePresenter(view, apiRepository, gson, TestContextProvider())
+        presenter = DetailLeaguePresenter(view, apiRepository, gson)
     }
 
     @Test
