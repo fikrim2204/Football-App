@@ -1,7 +1,7 @@
-# Football Apps
+# Football App
 Showing all schedule match football (Submission KADE DICODING Indonesia)
 
-## Feature
+## Features
 - Next match list, last match list and list team
 - Match standings
 - Detail league, detail match and detail team
