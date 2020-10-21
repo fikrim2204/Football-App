@@ -15,7 +15,5 @@ object Constant {
     const val LOOKUPTEAMS = "/lookupteam.php?id="
     const val LOOKUPALLTEAMS = "/lookup_all_teams.php?id="
     const val LOOKUPTABLE = "/lookuptable.php?l="
-    const val LOOKUPALLPLAYER = "/lookup_all_players.php?id="
-    const val LOOKUPPLAYER = "/lookupplayer.php?id="
     const val PATH = API + VERSION + JSON + API_KEY
 }

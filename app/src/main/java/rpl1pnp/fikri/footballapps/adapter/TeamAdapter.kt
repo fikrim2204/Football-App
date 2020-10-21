@@ -26,14 +26,15 @@ class TeamAdapter(private var teams: List<Team>, private val listener: (Team) ->
 
     class TeamViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindItem(team: Team, listener: (Team) -> Unit) {
-            if (team.strTeamBadge.isEmpty()) {
+            val teamBadge: String? = team.strTeamBadge
+            if (teamBadge.isNullOrEmpty()) {
                 Picasso.get().load(R.drawable.ic_broken_image_gray)
-                    .error(R.drawable.ic_broken_image_gray).resize(100, 100)
-                    .into(itemView.iv_team)
+                    .error(R.drawable.ic_broken_image_gray)
+                    .resize(100, 100).into(itemView.iv_team)
             } else {
-                team.strTeamBadge.let {
+                teamBadge.let {
                     Picasso.get().load(it).error(R.drawable.ic_broken_image_gray)
-                        .into(itemView.iv_team)
+                        .resize(100, 100).into(itemView.iv_team)
                 }
             }
             itemView.tv_team.text = team.strTeam
