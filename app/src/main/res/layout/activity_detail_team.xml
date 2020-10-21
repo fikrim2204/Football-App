@@ -16,14 +16,12 @@
         android:visibility="gone" />
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_detail_team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapse_toolbar_detail_team"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
@@ -49,7 +47,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nested_scroll_detail_team"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorSurface"

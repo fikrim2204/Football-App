@@ -9,7 +9,6 @@
     android:elevation="2dp">
 
     <LinearLayout
-        android:id="@+id/ll_content_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -37,7 +36,6 @@
             tools:text="Man United" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_content_table"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="7">

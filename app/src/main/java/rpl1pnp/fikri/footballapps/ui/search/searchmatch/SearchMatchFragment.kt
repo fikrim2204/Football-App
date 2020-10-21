@@ -8,7 +8,6 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_search_match.*
@@ -32,7 +31,6 @@ import kotlin.coroutines.CoroutineContext
 class SearchMatchFragment : Fragment(), SearchMatchView, CoroutineScope {
     private lateinit var adapter: EventsAdapter
     private lateinit var presenter: SearchMatchPresenter
-    private lateinit var searchMatchList: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private var events: MutableList<Event> = mutableListOf()
     private lateinit var job: Job
@@ -48,9 +46,33 @@ class SearchMatchFragment : Fragment(), SearchMatchView, CoroutineScope {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_search_match, container, false)
-        searchMatchList = rootView.findViewById(R.id.rv_search_match)
-        searchMatchList.layoutManager = LinearLayoutManager(activity)
+        return inflater.inflate(R.layout.fragment_search_match, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        recyclerView()
+        setPresenter()
+        setSwipeRefreshLayout()
+    }
+
+    private fun setSwipeRefreshLayout() {
+        srl_search_match?.onRefresh {
+            launch { presenter.getSearchMatch("liverpool") }
+            events.clear()
+            adapter.notifyDataSetChanged()
+            swipeRefreshLayout.isRefreshing = false
+        }
+    }
+
+    private fun setPresenter() {
+        val request = ApiRepository()
+        val gson = Gson()
+        presenter = SearchMatchPresenter(this, request, gson)
+    }
+
+    private fun recyclerView() {
+        rv_search_match?.layoutManager = LinearLayoutManager(activity)
 
         adapter = EventsAdapter(events) {
             val idEvent = it.eventId.toString()
@@ -65,19 +87,7 @@ class SearchMatchFragment : Fragment(), SearchMatchView, CoroutineScope {
             )
         }
 
-        searchMatchList.adapter = adapter
-        val request = ApiRepository()
-        val gson = Gson()
-        presenter = SearchMatchPresenter(this, request, gson)
-
-        swipeRefreshLayout = rootView.findViewById(R.id.srl_search_match)
-        swipeRefreshLayout.onRefresh {
-            launch { presenter.getSearchMatch("liverpool") }
-            events.clear()
-            adapter.notifyDataSetChanged()
-            swipeRefreshLayout.isRefreshing = false
-        }
-        return rootView
+        rv_search_match?.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

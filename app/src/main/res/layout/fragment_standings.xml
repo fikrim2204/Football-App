@@ -20,14 +20,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/ll_title_table"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16sp"
             android:weightSum="10">
 
             <TextView
-                android:id="@+id/tv_title_no_table"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -37,7 +35,6 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tv_title_team_table"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -47,7 +44,6 @@
                 android:textSize="16sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_title_table"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="7">

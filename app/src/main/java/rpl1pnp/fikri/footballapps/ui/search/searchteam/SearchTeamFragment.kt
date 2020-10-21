@@ -9,7 +9,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_search_team.*
 import kotlinx.coroutines.CoroutineScope
@@ -30,7 +29,6 @@ class SearchTeamFragment : Fragment(), SearchTeamView, CoroutineScope {
     private lateinit var adapter: TeamAdapter
     private lateinit var presenter: SearchTeamPresenter
     private lateinit var searchTeamList: RecyclerView
-    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private var teams: MutableList<Team> = mutableListOf()
     private lateinit var job: Job
     private val coroutineContextProvider = CoroutineContextProvider()
@@ -46,27 +44,36 @@ class SearchTeamFragment : Fragment(), SearchTeamView, CoroutineScope {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_search_team, container, false)
-        searchTeamList = rootView.findViewById(R.id.rv_search_team)
-        searchTeamList.layoutManager = LinearLayoutManager(activity)
+        return inflater.inflate(R.layout.fragment_search_team, container, false)
+    }
 
-        adapter = TeamAdapter(teams) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        }
+        setRecyclerView()
+        setPresenter()
+        setSwipeRefreshLayout()
+    }
 
-        searchTeamList.adapter = adapter
-        val request = ApiRepository()
-        val gson = Gson()
-        presenter = SearchTeamPresenter(this, request, gson)
-
-        swipeRefreshLayout = rootView.findViewById(R.id.srl_search_team)
-        swipeRefreshLayout.onRefresh {
+    private fun setSwipeRefreshLayout() {
+        srl_search_team?.onRefresh {
             launch { presenter.getSearchTeam("liverpool") }
             teams.clear()
             adapter.notifyDataSetChanged()
-            swipeRefreshLayout.isRefreshing = false
+            srl_search_team?.isRefreshing = false
         }
-        return rootView
+    }
+
+    private fun setPresenter() {
+        val request = ApiRepository()
+        val gson = Gson()
+        presenter = SearchTeamPresenter(this, request, gson)
+    }
+
+    private fun setRecyclerView() {
+        rv_search_team?.layoutManager = LinearLayoutManager(activity)
+        adapter = TeamAdapter(teams) {}
+        searchTeamList.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -83,6 +90,18 @@ class SearchTeamFragment : Fragment(), SearchTeamView, CoroutineScope {
         searchView.queryHint = resources.getString(R.string.search_hint)
         searchMatch(searchView)
 
+        menuItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+            override fun onMenuItemActionExpand(p0: MenuItem?): Boolean {
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(p0: MenuItem?): Boolean {
+                teams.clear()
+                adapter.notifyDataSetChanged()
+                return true
+            }
+
+        })
         super.onCreateOptionsMenu(menu, inflater)
     }
 

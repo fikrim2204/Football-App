@@ -2,11 +2,9 @@ package rpl1pnp.fikri.footballapps.network
 
 import rpl1pnp.fikri.footballapps.network.Constant.BASE_URL
 import rpl1pnp.fikri.footballapps.network.Constant.LASTMATCH
-import rpl1pnp.fikri.footballapps.network.Constant.LOOKUPALLPLAYER
 import rpl1pnp.fikri.footballapps.network.Constant.LOOKUPALLTEAMS
 import rpl1pnp.fikri.footballapps.network.Constant.LOOKUPEVENT
 import rpl1pnp.fikri.footballapps.network.Constant.LOOKUPLEAGUE
-import rpl1pnp.fikri.footballapps.network.Constant.LOOKUPPLAYER
 import rpl1pnp.fikri.footballapps.network.Constant.LOOKUPTABLE
 import rpl1pnp.fikri.footballapps.network.Constant.LOOKUPTEAMS
 import rpl1pnp.fikri.footballapps.network.Constant.NEXTMATCH
@@ -49,13 +47,5 @@ object TheSportDBApi {
 
     fun getTable(idLeague: String?): String {
         return BASE_URL + PATH + LOOKUPTABLE + idLeague
-    }
-
-    fun getAllPlayer(idTeam: String?): String {
-        return BASE_URL + PATH + LOOKUPALLPLAYER + idTeam
-    }
-
-    fun getPlayer(idPlayer: String?): String {
-        return BASE_URL + PATH + LOOKUPPLAYER + idPlayer
     }
 }

@@ -56,10 +56,12 @@ class MatchFragment : Fragment(), MatchView, CoroutineScope {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView()
-        rv_last_match?.adapter = adapterLast
-        rv_next_match?.adapter = adapterNext
 
         idLeague = viewModel.getIdLeague()
+        getDataPresenter()
+    }
+
+    private fun getDataPresenter() {
         val request = ApiRepository()
         val gson = Gson()
         presenter = MatchPresenter(this, request, gson)
@@ -130,6 +132,9 @@ class MatchFragment : Fragment(), MatchView, CoroutineScope {
                 ).singleTop()
             )
         }
+
+        rv_last_match?.adapter = adapterLast
+        rv_next_match?.adapter = adapterNext
     }
 
     override val coroutineContext: CoroutineContext

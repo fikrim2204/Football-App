@@ -8,33 +8,45 @@ import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_match.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import org.jetbrains.anko.design.snackbar
 import rpl1pnp.fikri.footballapps.R
 import rpl1pnp.fikri.footballapps.model.Event
 import rpl1pnp.fikri.footballapps.model.Team
 import rpl1pnp.fikri.footballapps.network.ApiRepository
+import rpl1pnp.fikri.footballapps.util.CoroutineContextProvider
 import rpl1pnp.fikri.footballapps.util.invisible
 import rpl1pnp.fikri.footballapps.util.visible
 import rpl1pnp.fikri.footballapps.view.DetailMatchView
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.coroutines.CoroutineContext
 
-class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
+class DetailMatchActivity : AppCompatActivity(), DetailMatchView, CoroutineScope {
     private lateinit var presenter: DetailMatchPresenter
+    private val coroutineContextProvider = CoroutineContextProvider()
+    private lateinit var job: Job
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
     private var eventId: String? = null
     private var events: List<Event>? = null
+    private var homeTeamId: String? = null
+    private var awayTeamId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_match)
         setSupportActionBar(toolbar_match_detail)
         supportActionBar?.title = getString(R.string.detail_match)
+        job = Job()
 
-        eventId = intent.getStringExtra("EVENT_ID")
-        val homeTeamId = intent.getStringExtra("HOME_TEAM")
-        val awayTeamId = intent.getStringExtra("AWAY_TEAM")
+        getDataPresenter()
+        presenter.favoriteState(this, eventId)
+    }
+
+    private fun getDataPresenter() {
+        intentExtra()
 
         val api = ApiRepository()
         val gson = Gson()
@@ -42,8 +54,12 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         presenter.getEvent(eventId)
         presenter.getLogo(homeTeamId, true)
         presenter.getLogo(awayTeamId, false)
+    }
 
-        presenter.favoriteState(this, eventId)
+    private fun intentExtra() {
+        eventId = intent.getStringExtra("EVENT_ID")
+        homeTeamId = intent.getStringExtra("HOME_TEAM")
+        awayTeamId = intent.getStringExtra("AWAY_TEAM")
     }
 
     override fun getLogoTeam(data: List<Team>, isHomeTeam: Boolean) {
@@ -152,5 +168,13 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         } else {
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_add_favorite)
         }
+    }
+
+    override val coroutineContext: CoroutineContext
+        get() = job + coroutineContextProvider.main
+
+    override fun onDestroy() {
+        super.onDestroy()
+        job.cancel()
     }
 }

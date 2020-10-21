@@ -53,7 +53,10 @@ class TeamFragment : Fragment(), TeamView, CoroutineScope {
         super.onViewCreated(view, savedInstanceState)
         idLeague = viewModel.getIdLeague()
         recylerView()
+        getDataPresenter()
+    }
 
+    private fun getDataPresenter() {
         val request = ApiRepository()
         val gson = Gson()
         presenter = TeamPresenter(this, request, gson)

@@ -26,8 +26,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         supportActionBar?.title = getString(R.string.list_league)
-        rv_main.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutCompat.VERTICAL)
 
+        createRecyclerView()
+    }
+
+    private fun createRecyclerView() {
+        rv_main?.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutCompat.VERTICAL)
         initLeague()
         adapter = MainAdapter(items) {
             idLeague = it.idLeague.toString()

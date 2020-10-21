@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_favorite_last.*
 import rpl1pnp.fikri.footballapps.R
 import rpl1pnp.fikri.footballapps.adapter.FavoriteMatchAdapter
@@ -16,9 +15,8 @@ import rpl1pnp.fikri.footballapps.util.visible
 import rpl1pnp.fikri.footballapps.view.FavoriteMatchView
 
 class FavoriteMatchLastFragment : Fragment(), FavoriteMatchView {
-    lateinit var matchAdapter: FavoriteMatchAdapter
+    private lateinit var matchAdapter: FavoriteMatchAdapter
     private var favoriteMatches: MutableList<FavoriteMatch> = mutableListOf()
-    private lateinit var previousFavList: RecyclerView
     private lateinit var matchPresenter: FavoriteMatchPresenter
 
     override fun onCreateView(

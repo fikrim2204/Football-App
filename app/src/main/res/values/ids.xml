@@ -1,9 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="team_badge" type="id" />
-    <item name="team_name" type="id" />
-    <item name="photo_league" type="id" />
-    <item name="name_league" type="id" />
-    <item name="recycler_view" type="id" />
-    <item name="progressBarMain" type="id" />
-</resources>
+<resources></resources>

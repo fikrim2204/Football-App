@@ -15,7 +15,7 @@ import rpl1pnp.fikri.footballapps.util.visible
 import rpl1pnp.fikri.footballapps.view.FavoriteMatchView
 
 class FavoriteMatchNextFragment : Fragment(), FavoriteMatchView {
-    lateinit var matchAdapter: FavoriteMatchAdapter
+    private lateinit var matchAdapter: FavoriteMatchAdapter
     private var favoriteMatches: MutableList<FavoriteMatch> = mutableListOf()
     private lateinit var matchPresenter: FavoriteMatchPresenter
 
