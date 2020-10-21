@@ -4,17 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TableLayout
-import android.widget.TableRow
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_standings.*
-import kotlinx.android.synthetic.main.layout_row.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import rpl1pnp.fikri.footballapps.R
+import rpl1pnp.fikri.footballapps.adapter.StandingAdapter
 import rpl1pnp.fikri.footballapps.model.Table
 import rpl1pnp.fikri.footballapps.network.ApiRepository
 import rpl1pnp.fikri.footballapps.ui.league.viewpager.PageViewModel
@@ -27,6 +26,7 @@ import kotlin.coroutines.CoroutineContext
 
 class StandingsFragment : Fragment(), StandingView, CoroutineScope {
     private lateinit var viewModel: PageViewModel
+    private lateinit var adapter: StandingAdapter
     private var table: MutableList<Table> = mutableListOf()
     private lateinit var presenter: StandingsPresenter
     private val coroutineContextProvider = CoroutineContextProvider()
@@ -50,35 +50,24 @@ class StandingsFragment : Fragment(), StandingView, CoroutineScope {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        recyclerView()
+        getDataFromPresenter()
+    }
+
+    private fun getDataFromPresenter() {
         idLeague = viewModel.getIdLeague()
         val request = ApiRepository()
         val gson = Gson()
         presenter = StandingsPresenter(this, request, gson)
         launch {
             presenter.getTable(idLeague)
-            createTable()
         }
-
     }
 
-    private fun createTable() {
-        val tablelayoutid = activity?.findViewById(R.id.tl_standing) as TableLayout
-
-        var index = 0
-        while (index < table.size) {
-            val row = layoutInflater.inflate(R.layout.layout_row, null) as TableRow
-            row.no_table.text = (index + 1).toString()
-            row.nama_tim.text = table[index].name
-            row.goal_for.text = "${table[index].goalsfor}"
-            row.goal_against.text = "${table[index].goalsagainst}"
-            row.goal_difference.text = "${table[index].goalsdifference}"
-            row.win.text = "${table[index].win}"
-            row.draw.text = "${table[index].draw}"
-            row.loss.text = "${table[index].loss}"
-            row.total.text = "${table[index].total}"
-            tablelayoutid.addView(row)
-            index++
-        }
+    private fun recyclerView() {
+        rv_standing.layoutManager = LinearLayoutManager(requireActivity())
+        adapter = StandingAdapter(table)
+        rv_standing?.adapter = adapter
     }
 
     override fun showLoading() {
@@ -92,6 +81,7 @@ class StandingsFragment : Fragment(), StandingView, CoroutineScope {
     override fun getTable(data: List<Table>) {
         table.clear()
         table.addAll(data)
+        adapter.notifyDataSetChanged()
     }
 
     override val coroutineContext: CoroutineContext

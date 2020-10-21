@@ -26,7 +26,7 @@ class TeamAdapter(private var teams: List<Team>, private val listener: (Team) ->
 
     class TeamViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindItem(team: Team, listener: (Team) -> Unit) {
-            if (team.strTeamBadge.isNullOrBlank()) {
+            if (team.strTeamBadge.isBlank()) {
                 Picasso.get().load(R.drawable.ic_broken_image_gray)
                     .error(R.drawable.ic_broken_image_gray).resize(100, 100)
                     .into(itemView.iv_search_team)
