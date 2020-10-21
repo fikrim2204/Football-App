@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="71dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="76dp"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     app:layout_collapseMode="parallax"
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:cardCornerRadius="30dp"
-        app:cardElevation="3dp">
+        app:cardElevation="2dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                 android:layout_margin="10dp"
                 android:layout_toEndOf="@id/image_logo_league"
                 android:textAlignment="center"
-                android:textColor="@color/textColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="League" />
@@ -55,7 +55,9 @@
                 android:layout_toEndOf="@id/image_logo_league"
                 android:justificationMode="inter_word"
                 android:maxLines="4"
-                android:textColor="@color/textColor"
+                android:ellipsize="end"
+                android:maxLength="92"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:text="Lorem Lorel lorea wadawd awdawda dwadawd awdawda wadawda awdawda awdawda awdad awdawda awdawda awdawda awdawdaw awdawd " />

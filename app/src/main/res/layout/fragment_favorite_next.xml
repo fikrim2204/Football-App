@@ -3,12 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.match.favorite.FavoriteNextFragment">
+    android:background="@color/colorSurface"
+    tools:context=".ui.favorite.FavoriteMatchNextFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_fav_next_match"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_match" />
+
+    <TextView
+        android:id="@+id/null_data_next_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/null_match_fav"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
 
 </FrameLayout>
