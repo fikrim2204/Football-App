@@ -56,12 +56,12 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
     override fun addFavorite() {
         ly_detail_match.snackbar(getString(R.string.added_favorite))
-            .setTextColor(ContextCompat.getColor(this, R.color.textColorSecondary))
+            .setTextColor(ContextCompat.getColor(this, R.color.textColorSnackBar))
     }
 
     override fun removeFavorite() {
         ly_detail_match.snackbar(getString(R.string.remove_favorite))
-            .setTextColor(ContextCompat.getColor(this, R.color.textColorSecondary))
+            .setTextColor(ContextCompat.getColor(this, R.color.textColorSnackBar))
     }
 
     override fun favoriteState(state: Boolean) {
@@ -141,7 +141,6 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
                 setFavorite()
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
     }

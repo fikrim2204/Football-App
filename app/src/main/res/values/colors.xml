@@ -10,4 +10,5 @@
     <color name="textColorSecondary">#000000</color>
     <color name="colorBackground">#ffffff</color>
     <color name="colorSurface">#eeeeee</color>
+    <color name="textColorSnackBar">#ffffff</color>
 </resources>

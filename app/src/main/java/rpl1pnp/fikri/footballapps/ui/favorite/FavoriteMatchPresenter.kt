@@ -5,9 +5,12 @@ import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
 import rpl1pnp.fikri.footballapps.database.FavoriteMatch
 import rpl1pnp.fikri.footballapps.database.database
-import rpl1pnp.fikri.footballapps.view.FavoriteView
+import rpl1pnp.fikri.footballapps.view.FavoriteMatchView
 
-class FavoritePresenter(private val view: FavoriteView, private val context: Context) {
+class FavoriteMatchPresenter(
+    private val matchView: FavoriteMatchView,
+    private val context: Context
+) {
     private var favoriteMatches: MutableList<FavoriteMatch> = mutableListOf()
 
     fun showFavoritePrev() {
@@ -16,7 +19,7 @@ class FavoritePresenter(private val view: FavoriteView, private val context: Con
             val result =
                 select(FavoriteMatch.TABLE_FAVORITE_MATCH).whereArgs("(HOME_SCORE IS NOT NULL) and (AWAY_SCORE IS NOT NULL)")
             val favorite = result.parseList(classParser<FavoriteMatch>())
-            view.showFavorite(favorite)
+            matchView.showFavoriteMatch(favorite)
         }
     }
 
@@ -26,7 +29,7 @@ class FavoritePresenter(private val view: FavoriteView, private val context: Con
             val result =
                 select(FavoriteMatch.TABLE_FAVORITE_MATCH).whereArgs("(HOME_SCORE IS NULL) and (AWAY_SCORE IS NULL)")
             val favorite = result.parseList(classParser<FavoriteMatch>())
-            view.showFavorite(favorite)
+            matchView.showFavoriteMatch(favorite)
         }
     }
 }

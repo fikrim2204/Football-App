@@ -14,7 +14,7 @@ class FavoriteTeamAdapter(private var favoriteTeam: List<FavoriteTeam>) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): FavoriteTeamAdapter.FavoriteTeamViewHolder {
+    ): FavoriteTeamViewHolder {
         return FavoriteTeamViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_team, parent, false)
@@ -22,7 +22,7 @@ class FavoriteTeamAdapter(private var favoriteTeam: List<FavoriteTeam>) :
     }
 
     override fun onBindViewHolder(
-        holderFavoriteTeam: FavoriteTeamAdapter.FavoriteTeamViewHolder,
+        holderFavoriteTeam: FavoriteTeamViewHolder,
         position: Int
     ) {
         return holderFavoriteTeam.bindItem(favoriteTeam[position])
@@ -33,7 +33,7 @@ class FavoriteTeamAdapter(private var favoriteTeam: List<FavoriteTeam>) :
     class FavoriteTeamViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindItem(favoriteTeam: FavoriteTeam) {
             favoriteTeam.teamBadge.let {
-                Picasso.get().load(it).resize(100, 100).into(itemView.iv_team)
+                Picasso.get().load(it).resize(160, 160).into(itemView.iv_team)
             }
             itemView.tv_team.text = favoriteTeam.team
         }

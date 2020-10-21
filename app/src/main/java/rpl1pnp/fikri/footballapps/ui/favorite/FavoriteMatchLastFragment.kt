@@ -13,41 +13,50 @@ import rpl1pnp.fikri.footballapps.adapter.FavoriteMatchAdapter
 import rpl1pnp.fikri.footballapps.database.FavoriteMatch
 import rpl1pnp.fikri.footballapps.util.invisible
 import rpl1pnp.fikri.footballapps.util.visible
-import rpl1pnp.fikri.footballapps.view.FavoriteView
+import rpl1pnp.fikri.footballapps.view.FavoriteMatchView
 
-class FavoriteLastFragment : Fragment(), FavoriteView {
+class FavoriteMatchLastFragment : Fragment(), FavoriteMatchView {
     lateinit var matchAdapter: FavoriteMatchAdapter
     private var favoriteMatches: MutableList<FavoriteMatch> = mutableListOf()
     private lateinit var previousFavList: RecyclerView
-    private lateinit var presenter: FavoritePresenter
+    private lateinit var matchPresenter: FavoriteMatchPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val rootView: View = inflater.inflate(R.layout.fragment_favorite_last, container, false)
-        previousFavList = rootView.findViewById(R.id.rv_fav_last_match) as RecyclerView
-        previousFavList.layoutManager = LinearLayoutManager(activity)
-        matchAdapter = FavoriteMatchAdapter(favoriteMatches)
-
-        previousFavList.adapter = matchAdapter
-        presenter = FavoritePresenter(this, requireActivity())
-        return rootView
+        return inflater.inflate(R.layout.fragment_favorite_last, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        presenter.showFavoritePrev()
+        super.onViewCreated(view, savedInstanceState)
+
+        recyclerView()
+        getDataFromDatabase()
+        checkDataNotNull()
+    }
+
+    private fun checkDataNotNull() {
         if (favoriteMatches.isEmpty()) {
             null_data_prev_fav.visible()
         } else {
             null_data_prev_fav.invisible()
         }
-
-        super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun showFavorite(data: List<FavoriteMatch>) {
+    private fun recyclerView() {
+        rv_fav_last_match?.layoutManager = LinearLayoutManager(activity)
+        matchAdapter = FavoriteMatchAdapter(favoriteMatches)
+        rv_fav_last_match?.adapter = matchAdapter
+    }
+
+    private fun getDataFromDatabase() {
+        matchPresenter = FavoriteMatchPresenter(this, requireActivity())
+        matchPresenter.showFavoritePrev()
+    }
+
+    override fun showFavoriteMatch(data: List<FavoriteMatch>) {
         favoriteMatches.clear()
         favoriteMatches.addAll(data)
         matchAdapter.notifyDataSetChanged()

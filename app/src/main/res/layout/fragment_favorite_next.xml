@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorSurface"
-    tools:context=".ui.favorite.FavoriteNextFragment">
+    tools:context=".ui.favorite.FavoriteMatchNextFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_fav_next_match"

@@ -23,9 +23,7 @@ class MainAdapter(private val items: List<League>, private val listener: (League
         )
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: LeagueTeamHolder, position: Int) {
         return holder.bindItem(items[position], listener)

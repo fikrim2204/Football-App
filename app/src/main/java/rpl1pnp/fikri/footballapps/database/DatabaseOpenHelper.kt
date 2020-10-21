@@ -37,8 +37,8 @@ class DatabaseOpenHelper(ctx: Context) :
             FavoriteTeam.TABLE_FAVORITE_TEAM, true,
             FavoriteTeam.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
             FavoriteTeam.ID_TEAM to TEXT + UNIQUE,
-            FavoriteTeam.TEAM_BADGE to TEXT,
-            FavoriteTeam.TEAM to TEXT
+            FavoriteTeam.TEAM to TEXT,
+            FavoriteTeam.TEAM_BADGE to TEXT
         )
     }
 

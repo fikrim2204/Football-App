@@ -11,6 +11,19 @@ import rpl1pnp.fikri.footballapps.database.FavoriteMatch
 class FavoriteMatchAdapter(
     private var favoriteMatch: List<FavoriteMatch>
 ) : RecyclerView.Adapter<FavoriteMatchAdapter.FavoritePreviousViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritePreviousViewHolder {
+        return FavoritePreviousViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_match, parent, false)
+        )
+    }
+
+    override fun onBindViewHolder(holder: FavoritePreviousViewHolder, position: Int) {
+        return holder.bindItem(favoriteMatch[position])
+    }
+
+    override fun getItemCount() = favoriteMatch.size
+
     class FavoritePreviousViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindItem(favoriteMatch: FavoriteMatch) {
             itemView.team_home.text = favoriteMatch.homeTeam
@@ -26,16 +39,4 @@ class FavoriteMatchAdapter(
             itemView.date_match.text = time
         }
     }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritePreviousViewHolder {
-        return FavoritePreviousViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_match, parent, false)
-        )
-    }
-
-    override fun onBindViewHolder(holder: FavoritePreviousViewHolder, position: Int) {
-        return holder.bindItem(favoriteMatch[position])
-    }
-
-    override fun getItemCount() = favoriteMatch.size
 }

@@ -40,7 +40,7 @@
 
                 <TextView
                     android:id="@+id/team_home"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toStartOf="@id/score_home"
                     android:gravity="center"
@@ -87,7 +87,7 @@
 
                 <TextView
                     android:id="@+id/team_away"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/score_away"
                     android:gravity="center"
