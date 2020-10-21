@@ -8,7 +8,6 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_search_team.*
 import kotlinx.coroutines.CoroutineScope
@@ -28,7 +27,6 @@ import kotlin.coroutines.CoroutineContext
 class SearchTeamFragment : Fragment(), SearchTeamView, CoroutineScope {
     private lateinit var adapter: TeamAdapter
     private lateinit var presenter: SearchTeamPresenter
-    private lateinit var searchTeamList: RecyclerView
     private var teams: MutableList<Team> = mutableListOf()
     private lateinit var job: Job
     private val coroutineContextProvider = CoroutineContextProvider()
@@ -73,7 +71,7 @@ class SearchTeamFragment : Fragment(), SearchTeamView, CoroutineScope {
     private fun setRecyclerView() {
         rv_search_team?.layoutManager = LinearLayoutManager(activity)
         adapter = TeamAdapter(teams) {}
-        searchTeamList.adapter = adapter
+        rv_search_team?.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
