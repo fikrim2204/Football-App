@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="8dp"
         android:weightSum="10">
 
         <TextView
@@ -21,7 +21,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/textColorPrimary"
-            android:textSize="16sp"
+            android:textSize="12sp"
             tools:text="1" />
 
         <TextView
@@ -32,8 +32,8 @@
             android:ellipsize="end"
             android:gravity="center"
             android:textColor="@color/textColorPrimary"
-            android:textSize="16sp"
-            tools:text="Man United" />
+            android:textSize="12sp"
+            tools:text="Sheffield United" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/textColorPrimary"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tv_goal_against_table"
                 app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/textColorPrimary"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tv_goal_difference_table"
                 app:layout_constraintStart_toEndOf="@id/tv_goal_for_table"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/textColorPrimary"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tv_win_table"
                 app:layout_constraintStart_toEndOf="@id/tv_goal_against_table"
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/textColorPrimary"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tv_draw_table"
                 app:layout_constraintStart_toEndOf="@id/tv_goal_difference_table"
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/textColorPrimary"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tv_loss_table"
                 app:layout_constraintStart_toEndOf="@id/tv_win_table"
@@ -111,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/textColorPrimary"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/_tv_total_table"
                 app:layout_constraintStart_toEndOf="@id/tv_draw_table"
@@ -124,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/textColorPrimary"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_loss_table"
