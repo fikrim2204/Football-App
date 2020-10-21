@@ -6,23 +6,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_match.view.*
 import rpl1pnp.fikri.footballapps.R
-import rpl1pnp.fikri.footballapps.database.Favorite
+import rpl1pnp.fikri.footballapps.database.FavoriteMatch
 
-class FavoriteAdapter(
-    private var favorite: List<Favorite>
-) : RecyclerView.Adapter<FavoriteAdapter.FavoritePreviousViewHolder>() {
+class FavoriteMatchAdapter(
+    private var favoriteMatch: List<FavoriteMatch>
+) : RecyclerView.Adapter<FavoriteMatchAdapter.FavoritePreviousViewHolder>() {
     class FavoritePreviousViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bindItem(favorite: Favorite) {
-            itemView.team_home.text = favorite.homeTeam
-            itemView.team_away.text = favorite.awayTeam
-            itemView.score_home.text = favorite.homeScore
-            itemView.score_away.text = favorite.awayScore
-            if (favorite.homeScore == null && favorite.awayScore == null) {
+        fun bindItem(favoriteMatch: FavoriteMatch) {
+            itemView.team_home.text = favoriteMatch.homeTeam
+            itemView.team_away.text = favoriteMatch.awayTeam
+            itemView.score_home.text = favoriteMatch.homeScore
+            itemView.score_away.text = favoriteMatch.awayScore
+            if (favoriteMatch.homeScore == null && favoriteMatch.awayScore == null) {
                 itemView.strip.text = itemView.resources.getString(R.string.vs)
             } else {
                 itemView.strip.text = itemView.resources.getString(R.string.strip)
             }
-            val time = favorite.dateEvent + "\n" + favorite.time
+            val time = favoriteMatch.dateEvent + "\n" + favoriteMatch.time
             itemView.date_match.text = time
         }
     }
@@ -34,8 +34,8 @@ class FavoriteAdapter(
     }
 
     override fun onBindViewHolder(holder: FavoritePreviousViewHolder, position: Int) {
-        return holder.bindItem(favorite[position])
+        return holder.bindItem(favoriteMatch[position])
     }
 
-    override fun getItemCount() = favorite.size
+    override fun getItemCount() = favoriteMatch.size
 }

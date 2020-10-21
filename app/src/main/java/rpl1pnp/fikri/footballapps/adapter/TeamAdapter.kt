@@ -29,14 +29,14 @@ class TeamAdapter(private var teams: List<Team>, private val listener: (Team) ->
             if (team.strTeamBadge.isBlank()) {
                 Picasso.get().load(R.drawable.ic_broken_image_gray)
                     .error(R.drawable.ic_broken_image_gray).resize(100, 100)
-                    .into(itemView.iv_search_team)
+                    .into(itemView.iv_team)
             } else {
                 team.strTeamBadge.let {
                     Picasso.get().load(it).error(R.drawable.ic_broken_image_gray)
-                        .into(itemView.iv_search_team)
+                        .into(itemView.iv_team)
                 }
             }
-            itemView.tv_search_team.text = team.strTeam
+            itemView.tv_team.text = team.strTeam
             itemView.setOnClickListener { listener(team) }
         }
 

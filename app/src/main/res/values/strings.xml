@@ -83,4 +83,6 @@
     <string name="remove_favorite">Removed from Favorite</string>
     <string name="capacity">Capacity</string>
     <string name="detail_team">Detail Team</string>
+    <string name="year_formed">Since</string>
+    <string name="null_team_favorite">Team Favorite belum dipilih</string>
 </resources>

@@ -58,6 +58,8 @@ class DetailTeamActivity : AppCompatActivity(), DetailTeamView, CoroutineScope {
         }
         tv_detail_team_name.text = data.first().strTeam
         tv_detail_alternate_name.text = data.first().strAlternate
+        val year = "${getString(R.string.year_formed)} ${data.first().intFormedYear}"
+        tv_detail_year.text = year
         tv_detail_description.text = data.first().strDescriptionEN
         tv_detail_location.text = data.first().strStadiumLocation
         tv_detail_description_stadium.text = data.first().strStadiumDescription

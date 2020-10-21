@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_team.*
 import kotlinx.coroutines.CoroutineScope
@@ -60,7 +61,7 @@ class TeamFragment : Fragment(), TeamView, CoroutineScope {
     }
 
     private fun recylerView() {
-        rv_list_team?.layoutManager = LinearLayoutManager(requireActivity())
+        rv_list_team?.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         adapter = TeamAdapter(teams) {
             val idTeam = it.idTeam
             startActivity(intentFor<DetailTeamActivity>("ID_TEAM" to idTeam).singleTop())

@@ -15,9 +15,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="2dp"
-        app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="16dp"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="12dp"
         app:cardElevation="2dp">
 
         <RelativeLayout
@@ -25,20 +25,22 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/iv_search_team"
+                android:id="@+id/iv_team"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
                 android:layout_margin="10dp"
-                android:scaleType="fitXY"
                 android:contentDescription="@string/league_image"
+                android:scaleType="fitXY"
                 tools:src="@drawable/english_league_1" />
 
             <TextView
-                android:id="@+id/tv_search_team"
+                android:id="@+id/tv_team"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_team"
+                android:layout_centerHorizontal="true"
                 android:layout_margin="5dp"
-                android:layout_toEndOf="@id/iv_search_team"
                 android:gravity="center"
                 android:textColor="@color/textColorPrimary"
                 android:textSize="18sp"

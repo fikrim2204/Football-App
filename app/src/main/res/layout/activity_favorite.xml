@@ -27,9 +27,9 @@
             android:id="@+id/tabs_favorite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimaryLight"
             app:tabIndicatorColor="@color/colorSecondary"
-            app:tabTextColor="@color/textColorSecondary" />
+            app:tabTextColor="@color/textColorPrimary" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager

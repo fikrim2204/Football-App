@@ -9,15 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_favorite_next.*
 import rpl1pnp.fikri.footballapps.R
-import rpl1pnp.fikri.footballapps.adapter.FavoriteAdapter
-import rpl1pnp.fikri.footballapps.database.Favorite
+import rpl1pnp.fikri.footballapps.adapter.FavoriteMatchAdapter
+import rpl1pnp.fikri.footballapps.database.FavoriteMatch
 import rpl1pnp.fikri.footballapps.util.invisible
 import rpl1pnp.fikri.footballapps.util.visible
 import rpl1pnp.fikri.footballapps.view.FavoriteView
 
 class FavoriteNextFragment : Fragment(), FavoriteView {
-    lateinit var adapter: FavoriteAdapter
-    private var favorites: MutableList<Favorite> = mutableListOf()
+    lateinit var matchAdapter: FavoriteMatchAdapter
+    private var favoriteMatches: MutableList<FavoriteMatch> = mutableListOf()
     private lateinit var nextFavList: RecyclerView
     private lateinit var presenter: FavoritePresenter
 
@@ -29,16 +29,16 @@ class FavoriteNextFragment : Fragment(), FavoriteView {
         val rootView: View = inflater.inflate(R.layout.fragment_favorite_next, container, false)
         nextFavList = rootView.findViewById(R.id.rv_fav_next_match) as RecyclerView
         nextFavList.layoutManager = LinearLayoutManager(activity)
-        adapter = FavoriteAdapter(favorites)
+        matchAdapter = FavoriteMatchAdapter(favoriteMatches)
 
-        nextFavList.adapter = adapter
+        nextFavList.adapter = matchAdapter
         presenter = FavoritePresenter(this, requireActivity())
         return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         presenter.showFavoriteNext()
-        if (favorites.isEmpty()) {
+        if (favoriteMatches.isEmpty()) {
             null_data_next_fav.visible()
         } else {
             null_data_next_fav.invisible()
@@ -47,10 +47,10 @@ class FavoriteNextFragment : Fragment(), FavoriteView {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun showFavorite(data: List<Favorite>) {
-        favorites.clear()
-        favorites.addAll(data)
-        adapter.notifyDataSetChanged()
+    override fun showFavorite(data: List<FavoriteMatch>) {
+        favoriteMatches.clear()
+        favoriteMatches.addAll(data)
+        matchAdapter.notifyDataSetChanged()
     }
 
 

@@ -9,7 +9,7 @@ import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
-import rpl1pnp.fikri.footballapps.database.Favorite
+import rpl1pnp.fikri.footballapps.database.FavoriteMatch
 import rpl1pnp.fikri.footballapps.database.database
 import rpl1pnp.fikri.footballapps.model.Event
 import rpl1pnp.fikri.footballapps.model.EventResponse
@@ -63,17 +63,17 @@ class DetailMatchPresenter(
         try {
             context.database.use {
                 insert(
-                    Favorite.TABLE_FAVORITE,
-                    Favorite.ID_EVENT to events?.first()?.eventId,
-                    Favorite.ID_LEAGUE to events?.first()?.idLeague,
-                    Favorite.ID_HOME_TEAM to events?.first()?.homeTeamId,
-                    Favorite.ID_AWAY_TEAM to events?.first()?.awayTeamId,
-                    Favorite.HOME_TEAM to events?.first()?.homeTeam,
-                    Favorite.AWAY_TEAM to events?.first()?.awayTeam,
-                    Favorite.HOME_SCORE to events?.first()?.homeScore,
-                    Favorite.AWAY_SCORE to events?.first()?.awayScore,
-                    Favorite.DATE_EVENT to events?.first()?.dateEvent,
-                    Favorite.TIME to events?.first()?.time
+                    FavoriteMatch.TABLE_FAVORITE_MATCH,
+                    FavoriteMatch.ID_EVENT to events?.first()?.eventId,
+                    FavoriteMatch.ID_LEAGUE to events?.first()?.idLeague,
+                    FavoriteMatch.ID_HOME_TEAM to events?.first()?.homeTeamId,
+                    FavoriteMatch.ID_AWAY_TEAM to events?.first()?.awayTeamId,
+                    FavoriteMatch.HOME_TEAM to events?.first()?.homeTeam,
+                    FavoriteMatch.AWAY_TEAM to events?.first()?.awayTeam,
+                    FavoriteMatch.HOME_SCORE to events?.first()?.homeScore,
+                    FavoriteMatch.AWAY_SCORE to events?.first()?.awayScore,
+                    FavoriteMatch.DATE_EVENT to events?.first()?.dateEvent,
+                    FavoriteMatch.TIME to events?.first()?.time
                 )
             }
             view.addFavorite()
@@ -86,7 +86,7 @@ class DetailMatchPresenter(
         try {
             context.database.use {
                 delete(
-                    Favorite.TABLE_FAVORITE, "(ID_EVENT = {id})",
+                    FavoriteMatch.TABLE_FAVORITE_MATCH, "(ID_EVENT = {id})",
                     "id" to eventId.toString()
                 )
             }
@@ -98,12 +98,12 @@ class DetailMatchPresenter(
 
     fun favoriteState(context: Context, eventId: String?) {
         context.database.use {
-            val result = select(Favorite.TABLE_FAVORITE)
+            val result = select(FavoriteMatch.TABLE_FAVORITE_MATCH)
                 .whereArgs(
                     "(ID_EVENT = {id})",
                     "id" to eventId.toString()
                 )
-            val favorite = result.parseList(classParser<Favorite>())
+            val favorite = result.parseList(classParser<FavoriteMatch>())
             if (favorite.isNotEmpty()) {
                 view.favoriteState(true)
             } else {
